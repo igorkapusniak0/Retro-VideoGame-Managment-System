@@ -1,4 +1,4 @@
 package map;
 
-public class DarraghisCool {
+public class DarraghIsCool {
 }
