@@ -1,4 +1,5 @@
-package map;
+package storing;
 
 public class HashMap {
+
 }
