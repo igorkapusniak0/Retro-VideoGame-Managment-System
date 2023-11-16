@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class LinkedList<T> implements Serializable {
     public Node<T> head;
-    public List(){
+    public LinkedList(){
         this.head = null;
     }
     public void add(T data){
@@ -53,10 +53,24 @@ public class LinkedList<T> implements Serializable {
     }
 
 
-
-
-
-
+    public int size() {
+        Node<T> current = head;
+        int size=0;
+        while (current != null) {
+            size+=1;
+            current = current.next;
+        }
+        return size;
+    }
+    public <E> T get(int index){
+        Node<T> current = head;
+        int i=0;
+        while (current != null&&i!=index) {
+            i+=1;
+            current = current.next;
+        }
+        return current.data;
+    }
 
 }
 
