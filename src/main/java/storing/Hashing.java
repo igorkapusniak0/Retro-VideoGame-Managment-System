@@ -1,7 +1,6 @@
 package storing;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Scanner;
 
 public class Hashing<T> implements Serializable {
@@ -29,14 +28,13 @@ public class Hashing<T> implements Serializable {
     }
     public void display() {
         for (int i = 0; i < hashTable.length; i++) {
-            System.out.print(i + ". ");
             LinkedList<T> list = hashTable[i];
+            System.out.print("\nChain " + i+"\n-------------\n");
             if (list != null) {
                 for (int j = 0; j < list.size(); j++) {
-                    System.out.print(list.get(j) + ", ");
+                    System.out.println(j+". "+list.get(j) + ", ");
                 }
             }
-            System.out.println();
         }
     }
 
@@ -46,18 +44,15 @@ public class Hashing<T> implements Serializable {
 
         String name;
 
-        h.display();
-
         do{
             System.out.print("Enter name: ");
             name=k.nextLine();
 
             if(name.length()!=0) {
-                int loc=h.add(name); //,num);
+                int loc=h.add(name);
                 System.out.println(name+" stored at location "+loc);
             }
         }while(name.length()!=0);
-
         h.display();
     }
 }
