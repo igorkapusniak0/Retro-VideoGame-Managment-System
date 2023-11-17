@@ -20,10 +20,16 @@ public class Hashing<T> implements Serializable {
         hashTable[home].add(data);
         return home;
     }
-
+    //TODO
+    //Change to voids after testing
     public int add(T data){
         int home = hashFunction(Math.abs(data.hashCode()));
         hashTable[home].add(data);
+        return home;
+    }
+    public int remove(T data){
+        int home = hashFunction(Math.abs(data.hashCode()));
+        hashTable[home].remove(data);
         return home;
     }
     public void display() {
