@@ -12,10 +12,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class RetroVideoGameManagementSystem extends Application {
+    private Scene scene;
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/Scenes/Dashboard.fxml"));
+        Parent gameMachine = FXMLLoader.load(getClass().getResource("/Scenes/GameMachine.fxml"));
         Scene dashboardScene = new Scene(root, Color.LIGHTSKYBLUE);
+        Scene gameMachineScene = new Scene(gameMachine, Color.LIGHTSKYBLUE);
+        scene = gameMachineScene;
 
         stage.getIcons().add(new Image(RetroVideoGameManagementSystem.class.getResourceAsStream("/JoyConIcon.jpg")));
 
@@ -24,9 +28,13 @@ public class RetroVideoGameManagementSystem extends Application {
         stage.setHeight(1000);
         stage.setResizable(false);
 
-        stage.setScene(dashboardScene);
+        stage.setScene(scene);
         stage.show();
     }
+    public void setScene(Scene scene){
+        this.scene = scene;
+    }
+
 
     public static void main(String[] args) {
         launch();

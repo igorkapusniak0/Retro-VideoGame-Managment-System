@@ -1,5 +1,6 @@
 package models;
 
+import storing.Hashing;
 import utils.Utilities;
 
 public class Machine {
@@ -11,6 +12,8 @@ public class Machine {
     private int launchYear;
     private double price;
     private String image;
+    private Hashing<Game> games = new Hashing<>(50);
+    private Hashing<PortedGame> portedGames = new Hashing<>(50);
 
     public Machine(String name, String manufacturer,String description,String type,String media,int launchYear, double price,String image){
         setName(name);
@@ -101,5 +104,30 @@ public class Machine {
     }
     public String getImage(){
         return this.image;
+    }
+    public void addGame(Game game){
+        games.add(game);
+    }
+    public void removeGame(Game game){
+        games.remove(game);
+    }
+    public void addPortedGame(PortedGame portedGame){
+        portedGames.add(portedGame);
+    }
+    public void removePortedGame(PortedGame portedGame){
+        portedGames.remove(portedGame);
+    }
+
+    public void setGames(Hashing<Game> games){
+        this.games = games;
+    }
+    public Hashing<Game> getGames(){
+        return this.games;
+    }
+    public void setPortedGames(Hashing<PortedGame> portedGames){
+        this.portedGames=portedGames;
+    }
+    public Hashing<PortedGame> getPortedGames(){
+        return this.portedGames;
     }
 }
