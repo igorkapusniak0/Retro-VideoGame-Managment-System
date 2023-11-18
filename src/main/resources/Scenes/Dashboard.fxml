@@ -22,7 +22,7 @@
       </VBox>
       <VBox alignment="TOP_CENTER" layoutX="700.0" layoutY="200.0" prefHeight="300.0" prefWidth="300.0">
          <children>
-            <Label text="The objective of this CA exercise is to create an application for storing and retrieving information onretro video games and the machines (i.e. video games consoles or home computers) they ran on. " textAlignment="CENTER" wrapText="true">
+            <Label text="The objective of this CA exercise is to create an application for storing and retrieving information on retro video games and the machines (i.e. video games consoles or home computers) they ran on. " textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Times New Roman Bold" size="21.0" />
                </font>

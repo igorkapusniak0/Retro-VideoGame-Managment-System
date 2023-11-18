@@ -16,7 +16,7 @@ public class Utilities {
      * - finally, the multiplied and casted number is divided by 100 and returned e.g. 1654 = 16.54
      *
      * @param number Number to be truncated to two decimal places
-     * @return the number, passed as a parameter, truncated to two decimal places (note: not rounded)
+     * @return the number,` passed as a parameter, truncated to two decimal places (note: not rounded)
      */
     public static double toTwoDecimalPlaces(double number) {
         return (double) ((number * 100) / 100.0);
