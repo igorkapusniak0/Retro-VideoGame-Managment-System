@@ -13,7 +13,7 @@
       <VBox alignment="CENTER" layoutY="100.0" opacity="0.75" prefHeight="900.0" prefWidth="1100.0" style="-fx-background-image: url('Background.jpg');" />
       <VBox alignment="CENTER" layoutX="500.0" layoutY="500.0" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Enter" textAlignment="CENTER">
+            <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Enter" textAlignment="CENTER" onAction="#switchToSceneManufacturer">
                <font>
                   <Font name="System Font" size="18.0" />
                </font>

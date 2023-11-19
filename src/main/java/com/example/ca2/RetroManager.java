@@ -24,6 +24,7 @@ public class RetroManager extends Application {
         Scene manufacturerScene = new Scene(manufacturer, Color.LIGHTSKYBLUE);
         Scene gameMachineScene = new Scene(gameMachine, Color.LIGHTSKYBLUE);
         this.gameMachineScene=gameMachineScene;
+        this.manufacturerScene=manufacturerScene;
         scene = manufacturerScene;
 
         stage.getIcons().add(new Image(RetroManager.class.getResourceAsStream("/JoyConIcon.jpg")));

@@ -58,7 +58,11 @@ public class ManufacturerController {
         manufacturerNameCol.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
         manufacturerTableView.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
-                handleTableViewPrimaryDoubleClick();
+                try {
+                    handleTableViewPrimaryDoubleClick();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             } else if (event.getButton().equals(MouseButton.SECONDARY) && event.getClickCount() == 2) {
                 handleTableViewSecondaryDoubleClick();
             }
@@ -90,26 +94,23 @@ public class ManufacturerController {
     }
 
     @FXML
-    private void handleTableViewPrimaryDoubleClick() {
+    private void handleTableViewPrimaryDoubleClick() throws IOException {
         ManufacturerUtil selectedManufacturer = manufacturerTableView.getSelectionModel().getSelectedItem();
         if (selectedManufacturer != null) {
-            try {
-                // Load the new scene
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/GameMachine"));
-                Parent root2 = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/GameMachine.fxml"));
+            Parent root = loader.load();
 
-                // Pass the selectedPort to the controller of the new scene if needed
-                GameMachine gameMachineController = loader.getController();
-                gameMachineController.setManufacturer(manufacturer);
+            GameMachine gameMachineController = loader.getController();
+            gameMachineController.setManufacturer(selectedManufacturer);
 
-                // Switch to the new scene
-                Stage stage = (Stage) manufacturerTableView.getScene().getWindow();
-                Scene scene = new Scene(root2);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace(); // Handle the exception appropriately
-            }
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            // Closing the previous window if needed
+            Stage currentStage = (Stage) manufacturerTableView.getScene().getWindow();
+            currentStage.close();
         }
     }
 
