@@ -47,8 +47,8 @@ public class ManufacturerController {
 
     public void editManufacturer(){
         chosenManufacturer.setManufacturer(manufacturerNameInput.getText());
-        System.out.println();
-        manufacturerList.display();
+        System.out.println(manufacturerList.display());
+
     }
     @FXML
     public void initialize() {
@@ -79,6 +79,17 @@ public class ManufacturerController {
             System.out.println("Manufacturer List");
             System.out.println(manufacturerList.display());
 
+        }
+    }
+    public void removeManufacturerButton(ActionEvent event){
+        if (chosenManufacturer!=null){
+            manufacturerList.remove(chosenManufacturer);
+            /*manufacturerTableView.getItems().remove(chosenManufacturer);
+            manufacturerTableView.refresh();*/
+            API.updateListView("",manufacturerTableView,manufacturerList.head);
+            System.out.println("1, "+manufacturerList.display());
+        }else{
+            System.out.println("No manufacturer selected");
         }
     }
 
