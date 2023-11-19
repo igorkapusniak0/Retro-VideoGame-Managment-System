@@ -81,17 +81,6 @@ public class ManufacturerController {
 
         }
     }
-    public void removeManufacturerButton(ActionEvent event){
-        if (chosenManufacturer!=null){
-            manufacturerList.remove(chosenManufacturer);
-            /*manufacturerTableView.getItems().remove(chosenManufacturer);
-            manufacturerTableView.refresh();*/
-            API.updateListView("",manufacturerTableView,manufacturerList.head);
-            System.out.println("1, "+manufacturerList.display());
-        }else{
-            System.out.println("No manufacturer selected");
-        }
-    }
 
     @FXML
     private void handleTableViewPrimaryDoubleClick() {
