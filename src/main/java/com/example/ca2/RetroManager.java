@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class RetroVideoGameManagementSystem extends Application {
+public class RetroManager extends Application {
     private Scene scene;
     @Override
     public void start(Stage stage) throws IOException {
@@ -21,7 +21,7 @@ public class RetroVideoGameManagementSystem extends Application {
         Scene gameMachineScene = new Scene(gameMachine, Color.LIGHTSKYBLUE);
         scene = gameMachineScene;
 
-        stage.getIcons().add(new Image(RetroVideoGameManagementSystem.class.getResourceAsStream("/JoyConIcon.jpg")));
+        stage.getIcons().add(new Image(RetroManager.class.getResourceAsStream("/JoyConIcon.jpg")));
 
         stage.setTitle("RetroVideoGameManagementSystem");
         stage.setWidth(1100);
