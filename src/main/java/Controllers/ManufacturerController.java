@@ -38,6 +38,7 @@ public class ManufacturerController {
     private TableColumn<ManufacturerUtil, String> manufacturerNameCol;
     @FXML
     private TextField manufacturerNameInput;
+    @FXML TextField searchManufacturer;
 
 
 
@@ -52,10 +53,8 @@ public class ManufacturerController {
     }
     @FXML
     public void initialize() {
-        if (!manufacturerList.isEmpty()){
-            ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-            scheduler.scheduleAtFixedRate(()->API.updateListView("",manufacturerTableView,manufacturerList.head), 0, 1, TimeUnit.SECONDS);
-        }
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.scheduleAtFixedRate(()->API.updateListView(searchManufacturer.getText(),manufacturerTableView,manufacturerList.head), 0, 1, TimeUnit.SECONDS);
         manufacturerNameCol.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
         manufacturerTableView.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
@@ -84,9 +83,6 @@ public class ManufacturerController {
     public void removeManufacturerButton(ActionEvent event){
         if (chosenManufacturer!=null){
             manufacturerList.remove(chosenManufacturer);
-            /*manufacturerTableView.getItems().remove(chosenManufacturer);
-            manufacturerTableView.refresh();*/
-            API.updateListView("",manufacturerTableView,manufacturerList.head);
             System.out.println("1, "+manufacturerList.display());
         }else{
             System.out.println("No manufacturer selected");
