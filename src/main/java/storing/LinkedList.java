@@ -71,6 +71,17 @@ public class LinkedList<T> implements Serializable {
         }
         return current.data;
     }
+    public String display(){
+        Node<T> current = head;
+        String s = "";
+        int i =0;
+        while (current !=null){
+            s += i + ". "+ current.data+ ", ";
+            current=current.next;
+            i+=1;
+        }
+        return s;
+    }
 
 }
 

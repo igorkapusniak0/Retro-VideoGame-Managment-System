@@ -5,15 +5,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseButton;
 import models.Machine;
+import utils.ManufacturerUtil;
 
 public class GameMachine {
 
     private Machine chosenGameMachine;
     @FXML
     private TableView<Machine> machineTableView;
-    private String manufacturer;
+    private ManufacturerUtil manufacturer;
 
-    public void setManufacturer(String manufacturer){
+    public void setManufacturer(ManufacturerUtil manufacturer){
         this.manufacturer=manufacturer;
     }
 

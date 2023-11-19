@@ -9,4 +9,5 @@ module com.example.ca2 {
     opens models to javafx.fxml;
     exports Controllers;
     opens Controllers to javafx.fxml;
+    opens utils to javafx.base;
 }
