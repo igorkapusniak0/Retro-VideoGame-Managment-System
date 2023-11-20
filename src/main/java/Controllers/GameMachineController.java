@@ -1,6 +1,8 @@
 package Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -73,5 +75,33 @@ public class GameMachineController {
                 chosenGameMachine = machineTableView.getSelectionModel().getSelectedItem();
             }
         });
+        comboType.getItems().addAll((Collection<? extends String>) VariableUtility.types);
+        comboMedia.getItems().addAll((Collection<? extends String>) VariableUtility.media);
+        comboLaunchYear.getItems().addAll((Collection<? extends String>) VariableUtility.launchYear);
     }
+
+    public void addGameMachineButton(ActionEvent event){
+        String machineName = gameMachineNameInput.getText();
+        String machineDescription = gameMachineDescriptionInput.getText();
+        double machinePrice = Double.parseDouble(gameMachinePriceInput.getText());
+        String machineURL = gameMachineUrlInput.getText();
+        String machineType = comboType.getValue();
+        String machineMedia = comboMedia.getValue();
+        int machineLaunchYear = Integer.parseInt(comboLaunchYear.getValue());
+        if (machineName.isBlank() || machineDescription.isBlank() || machinePrice<0 || machineURL.isBlank() || machineType.isBlank() || machineMedia.isBlank() ||machineLaunchYear>2024 || machineLaunchYear<1950){
+            System.out.println("Please fill in all fields.");
+        }
+        else{
+            Machine machine = new Machine(machineName,manufacturer,machineDescription,machineType,machineMedia,machineLaunchYear,machinePrice,machineURL);
+            gameMachineHashing.add(machine);
+            System.out.println(machine+"is added");
+            gameMachineHashing.display();
+        }
+
+
+
+    }
+
 }
+
+

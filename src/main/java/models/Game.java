@@ -65,7 +65,7 @@ public class Game {
         if (machine!=null){
             this.originalMachine=machine;
         }else{
-            this.originalMachine = new Machine("","","","","", 0, 0,"");
+            this.originalMachine = new Machine("",null,"","","", 0, 0,"");
         }
     }
     public Machine getOriginalMachine(){

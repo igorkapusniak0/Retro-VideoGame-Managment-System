@@ -13,8 +13,7 @@ import java.io.IOException;
 
 public class RetroManager extends Application {
     private Scene scene;
-    private Scene gameMachineScene;
-    private Scene manufacturerScene;
+
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/Scenes/Dashboard.fxml"));
@@ -31,12 +30,7 @@ public class RetroManager extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    public void setScene(Scene scene){
-        this.scene = scene;
-    }
-    public Scene getGameMachine(){
-        return this.gameMachineScene;
-    }
+
     public static void main(String[] args) {
         launch();
     }

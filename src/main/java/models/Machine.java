@@ -1,11 +1,12 @@
 package models;
 
 import storing.Hashing;
+import utils.ManufacturerUtil;
 import utils.Utilities;
 
 public class Machine {
     private String name;
-    private String manufacturer;
+    private ManufacturerUtil manufacturer;
     private String description;
     private String type;
     private String media;
@@ -15,7 +16,7 @@ public class Machine {
     private Hashing<Game> games = new Hashing<>(50);
     private Hashing<PortedGame> portedGames = new Hashing<>(50);
 
-    public Machine(String name, String manufacturer,String description,String type,String media,int launchYear, double price,String image){
+    public Machine(String name, ManufacturerUtil manufacturer,String description,String type,String media,int launchYear, double price,String image){
         setName(name);
         setDescription(description);
         setManufacturer(manufacturer);
@@ -45,14 +46,10 @@ public class Machine {
     public String getDescription(){
         return this.description;
     }
-    public void setManufacturer(String manufacturer){
-        if (manufacturer!=""||manufacturer!=null){
-            this.manufacturer=Utilities.truncateString(manufacturer,20);
-        }else{
-            this.manufacturer="Manufacturer Error";
-        }
+    public void setManufacturer(ManufacturerUtil manufacturer){
+        this.manufacturer=manufacturer;
     }
-    public String getManufacturer(){
+    public ManufacturerUtil getManufacturer(){
         return this.manufacturer;
     }
     public void setType(String type){
@@ -130,4 +127,21 @@ public class Machine {
     public Hashing<PortedGame> getPortedGames(){
         return this.portedGames;
     }
+
+    public String toString() {
+        return "Machine{" +
+                "name='" + name + '\'' +
+                ", manufacturer=" + manufacturer +
+                ", description='" + description + '\'' +
+                ", type='" + type + '\'' +
+                ", media='" + media + '\'' +
+                ", launchYear=" + launchYear +
+                ", price=" + price +
+                ", image='" + image + '\'' +
+                ", games=" + games +
+                ", portedGames=" + portedGames +
+                '}';
+    }
+
+
 }
