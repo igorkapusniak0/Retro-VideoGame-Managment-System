@@ -75,9 +75,16 @@ public class GameMachineController {
                 chosenGameMachine = machineTableView.getSelectionModel().getSelectedItem();
             }
         });
-        comboType.getItems().addAll((Collection<? extends String>) VariableUtility.types);
-        comboMedia.getItems().addAll((Collection<? extends String>) VariableUtility.media);
-        comboLaunchYear.getItems().addAll((Collection<? extends String>) VariableUtility.launchYear);
+        comboType.getItems().addAll("Game Console","Computer","Mobile Device");
+        comboMedia.getItems().addAll("Cartridge","Tape","CD","Floppy Disk","Blu-Ray");
+
+        int[] years = new int[75];
+        for (int i=0;i<=74;i+=1){
+            years[i]=1950+i;
+        }
+        for (int year : years) {
+            comboLaunchYear.getItems().add(String.valueOf(year));
+        }
     }
 
     public void addGameMachineButton(ActionEvent event){

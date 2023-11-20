@@ -44,15 +44,16 @@
                 </TableView>
             </children>
         </VBox>
-        <TextField id="textName" fx:id="gameMachineNameInput" layoutX="50.0" layoutY="676.0" prefHeight="24.0" prefWidth="253.0" promptText="Enter Name:" />
-        <TextField id="textDescription" fx:id="gameMachineDescriptionInput" layoutX="335.0" layoutY="676.0" prefHeight="24.0" prefWidth="253.0" promptText="Enter Description:" />
-        <TextField id="textPrice" fx:id="gameMachinePriceInput" layoutX="50.0" layoutY="715.0" prefHeight="24.0" prefWidth="253.0" promptText="Enter Price:" />
-        <TextField id="textImage" fx:id="gameMachineUrlInput" layoutX="335.0" layoutY="715.0" prefHeight="24.0" prefWidth="253.0" promptText="Enter Image:" />
+        <TextField id="textName" fx:id="gameMachineNameInput" alignment="CENTER" layoutX="50.0" layoutY="700.0" prefHeight="24.0" prefWidth="253.0" promptText="Enter Name:" />
+        <TextField id="textDescription" fx:id="gameMachineDescriptionInput" alignment="CENTER" layoutX="335.0" layoutY="700.0" prefHeight="24.0" prefWidth="253.0" promptText="Enter Description:" />
+        <TextField id="textPrice" fx:id="gameMachinePriceInput" alignment="CENTER" layoutX="50.0" layoutY="740.0" prefHeight="24.0" prefWidth="253.0" promptText="Enter Price:" />
+        <TextField id="textImage" fx:id="gameMachineUrlInput" alignment="CENTER" layoutX="335.0" layoutY="740.0" prefHeight="24.0" prefWidth="253.0" promptText="Enter Image:" />
         <ComboBox id="textType" fx:id="comboType" layoutX="622.0" layoutY="675.0" prefHeight="24.0" prefWidth="253.0" promptText="Select Type" />
         <ComboBox id="textMedia" fx:id="comboMedia" layoutX="622.0" layoutY="720.0" prefHeight="24.0" prefWidth="253.0" promptText="Select Media" />
-        <ComboBox id="textLaunchYear" fx:id="comboLaunchYear" layoutX="622.0" prefHeight="24.0" prefWidth="253.0" promptText="Select Launch Year" />
+        <ComboBox id="textLaunchYear" fx:id="comboLaunchYear" layoutX="622.0" layoutY="765.0" prefHeight="24.0" prefWidth="253.0" promptText="Select Launch Year" />
         <Button id="buttonAddMachine" fx:id="buttonAddMachine" layoutX="50.0" layoutY="788.0" mnemonicParsing="false" onAction="#addGameMachineButton" text="Add Game Machine" />
       <Button layoutX="200.0" layoutY="788.0" mnemonicParsing="false" prefWidth="150.0" text="Remove Game Machine" />
       <Button layoutX="375.0" layoutY="788.0" mnemonicParsing="false" prefWidth="150.0" text="Remove Game Machine" />
+      <TextField alignment="CENTER" layoutX="50.0" layoutY="655.0" prefWidth="540.0" promptText="Search" />
     </children>
 </AnchorPane>
