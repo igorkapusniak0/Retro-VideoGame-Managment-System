@@ -19,7 +19,7 @@ public class Utilities {
      * @return the number,` passed as a parameter, truncated to two decimal places (note: not rounded)
      */
     public static double toTwoDecimalPlaces(double number) {
-        return (double) ((number * 100) / 100.0);
+        return Math.round(number * 100.0) / 100.0;
     }
 
     /**

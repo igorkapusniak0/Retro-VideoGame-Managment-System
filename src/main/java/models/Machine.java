@@ -84,7 +84,7 @@ public class Machine {
     }
     public void setPrice(double price){
         if (price>=0){
-            this.price=price;
+            this.price=Utilities.toTwoDecimalPlaces(price);
         }else{
             this.price=0;
         }

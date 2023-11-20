@@ -6,10 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import models.Machine;
@@ -21,14 +19,15 @@ import utils.ManufacturerUtil;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class GameMachineController {
 
     private Scene scene;
 
     private Machine chosenGameMachine;
-    @FXML
-    private TableView<Machine> machineTableView;
     private ManufacturerUtil manufacturer;
 
 
@@ -38,10 +37,11 @@ public class GameMachineController {
     public static Hashing<Machine> gameMachineHashing = new Hashing<>(50);
     //////////////////////////////////////////////////////////////////////////
     @FXML
+    private TableView<Machine> machineTableView;
+    @FXML
     private TableColumn<API, String> gameMachineNameCol;
     @FXML
     private TableColumn<ManufacturerUtil, String> manufacturerNameCol;
-
     @FXML
     private TableColumn<Machine, String> gameMachineDescriptionCol;
     @FXML
@@ -54,6 +54,7 @@ public class GameMachineController {
     private TableColumn<Machine, Double> gameMachinePriceCol;
     @FXML
     private TableColumn<Machine, String> gameMachineImageCol;
+    ////////////////////////////////////////////////////////////////////////////
     @FXML
     private TextField gameMachineNameInput;
     @FXML
@@ -62,13 +63,30 @@ public class GameMachineController {
     private TextField gameMachinePriceInput;
     @FXML
     private TextField gameMachineUrlInput;
-
+    /////////////////////////////////////////////////////////////////////////
     @FXML
     private ComboBox<String> comboType;
     @FXML
     private ComboBox<String> comboMedia;
     @FXML
     private ComboBox<String> comboLaunchYear;
+    //////////////////////////////////////////////////////////////////////////
+    @FXML
+    private Label macNameLabel;
+    @FXML
+    private Label macDesLabel;
+    @FXML
+    private Label macImageLabel;
+    @FXML
+    private Label macPriceLabel;
+    @FXML
+    private Label macTypeLabel;
+    @FXML
+    private Label macMediaLabel;
+    @FXML
+    private Label macYearLabel;
+    @FXML
+    private Label chooseMachine;
 
     //////////////////////////////////////////////////////////////////////////
 
@@ -78,6 +96,15 @@ public class GameMachineController {
 
     @FXML
     public void initialize() {
+        gameMachineNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        manufacturerNameCol.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+        gameMachineDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        gameMachineTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        gameMachineMediaCol.setCellValueFactory(new PropertyValueFactory<>("media"));
+        gameMachineYearCol.setCellValueFactory(new PropertyValueFactory<>("launchYear"));
+        gameMachinePriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        gameMachineImageCol.setCellValueFactory(new PropertyValueFactory<>("image"));
+
         machineTableView.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getClickCount() == 2 && mouseEvent.getButton() == MouseButton.SECONDARY) {
                 chosenGameMachine = machineTableView.getSelectionModel().getSelectedItem();
@@ -93,30 +120,118 @@ public class GameMachineController {
         for (int year : years) {
             comboLaunchYear.getItems().add(String.valueOf(year));
         }
+
+        machineTableView.setOnMouseClicked(event -> {
+            if (event.getButton().equals(MouseButton.SECONDARY) && event.getClickCount()==2){
+                handleTableViewSecondaryDoubleClick();
+            }
+            else{
+            }
+        });
     }
 
-    public void addGameMachineButton(ActionEvent event){
+
+    public void addGameMachineButton() {
         String machineName = gameMachineNameInput.getText();
         String machineDescription = gameMachineDescriptionInput.getText();
-        double machinePrice = Double.parseDouble(gameMachinePriceInput.getText());
+        String machinePrice = gameMachinePriceInput.getText();
         String machineURL = gameMachineUrlInput.getText();
         String machineType = comboType.getValue();
         String machineMedia = comboMedia.getValue();
-        int machineLaunchYear = Integer.parseInt(comboLaunchYear.getValue());
-        if (machineName.isBlank() || machineDescription.isBlank() || machinePrice<0 || machineURL.isBlank() || machineType.isBlank() || machineMedia.isBlank() ||machineLaunchYear>2024 || machineLaunchYear<1950){
-            System.out.println("Please fill in all fields.");
+        Integer machineLaunchYear = -1;
+
+        boolean isValid = true;
+
+        if (comboLaunchYear.getValue() != null && !comboLaunchYear.getValue().isBlank()) {
+            try {
+                machineLaunchYear = Integer.parseInt(comboLaunchYear.getValue());
+                if (machineLaunchYear < 1950 || machineLaunchYear > 2024) {
+                    macYearLabel.setText("Invalid Launch Year");
+                    isValid = false;
+                } else {
+                    macYearLabel.setText("");
+                }
+            } catch (NumberFormatException e) {
+                macYearLabel.setText("Enter Integer");
+                isValid = false;
+            }
+        } else {
+            macYearLabel.setText("Enter Integer");
+            isValid = false;
         }
-        else{
-            Machine machine = new Machine(machineName,manufacturer,machineDescription,machineType,machineMedia,machineLaunchYear,machinePrice,machineURL);
+
+        if (machineName.isBlank()) {
+            macNameLabel.setText("Invalid Name");
+            isValid = false;
+        } else {
+            macNameLabel.setText("");
+        }
+
+        if (machineDescription.isBlank()) {
+            macDesLabel.setText("Invalid Description");
+            isValid = false;
+        } else {
+            macDesLabel.setText("");
+        }
+
+        if (machinePrice.isBlank()) {
+            macPriceLabel.setText("Invalid Price");
+            isValid = false;
+        } else {
+            try {
+                Double price = Double.parseDouble(machinePrice);
+                if (price < 0 || price > Double.MAX_VALUE) {
+                    macPriceLabel.setText("Invalid Price");
+                    isValid = false;
+                } else {
+                    macPriceLabel.setText("");
+                }
+            } catch (NumberFormatException e) {
+                macPriceLabel.setText("Enter Number");
+                isValid = false;
+            }
+        }
+
+        if (machineURL.isBlank()) {
+            macImageLabel.setText("Invalid URL");
+            isValid = false;
+        } else {
+            macImageLabel.setText("");
+        }
+
+        if (machineType == null || machineType.isBlank()) {
+            macTypeLabel.setText("Invalid Type");
+            isValid = false;
+        } else {
+            macTypeLabel.setText("");
+        }
+
+        if (machineMedia == null || machineMedia.isBlank()) {
+            macMediaLabel.setText("Invalid Media");
+            isValid = false;
+        } else {
+            macMediaLabel.setText("");
+        }
+
+        if (isValid) {
+            Double price = Double.parseDouble(machinePrice);
+            Machine machine = new Machine(machineName, manufacturer, machineDescription, machineType, machineMedia, machineLaunchYear, price, machineURL);
             gameMachineHashing.add(machine);
-            System.out.println(machine+"is added");
+            machineTableView.getItems().add(machine);
+            System.out.println(machine + " is added");
             gameMachineHashing.display();
+            gameMachineNameInput.clear();
+            gameMachineDescriptionInput.clear();
+            gameMachinePriceInput.clear();
+            gameMachineUrlInput.clear();
         }
     }
 
     public void removeGameMachineButton(){
         if (chosenGameMachine!=null){
             gameMachineHashing.remove(chosenGameMachine);
+            chooseMachine.setText("");
+            machineTableView.refresh();
         }
     }
 
@@ -126,6 +241,12 @@ public class GameMachineController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void handleTableViewSecondaryDoubleClick() {
+        chosenGameMachine = machineTableView.getSelectionModel().getSelectedItem();
+        chooseMachine.setText("Selected Machine: "+chosenGameMachine.getName());
     }
 
 
