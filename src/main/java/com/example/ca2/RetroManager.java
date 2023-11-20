@@ -18,14 +18,8 @@ public class RetroManager extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/Scenes/Dashboard.fxml"));
-        Parent manufacturer = FXMLLoader.load(getClass().getResource("/Scenes/ManufacturerScene.fxml"));
-        Parent gameMachine = FXMLLoader.load(getClass().getResource("/Scenes/GameMachine.fxml"));
         Scene dashboardScene = new Scene(root, Color.LIGHTSKYBLUE);
-        Scene manufacturerScene = new Scene(manufacturer, Color.LIGHTSKYBLUE);
-        Scene gameMachineScene = new Scene(gameMachine, Color.LIGHTSKYBLUE);
-        this.gameMachineScene=gameMachineScene;
-        this.manufacturerScene=manufacturerScene;
-        scene = manufacturerScene;
+        scene = dashboardScene;
 
         stage.getIcons().add(new Image(RetroManager.class.getResourceAsStream("/JoyConIcon.jpg")));
 

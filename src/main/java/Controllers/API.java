@@ -7,7 +7,6 @@ import storing.Hashing;
 import storing.Node;
 
 public class API {
-    public static Hashing<GameMachine> gameMachineHashing = new Hashing<>(50);
 
     public static <T> void updateListView(String filter, TableView tableView, Node<T> head) {
         Platform.runLater(() -> {

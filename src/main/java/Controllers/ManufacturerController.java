@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -100,7 +99,7 @@ public class ManufacturerController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/GameMachine.fxml"));
             Parent root = loader.load();
 
-            GameMachine gameMachineController = loader.getController();
+            GameMachineController gameMachineController = loader.getController();
             gameMachineController.setManufacturer(selectedManufacturer);
 
             Stage stage = new Stage();
