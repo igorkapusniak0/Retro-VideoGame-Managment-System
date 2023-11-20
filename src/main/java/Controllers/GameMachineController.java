@@ -11,7 +11,7 @@ import models.Machine;
 import storing.Hashing;
 import storing.LinkedList;
 import utils.ManufacturerUtil;
-import utils.VariableUtility;
+
 
 import java.net.URL;
 import java.util.Collection;
@@ -104,10 +104,14 @@ public class GameMachineController {
             System.out.println(machine+"is added");
             gameMachineHashing.display();
         }
-
-
-
     }
+
+    public void removeGameMachineButton(){
+        if (chosenGameMachine!=null){
+            gameMachineHashing.remove(chosenGameMachine);
+        }
+    }
+
 
 }
 
