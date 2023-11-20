@@ -2,21 +2,29 @@ package Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
+import javafx.stage.Stage;
 import models.Machine;
 import storing.Hashing;
 import storing.LinkedList;
 import utils.ManufacturerUtil;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
 
 public class GameMachineController {
+
+    private Scene scene;
 
     private Machine chosenGameMachine;
     @FXML
@@ -110,6 +118,14 @@ public class GameMachineController {
         if (chosenGameMachine!=null){
             gameMachineHashing.remove(chosenGameMachine);
         }
+    }
+
+    public void switchToSceneManufacturer(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Scenes/ManufacturerScene.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 
