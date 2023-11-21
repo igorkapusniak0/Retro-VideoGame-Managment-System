@@ -2,35 +2,27 @@ package models;
 
 import utils.Utilities;
 
-public class PortedGame {
-    private Game game;
-    private String title;
+public class PortedGame extends Game{
+    private OriginalGame originalGame;
     private String publisher;
-    private String description;
-    private String developer;
-    private Machine[] machines;
+    private Machine machine;
     private int releaseYear;
     private String cover;
-    public PortedGame(String publisher, String developer, Machine Machines, int releaseYear, String cover,Game game) {
-        setTitle();
+    public PortedGame(String title,String publisher,String description, String developer, Machine machine, int releaseYear, String cover,OriginalGame originalGame) {
+        super(title,description, developer);
         setPublisher(publisher);
-        setDeveloper(developer);
         setReleaseYear(releaseYear);
         setCover(cover);
-        setGame(game);
+        setOriginalGame(originalGame);
+        setMachine(machine);
     }
-    public void setTitle(){
-        this.title=game.getTitle();
+    public void setMachine(Machine machine){
+        this.machine=machine;
     }
-    public String getTitle(){
-        return this.title;
+    public Machine getMachine(){
+        return this.machine;
     }
-    public void setDescription(){
-        this.description=game.getDescription();
-    }
-    public String getDescription(){
-        return this.description;
-    }
+
     public void setPublisher(String publisher){
         if (publisher!=null||publisher!=""){
             this.publisher= Utilities.truncateString(publisher,20);
@@ -41,22 +33,13 @@ public class PortedGame {
     public String getPublisher(){
         return this.publisher;
     }
-    public void setDeveloper(String developer){
-        if (developer!=null||developer!=""){
-            this.developer= Utilities.truncateString(developer,20);
-        }else{
-            this.developer="Developer Error";
-        }
-    }
-    public String getDeveloper(){
-        return this.developer;
-    }
+
     public void setReleaseYear(int releaseYear){
-        if  (releaseYear>= game.getReleaseYear()){
+        if  (releaseYear>= originalGame.getReleaseYear()){
             this.releaseYear=releaseYear;
         }
         else{
-            this.releaseYear= game.getReleaseYear()+1;
+            this.releaseYear= originalGame.getReleaseYear()+1;
         }
     }
     public int getReleaseYear(){
@@ -72,14 +55,29 @@ public class PortedGame {
     public String getCover(){
         return this.cover;
     }
-    public void setGame(Game game){
-        if (game!=null){
-            this.game=game;
+    public void setOriginalGame(OriginalGame originalGame){
+        if (originalGame!=null){
+            this.originalGame=originalGame;
         }
     }
-    public Game game(){
-        return this.game;
+    public Game getOriginalGame(){
+        return this.originalGame;
     }
+
+    @Override
+    public String toString() {
+        return "PortedGame{" +
+                "title='" + getTitle() + '\'' +
+                ", description='" + getDescription() + '\'' +
+                ", developer='" + getDeveloper() + '\'' +
+                ", publisher='" + getPublisher() + '\'' +
+                ", machine=" + getMachine() +
+                ", releaseYear=" + getReleaseYear() +
+                ", cover='" + getCover() + '\'' +
+                ", originalGame=" + getOriginalGame() +
+                '}';
+    }
+
 
 
 }

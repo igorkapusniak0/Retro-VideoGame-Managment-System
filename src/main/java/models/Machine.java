@@ -13,9 +13,8 @@ public class Machine {
     private int launchYear;
     private double price;
     private String image;
-    private Hashing<Game> games = new Hashing<>(50);
+    private Hashing<OriginalGame> originalGames = new Hashing<>(50);
     private Hashing<PortedGame> portedGames = new Hashing<>(50);
-
     public Machine(String name, ManufacturerUtil manufacturer,String description,String type,String media,int launchYear, double price,String image){
         setName(name);
         setDescription(description);
@@ -25,6 +24,8 @@ public class Machine {
         setLaunchYear(launchYear);
         setPrice(price);
         setImage(image);
+        setPortedGames();
+        setOriginalGames();
     }
     public void setName(String name){
         if (name!=null||name!=""){
@@ -102,11 +103,11 @@ public class Machine {
     public String getImage(){
         return this.image;
     }
-    public void addGame(Game game){
-        games.add(game);
+    public void addGame(OriginalGame game){
+        originalGames.add(game);
     }
-    public void removeGame(Game game){
-        games.remove(game);
+    public void removeGame(OriginalGame originalGame){
+        originalGames.remove(originalGame);
     }
     public void addPortedGame(PortedGame portedGame){
         portedGames.add(portedGame);
@@ -115,14 +116,14 @@ public class Machine {
         portedGames.remove(portedGame);
     }
 
-    public void setGames(Hashing<Game> games){
-        this.games = games;
+    public void setOriginalGames(){
+        this.originalGames = new Hashing<>(50);
     }
-    public Hashing<Game> getGames(){
-        return this.games;
+    public Hashing<OriginalGame> getGames(){
+        return this.originalGames;
     }
-    public void setPortedGames(Hashing<PortedGame> portedGames){
-        this.portedGames=portedGames;
+    public void setPortedGames(){
+        this.portedGames= new Hashing<>(50);
     }
     public Hashing<PortedGame> getPortedGames(){
         return this.portedGames;
@@ -138,7 +139,7 @@ public class Machine {
                 ", launchYear=" + launchYear +
                 ", price=" + price +
                 ", image='" + image + '\'' +
-                ", games=" + games +
+                ", games=" + originalGames +
                 ", portedGames=" + portedGames +
                 '}';
     }

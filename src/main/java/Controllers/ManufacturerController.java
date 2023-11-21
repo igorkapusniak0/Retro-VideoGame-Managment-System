@@ -107,7 +107,6 @@ public class ManufacturerController {
             stage.setScene(scene);
             stage.show();
 
-            // Closing the previous window if needed
             Stage currentStage = (Stage) manufacturerTableView.getScene().getWindow();
             currentStage.close();
         }
