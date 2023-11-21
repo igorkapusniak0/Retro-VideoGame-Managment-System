@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 public class Hashing<T> implements Serializable {
-    LinkedList<T>[] hashTable;
+    public LinkedList<T>[] hashTable;
 
     public Hashing(int size){
         hashTable = (LinkedList<T>[]) new LinkedList [size];

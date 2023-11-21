@@ -63,6 +63,8 @@ public class GameMachineController {
     private TextField gameMachinePriceInput;
     @FXML
     private TextField gameMachineUrlInput;
+    @FXML
+    private TextField searchGameMachine;
     /////////////////////////////////////////////////////////////////////////
     @FXML
     private ComboBox<String> comboType;
@@ -96,6 +98,9 @@ public class GameMachineController {
 
     @FXML
     public void initialize() {
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.scheduleAtFixedRate(()->API.updateListViewHashing(searchGameMachine.getText(),machineTableView,gameMachineHashing), 0, 1, TimeUnit.SECONDS);
+
         gameMachineNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         manufacturerNameCol.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
         gameMachineDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
