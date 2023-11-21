@@ -115,8 +115,8 @@ public class GameMachineController {
                 chosenGameMachine = machineTableView.getSelectionModel().getSelectedItem();
             }
         });
-        comboType.getItems().addAll("Game Console","Computer","Mobile Device");
-        comboMedia.getItems().addAll("Cartridge","Tape","CD","Floppy Disk","Blu-Ray");
+        comboType.getItems().addAll("Game Console","Computer");
+        comboMedia.getItems().addAll("Cartridge","Tape","CD","Floppy Disk");
 
         int[] years = new int[75];
         for (int i=0;i<=74;i+=1){
