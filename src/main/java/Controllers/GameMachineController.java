@@ -116,7 +116,7 @@ public class GameMachineController {
             }
         });
         comboType.getItems().addAll("Game Console","Computer","Mobile Device");
-        comboMedia.getItems().addAll("Cartridge","Tape","CD","Floppy Disk","Blu-Ray");
+        comboMedia.getItems().addAll("Cartridge","Tape","CD","Floppy Disk","Blu-Ray","Interactive Digital Media");
 
         int[] years = new int[75];
         for (int i=0;i<=74;i+=1){

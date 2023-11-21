@@ -16,6 +16,6 @@ public class ManufacturerUtil {
     }
     @Override
     public String toString(){
-        return "Manufacturer: "+ manufacturer;
+        return  manufacturer;
     }
 }
