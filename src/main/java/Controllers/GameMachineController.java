@@ -134,9 +134,7 @@ public class GameMachineController {
             }
         });
     }
-
-
-    public void addGameMachineButton() {
+    public boolean checkFieldStatus(){
         String machineName = gameMachineNameInput.getText();
         String machineDescription = gameMachineDescriptionInput.getText();
         String machinePrice = gameMachinePriceInput.getText();
@@ -217,6 +215,18 @@ public class GameMachineController {
         } else {
             macMediaLabel.setText("");
         }
+        return isValid;
+    }
+
+    public void addGameMachineButton() {
+        boolean isValid = checkFieldStatus();
+        String machineName = gameMachineNameInput.getText();
+        String machineDescription = gameMachineDescriptionInput.getText();
+        String machinePrice = gameMachinePriceInput.getText();
+        String machineURL = gameMachineUrlInput.getText();
+        String machineType = comboType.getValue();
+        String machineMedia = comboMedia.getValue();
+        Integer machineLaunchYear = -1;
 
         if (isValid) {
             Double price = Double.parseDouble(machinePrice);
@@ -237,6 +247,34 @@ public class GameMachineController {
             gameMachineHashing.remove(chosenGameMachine);
             chooseMachine.setText("");
             machineTableView.refresh();
+        }
+    }
+    public void editGameMachineButton(){
+        boolean isValid = checkFieldStatus();
+        if (chosenGameMachine!=null){
+            if (isValid){
+                String machineName = gameMachineNameInput.getText();
+                String machineDescription = gameMachineDescriptionInput.getText();
+                Double machinePrice = Double.valueOf(gameMachinePriceInput.getText());
+                String machineURL = gameMachineUrlInput.getText();
+                String machineType = comboType.getValue();
+                String machineMedia = comboMedia.getValue();
+                Integer machineLaunchYear = Integer.valueOf(comboLaunchYear.getValue());
+
+                chosenGameMachine.setName(machineName);
+                chosenGameMachine.setDescription(machineDescription);
+                chosenGameMachine.setPrice(machinePrice);
+                chosenGameMachine.setImage(machineURL);
+                chosenGameMachine.setType(machineType);
+                chosenGameMachine.setMedia(machineMedia);
+                chosenGameMachine.setLaunchYear(machineLaunchYear);
+
+                gameMachineNameInput.clear();
+                gameMachineDescriptionInput.clear();
+                gameMachinePriceInput.clear();
+                gameMachineUrlInput.clear();
+            }
+
         }
     }
 

@@ -53,7 +53,7 @@
         <ComboBox id="textLaunchYear" fx:id="comboLaunchYear" layoutX="622.0" layoutY="765.0" prefHeight="24.0" prefWidth="253.0" promptText="Select Launch Year" />
         <Button id="buttonAddMachine" fx:id="buttonAddMachine" layoutX="50.0" layoutY="788.0" mnemonicParsing="false" onAction="#addGameMachineButton" text="Add Game Machine" />
         <Button layoutX="200.0" layoutY="788.0" mnemonicParsing="false" prefWidth="150.0" text="Remove Game Machine" onAction="#removeGameMachineButton"/>
-        <Button layoutX="375.0" layoutY="788.0" mnemonicParsing="false" prefWidth="150.0" text="Remove Game Machine" />
+        <Button layoutX="375.0" layoutY="788.0" mnemonicParsing="false" prefWidth="150.0" text="Edit Game Machine" onAction="#editGameMachineButton"/>
         <TextField alignment="CENTER" layoutX="50.0" layoutY="655.0" prefWidth="540.0" promptText="Search" fx:id="searchGameMachine"/>
         <Button mnemonicParsing="false" onAction="#switchToSceneManufacturer" text="AddManufacturer" />
         <Label fx:id="macNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="724.0" prefHeight="17.0" prefWidth="86.0" />
