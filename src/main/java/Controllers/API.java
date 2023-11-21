@@ -13,7 +13,7 @@ public class API {
     public static <T> void updateListView(String filter, TableView tableView, Node<T> head) {
         Platform.runLater(() -> {
             tableView.getItems().clear();
-            tableView.getItems().removeIf(container1 -> !container1.toString().contains(filter));
+            tableView.getItems().removeIf(item -> !item.toString().contains(filter));
             Node<T> current = head;
             while (current != null){
                 if (current.data.toString().contains(filter)) {
@@ -29,7 +29,7 @@ public class API {
     public static <T> void updateListViewHashing(String filter, TableView tableView, Hashing hashing) {
         Platform.runLater(() -> {
             tableView.getItems().clear();
-            tableView.getItems().removeIf(container1 -> !container1.toString().contains(filter));
+            tableView.getItems().removeIf(item -> !item.toString().contains(filter));
             for(int i =0;i<hashing.hashTable.length;i++){
                 LinkedList<T> list = hashing.hashTable[i];
                 if (list!=null){

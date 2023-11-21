@@ -12,16 +12,17 @@ import java.io.IOException;
 
 
 public class DashboardController {
-    private Scene scene;
 
     public void initialize() {
 
     }
-    public void switchToSceneManufacturer(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/Scenes/ManufacturerScene.fxml"));
+   public void switchToSceneManufacturer(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/ManufacturerScene.fxml"));
+        Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
+        Scene newScene = new Scene(root);
+        stage.setScene(newScene);
+        stage.sizeToScene();
         stage.show();
     }
 
