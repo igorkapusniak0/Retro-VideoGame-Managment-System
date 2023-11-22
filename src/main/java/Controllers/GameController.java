@@ -84,12 +84,19 @@ public class GameController {
     //////////////////////////////////////////////////////////////////////////
     public void setMachine(Machine machine){
         this.machine=machine;
+        initialize();
     }
 
     @FXML
     public void initialize() {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(()->API.updateListViewHashing(searchGame.getText(),gameTableView,machine.getGames()), 0, 1, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(()->API.updateListViewHashing("",gameTableView,machine.originalGames), 0, 1, TimeUnit.SECONDS);
+        if (this.machine!=null){
+            machineName.setText(this.machine.getName());
+        }else{
+            machineName.setText("Machine Null");
+        }
+
 
         gameNameCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         gameDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -99,6 +106,9 @@ public class GameController {
         gameImageCol.setCellValueFactory(new PropertyValueFactory<>("cover"));
 
         updateComboBox();
+
+        comboPublisher.getItems().add("1");
+        comboDeveloper.getItems().add("q");
 
         int[] years = new int[75];
         for (int i=0;i<=74;i+=1){
@@ -112,14 +122,11 @@ public class GameController {
             if (event.getButton().equals(MouseButton.SECONDARY) && event.getClickCount()==2){
                 handleTableViewSecondaryDoubleClick();
             }
-            else{
+            else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount()==2){
+                System.out.println("dododo");
             }
         });
-        if (this.machine!=null){
-            machineName.setText(this.machine.getName());
-        }else{
-            machineName.setText("Failed still null");
-        }
+
     }
 
     public boolean checkFieldStatus(){
@@ -201,17 +208,22 @@ public class GameController {
             this.machine.getGames().add(originalGame);
             gameTableView.getItems().add(originalGame);
             System.out.println(originalGame + " is added");
-            this.machine.getGames().display();
+            machine.getGames().display();
+            this.machine.originalGames.display();
             gameNameInput.clear();
             gameDescriptionInput.clear();
             gameUrlInput.clear();
+            gameTableView.refresh();
         }
     }
     public void removeGameButton(){
+        System.out.println(this.machine);
         if (chosenGame!=null){
             this.machine.getGames().remove(chosenGame);
+            chosenGame=null;
             chooseGame.setText("");
-
+            gameTableView.refresh();
+            machine.originalGames.display();
         }
     }
 
@@ -236,6 +248,9 @@ public class GameController {
                 gameNameInput.clear();
                 gameDescriptionInput.clear();
                 gameUrlInput.clear();
+                chosenGame=null;
+                chooseGame.setText("");
+                gameTableView.refresh();
             }
 
         }
@@ -250,7 +265,12 @@ public class GameController {
     @FXML
     private void handleTableViewSecondaryDoubleClick() {
         chosenGame = gameTableView.getSelectionModel().getSelectedItem();
-        chooseGame.setText("Selected Machine: "+chosenGame.getTitle());
+        if (chosenGame != null){
+            chooseGame.setText("Selected Machine: "+chosenGame.getTitle());
+        }else{
+            chooseGame.setText("Selected Machine: null");
+        }
+        System.out.println(chosenGame);
     }
 
     private void updateComboBox(){

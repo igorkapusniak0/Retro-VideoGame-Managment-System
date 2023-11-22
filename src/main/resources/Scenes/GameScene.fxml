@@ -68,5 +68,6 @@
         <Label alignment="CENTER" layoutX="476.0" layoutY="768.0" prefHeight="11.0" prefWidth="149.0" fx:id="yearLabel"/>
         <Label alignment="CENTER" layoutX="814.0" layoutY="768.0" prefHeight="11.0" prefWidth="149.0" fx:id="developerLabel"/>
         <Label alignment="CENTER" layoutX="477.0" layoutY="900.0" prefHeight="11.0" prefWidth="149.0" />
+        <Label fx:id="chooseGame" layoutX="1000.0" layoutY="1000.0" prefHeight="33.0" prefWidth="186.0" text="Selected Game: " />
     </children>
 </AnchorPane>

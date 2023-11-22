@@ -64,5 +64,7 @@
         <Label fx:id="macMediaLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="706.0" layoutY="744.0" prefHeight="17.0" prefWidth="86.0" />
         <Label fx:id="macYearLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="706.0" layoutY="792.0" prefHeight="17.0" prefWidth="86.0" />
         <Label fx:id="chooseMachine" layoutX="892.0" layoutY="716.0" prefHeight="33.0" prefWidth="186.0" text="Selected Machine: " />
+
+
     </children>
 </AnchorPane>

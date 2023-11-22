@@ -13,9 +13,9 @@ public class Machine {
     private int launchYear;
     private double price;
     private String image;
-    private Hashing<OriginalGame> originalGames = new Hashing<>(50);
-    private Hashing<PortedGame> portedGames = new Hashing<>(50);
-    public Machine(String name, ManufacturerUtil manufacturer,String description,String type,String media,int launchYear, double price,String image){
+    public Hashing<OriginalGame> originalGames;
+    private Hashing<PortedGame> portedGames;
+    public Machine(String name, ManufacturerUtil manufacturer,String description,String type,String media,int launchYear, double price,String image,Hashing originalGames, Hashing portedGames){
         setName(name);
         setDescription(description);
         setManufacturer(manufacturer);
@@ -24,8 +24,8 @@ public class Machine {
         setLaunchYear(launchYear);
         setPrice(price);
         setImage(image);
-        setPortedGames();
-        setOriginalGames();
+        setPortedGames(portedGames);
+        setOriginalGames(originalGames);
     }
     public void setName(String name){
         if (name!=null||name!=""){
@@ -116,14 +116,14 @@ public class Machine {
         portedGames.remove(portedGame);
     }
 
-    public void setOriginalGames(){
-        this.originalGames = new Hashing<>(50);
+    public void setOriginalGames(Hashing originalGames){
+        this.originalGames = originalGames;
     }
     public Hashing<OriginalGame> getGames(){
         return this.originalGames;
     }
-    public void setPortedGames(){
-        this.portedGames= new Hashing<>(50);
+    public void setPortedGames(Hashing portedGames){
+        this.portedGames= portedGames;
     }
     public Hashing<PortedGame> getPortedGames(){
         return this.portedGames;

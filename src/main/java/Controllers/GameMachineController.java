@@ -34,7 +34,7 @@ public class GameMachineController {
 
 
 
-    public static Hashing<Machine> gameMachineHashing = new Hashing<>(50);
+    public static Hashing<Machine> gameMachineHashing = new Hashing<>(5);
     //////////////////////////////////////////////////////////////////////////
     @FXML
     private TableView<Machine> machineTableView;
@@ -122,15 +122,15 @@ public class GameMachineController {
         }
 
         machineTableView.setOnMouseClicked(event -> {
-            if (event.getButton().equals(MouseButton.SECONDARY) && event.getClickCount()==2){
-                handleTableViewSecondaryDoubleClick();
-            }
-            else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount()==2){
+            if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount()==2){
                 try {
                     handleTableViewPrimaryDoubleClick();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+            }
+            else if (event.getButton().equals(MouseButton.SECONDARY) && event.getClickCount()==2){
+                handleTableViewSecondaryDoubleClick();
             }
         });
     }
@@ -231,7 +231,7 @@ public class GameMachineController {
         if (isValid) {
             Double price = Double.parseDouble(machinePrice);
             Integer launchYear = Integer.parseInt(machineLaunchYear);
-            Machine machine = new Machine(machineName, manufacturer, machineDescription, machineType, machineMedia, launchYear, price, machineURL);
+            Machine machine = new Machine(machineName, manufacturer, machineDescription, machineType, machineMedia, launchYear, price, machineURL,new Hashing(5),new Hashing(5));
             gameMachineHashing.add(machine);
             machineTableView.getItems().add(machine);
             System.out.println(machine + " is added");
@@ -246,6 +246,7 @@ public class GameMachineController {
     public void removeGameMachineButton(){
         if (chosenGameMachine!=null){
             gameMachineHashing.remove(chosenGameMachine);
+            chosenGameMachine = null;
             chooseMachine.setText("");
         }
     }
@@ -273,6 +274,9 @@ public class GameMachineController {
                 gameMachineDescriptionInput.clear();
                 gameMachinePriceInput.clear();
                 gameMachineUrlInput.clear();
+
+                chosenGameMachine = null;
+                chooseMachine.setText("");
             }
 
         }
@@ -289,8 +293,13 @@ public class GameMachineController {
     @FXML
     private void handleTableViewSecondaryDoubleClick() {
         chosenGameMachine = machineTableView.getSelectionModel().getSelectedItem();
-        chooseMachine.setText("Selected Machine: "+chosenGameMachine.getName());
+        if (chosenGameMachine!=null){
+            chooseMachine.setText("Selected Machine: "+chosenGameMachine.getName());
+        }else{
+            chooseMachine.setText("Selected Machine: null");
+        }
     }
+    private GameController gameController;
     @FXML
     private void handleTableViewPrimaryDoubleClick() throws IOException {
         Machine selectedMachine = machineTableView.getSelectionModel().getSelectedItem();
@@ -300,7 +309,6 @@ public class GameMachineController {
 
             GameController gameController = loader.getController();
             gameController.setMachine(selectedMachine);
-
 
             Stage stage = new Stage();
             Scene scene = new Scene(root);

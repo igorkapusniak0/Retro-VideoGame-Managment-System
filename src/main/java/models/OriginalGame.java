@@ -33,7 +33,7 @@ public class OriginalGame extends Game{
         if (machine!=null){
             this.originalMachine=machine;
         }else{
-            this.originalMachine = new Machine("",null,"","","", 0, 0,"");
+            this.originalMachine = new Machine("",null,"","","", 0, 0,"",null,null);
         }
     }
     public Machine getOriginalMachine(){
