@@ -1,5 +1,6 @@
 package Controllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,8 @@ import javafx.stage.Stage;
 import models.Game;
 import models.Machine;
 import models.OriginalGame;
+import storing.Hashing;
+import storing.LinkedList;
 import utils.ManufacturerUtil;
 
 import java.io.IOException;
@@ -24,6 +27,7 @@ public class GameController {
     private Scene scene;
     private OriginalGame chosenGame;
     private Machine machine;
+    private GameMachineController gameMachineController;
     //////////////////////////////////////////////////////////////////////////
     @FXML
     private TableView<OriginalGame> gameTableView;
@@ -71,7 +75,11 @@ public class GameController {
     @FXML
     private Label yearLabel;
     @FXML
+    private Label machineName;
+    @FXML
     private Label chooseGame;
+    @FXML
+    private MenuButton menuButton;
 
     //////////////////////////////////////////////////////////////////////////
     public void setMachine(Machine machine){
@@ -90,6 +98,7 @@ public class GameController {
         gameYearCol.setCellValueFactory(new PropertyValueFactory<>("releaseYear"));
         gameImageCol.setCellValueFactory(new PropertyValueFactory<>("cover"));
 
+        updateComboBox();
 
         int[] years = new int[75];
         for (int i=0;i<=74;i+=1){
@@ -106,6 +115,11 @@ public class GameController {
             else{
             }
         });
+        if (this.machine!=null){
+            machineName.setText(this.machine.getName());
+        }else{
+            machineName.setText("Failed still null");
+        }
     }
 
     public boolean checkFieldStatus(){
@@ -238,4 +252,25 @@ public class GameController {
         chosenGame = gameTableView.getSelectionModel().getSelectedItem();
         chooseGame.setText("Selected Machine: "+chosenGame.getTitle());
     }
+
+    private void updateComboBox(){
+        if (GameMachineController.gameMachineHashing.hashTable != null){
+            Platform.runLater(()->{
+               comboMachine.getItems().clear();
+                for(int i =0;i<GameMachineController.gameMachineHashing.hashTable.length;i++){
+                    LinkedList<Machine> list = GameMachineController.gameMachineHashing.hashTable[i];
+                    if (list!=null){
+                        storing.Node<Machine> current = list.head;
+
+                        while (current!=null){
+                            comboMachine.getItems().add(current.data);
+                            current = current.next;
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package storing;
 
+import models.Machine;
+
 import java.io.Serializable;
 import java.util.Scanner;
 
@@ -43,6 +45,7 @@ public class Hashing<T> implements Serializable {
             }
         }
     }
+
 
     public static void main(String[] args){
         Hashing<String> h = new Hashing<>(5);
