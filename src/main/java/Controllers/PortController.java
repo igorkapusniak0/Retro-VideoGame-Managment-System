@@ -4,10 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import models.Machine;
+import models.OriginalGame;
 import models.PortedGame;
 
 public class PortController {
     private Scene scene;
+    private PortedGame chosenPort;
+    private OriginalGame originalGame;
 
     @FXML
     private TableView<PortedGame> portTableView;
@@ -38,6 +42,8 @@ public class PortController {
     @FXML
     private ComboBox<String> portReleaseYearInput;
     @FXML
+    private ComboBox<Machine> portMachineInput;
+    @FXML
     private Label selectedPort;
     ////////////////////////
     @FXML
@@ -55,6 +61,11 @@ public class PortController {
     @FXML
     private Label machineName;
 
+    public void setOriginalGame(OriginalGame originalGame){
+        this.originalGame = originalGame;
+        initialize();
+    }
+
     @FXML
     public void initialize(){
         portNameCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -65,6 +76,42 @@ public class PortController {
         portYearCol.setCellValueFactory(new PropertyValueFactory<>("releaseYear"));
         portOriginalCol.setCellValueFactory(new PropertyValueFactory<>("originalGame"));
         portMachineCol.setCellValueFactory(new PropertyValueFactory<>("machine"));
+
+
+        handleTableViewSecondaryDoubleClick();
+
+    }
+    @FXML
+    private addPort(){
+        String title = originalGame.getTitle();
+        String description = originalGame.getDescription();
+        String developer = originalGame.getDeveloper();
+        String publisher = portPublisherInput.getValue();
+        Integer releaseYear = Integer.valueOf(portReleaseYearInput.getValue());
+        String cover = portURLInput.getText();
+        OriginalGame originalGame1 = this.originalGame;
+        Machine machine = inp
+    }
+    @FXML
+    private void editPort(){
+        chosenPort.setPublisher(portPublisherInput.getValue());
+        chosenPort.setReleaseYear(Integer.parseInt(portReleaseYearInput.getValue()));
+        chosenPort.setCover(portURLInput.getText());
+        chosenPort.setDeveloper(portDeveloperInput.getValue());
+    }
+    @FXML
+    private void removePort(){
+
+    }
+
+    private void handleTableViewSecondaryDoubleClick(){
+        chosenPort = portTableView.getSelectionModel().getSelectedItem();
+        if (chosenPort!=null){
+            selectedPort.setText("Selected Port: " + chosenPort.getTitle());
+        }
+        else{
+            selectedPort.setText("Selected Port: null");
+        }
     }
 
 }

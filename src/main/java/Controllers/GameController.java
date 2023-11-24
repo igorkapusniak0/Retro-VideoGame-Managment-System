@@ -322,6 +322,7 @@ public class GameController {
             Parent root = loader.load();
 
             PortController portController = loader.getController();
+            portController.setOriginalGame(selectedGame);
 
             Stage stage = new Stage();
             Scene scene = new Scene(root);
