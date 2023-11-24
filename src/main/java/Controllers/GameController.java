@@ -161,7 +161,11 @@ public class GameController {
                 handleTableViewSecondaryDoubleClick();
             }
             else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount()==2){
-                System.out.println("dododo");
+                try {
+                    handleTableViewPrimaryDoubleClick();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -265,6 +269,7 @@ public class GameController {
         }
     }
 
+
     public void editGameButton(){
         boolean isValid = checkFieldStatus();
         if (chosenGame!=null){
@@ -309,6 +314,23 @@ public class GameController {
             chooseGame.setText("Selected Machine: null");
         }
         System.out.println(chosenGame);
+    }
+    private void handleTableViewPrimaryDoubleClick() throws IOException {
+        OriginalGame selectedGame = gameTableView.getSelectionModel().getSelectedItem();
+        if (selectedGame!=null){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/PortScene.fxml"));
+            Parent root = loader.load();
+
+            PortController portController = loader.getController();
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            Stage currentStage = (Stage) gameTableView.getScene().getWindow();
+            currentStage.close();
+        }
     }
 
     private void updateComboBox(){
