@@ -70,6 +70,17 @@ public class GameController {
     private TextField gameUrlInput;
     @FXML
     private TextField searchGame;
+/////////////////////////////////////////////////////////////////////
+    @FXML
+    private TextField portURLInput;
+    @FXML
+    private ComboBox<String> portPublisherInput;
+    @FXML
+    private ComboBox<String> portDeveloperInput;
+    @FXML
+    private ComboBox<String> portReleaseYearInput;
+   @FXML
+   private Label selectedPort;
     /////////////////////////////////////////////////////////////////////////
     @FXML
     private ComboBox<String> comboDeveloper;
@@ -108,7 +119,8 @@ public class GameController {
     @FXML
     public void initialize() {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(()->API.updateListViewHashing("",gameTableView,machine.originalGames), 0, 1, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(()->API.updateListViewHashing(searchGame.getText(),gameTableView,machine.originalGames), 0, 1, TimeUnit.SECONDS);
+
         if (this.machine!=null){
             machineName.setText(this.machine.getName());
         }else{
