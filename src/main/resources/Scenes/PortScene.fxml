@@ -26,7 +26,7 @@
                 <Button mnemonicParsing="false" text="Machine Scene" />
             </children>
         </VBox>
-        <Button layoutX="446.0" layoutY="740.0" mnemonicParsing="false"  prefHeight="3.0" prefWidth="117.0" text="Add Port" />
+        <Button layoutX="446.0" layoutY="740.0" mnemonicParsing="false"  prefHeight="3.0" prefWidth="117.0" text="Add Port" onAction="#addPort"/>
         <ComboBox fx:id="comboMachine" layoutX="401.0" layoutY="651.0" prefWidth="150.0" promptText="Select Machine" />
         <Label fx:id="nameLabel" alignment="CENTER" layoutX="138.0" layoutY="701.0" prefHeight="11.0" prefWidth="149.0" />
         <Label fx:id="imageLabel" alignment="CENTER" layoutX="814.0" layoutY="701.0" prefHeight="11.0" prefWidth="149.0" />

@@ -1,5 +1,6 @@
 package Controllers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -7,6 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import models.Machine;
 import models.OriginalGame;
 import models.PortedGame;
+import storing.LinkedList;
 
 public class PortController {
     private Scene scene;
@@ -82,7 +84,7 @@ public class PortController {
 
     }
     @FXML
-    private addPort(){
+    private void addPort(){
         String title = originalGame.getTitle();
         String description = originalGame.getDescription();
         String developer = originalGame.getDeveloper();
@@ -90,7 +92,10 @@ public class PortController {
         Integer releaseYear = Integer.valueOf(portReleaseYearInput.getValue());
         String cover = portURLInput.getText();
         OriginalGame originalGame1 = this.originalGame;
-        Machine machine = inp
+        Machine machine = portMachineInput.getValue();
+
+        PortedGame newPort = new PortedGame(title,description,developer,publisher,machine,releaseYear,cover,originalGame1);
+        machine.addPortedGame(newPort);
     }
     @FXML
     private void editPort(){
@@ -111,6 +116,25 @@ public class PortController {
         }
         else{
             selectedPort.setText("Selected Port: null");
+        }
+    }
+
+    private void updateComboBox(){
+        if (GameMachineController.gameMachineHashing.hashTable != null){
+            Platform.runLater(()->{
+                portMachineInput.getItems().clear();
+                for(int i =0;i<GameMachineController.gameMachineHashing.hashTable.length;i++){
+                    LinkedList<Machine> list = GameMachineController.gameMachineHashing.hashTable[i];
+                    if (list!=null){
+                        storing.Node<Machine> current = list.head;
+
+                        while (current!=null){
+                            portMachineInput.getItems().add(current.data);
+                            current = current.next;
+                        }
+                    }
+                }
+            });
         }
     }
 
