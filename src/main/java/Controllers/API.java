@@ -46,4 +46,21 @@ public class API {
             }
         });
     }
+
+    public static <T> String search(String filter, Hashing hashing) {
+        String items = "";
+        for(int i =0;i<hashing.hashTable.length;i++){
+            LinkedList<T> list = hashing.hashTable[i];
+            if (list!=null){
+                Node<T> current = list.head;
+                while (current!=null){
+                    if (current.data.toString().contains(filter)) {
+                        items += current.data + "\n";
+                    }
+                    current = current.next;
+                }
+            }
+        }
+        return items;
+    }
 }

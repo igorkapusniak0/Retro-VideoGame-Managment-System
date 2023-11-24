@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import models.Game;
 import models.Machine;
 import models.OriginalGame;
+import models.PortedGame;
 import storing.Hashing;
 import storing.LinkedList;
 import utils.ManufacturerUtil;
@@ -43,6 +44,23 @@ public class GameController {
     private TableColumn<OriginalGame, Integer> gameYearCol;
     @FXML
     private TableColumn<OriginalGame, String> gameImageCol;
+    /////////////////////////////////////////////////////////////
+    @FXML
+    private TableView<PortedGame> portTableView;
+    @FXML
+    private TableColumn<PortedGame, String> portNameCol;
+    @FXML
+    private TableColumn<PortedGame, String> portDescriptionCol;
+    @FXML
+    private TableColumn<PortedGame, String> portDeveloperCol;
+    @FXML
+    private TableColumn<PortedGame, String> portPublisherCol;
+    @FXML
+    private TableColumn<PortedGame, Integer> portYearCol;
+    @FXML
+    private TableColumn<PortedGame, String> portCoverCol;
+    @FXML
+    private TableColumn<PortedGame, String> portOriginalCol;
     ////////////////////////////////////////////////////////////////////////////
     @FXML
     private TextField gameNameInput;
@@ -104,6 +122,14 @@ public class GameController {
         gamePublisherCol.setCellValueFactory(new PropertyValueFactory<>("publisher"));
         gameYearCol.setCellValueFactory(new PropertyValueFactory<>("releaseYear"));
         gameImageCol.setCellValueFactory(new PropertyValueFactory<>("cover"));
+
+        portNameCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        portDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        portDeveloperCol.setCellValueFactory(new PropertyValueFactory<>("developer"));
+        portPublisherCol.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+        portCoverCol.setCellValueFactory(new PropertyValueFactory<>("cover"));
+        portYearCol.setCellValueFactory(new PropertyValueFactory<>("releaseYear"));
+        portOriginalCol.setCellValueFactory(new PropertyValueFactory<>("originalGame"));
 
         updateComboBox();
 
