@@ -63,4 +63,14 @@ public class API {
         }
         return items;
     }
+
+    public static void yearOptions(ComboBox comboBox){
+        int[] years = new int[75];
+        for (int i=0;i<=74;i+=1){
+            years[i]=1950+i;
+        }
+        for (int year : years) {
+            comboBox.getItems().add(String.valueOf(year));
+        }
+    }
 }

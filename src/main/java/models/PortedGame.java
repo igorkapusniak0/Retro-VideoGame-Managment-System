@@ -1,14 +1,16 @@
 package models;
 
+import utils.DeveloperUtil;
+import utils.PublisherUtil;
 import utils.Utilities;
 
 public class PortedGame extends Game{
     private OriginalGame originalGame;
-    private String publisher;
+    private PublisherUtil publisher;
     private Machine machine;
     private int releaseYear;
     private String cover;
-    public PortedGame(String title,String publisher,String description, String developer, Machine machine, int releaseYear, String cover,OriginalGame originalGame) {
+    public PortedGame(String title, PublisherUtil publisher, String description, DeveloperUtil developer, Machine machine, int releaseYear, String cover, OriginalGame originalGame) {
         super(title,description, developer);
         setPublisher(publisher);
         setReleaseYear(releaseYear);
@@ -23,14 +25,11 @@ public class PortedGame extends Game{
         return this.machine;
     }
 
-    public void setPublisher(String publisher){
-        if (publisher!=null||publisher!=""){
-            this.publisher= Utilities.truncateString(publisher,20);
-        }else{
-            this.publisher="Publisher Error";
-        }
+    public void setPublisher(PublisherUtil publisher){
+        this.publisher= publisher;
+
     }
-    public String getPublisher(){
+    public PublisherUtil getPublisher(){
         return this.publisher;
     }
 

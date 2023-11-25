@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -11,24 +10,16 @@
 
 <AnchorPane prefHeight="1000.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ManufacturerController">
    <children>
-      <VBox layoutX="-456.0" layoutY="634.0" prefHeight="200.0" prefWidth="800.0">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <padding>
-                  <Insets left="10.0" top="10.0" />
-               </padding>
-            </HBox>
-         </children>
-      </VBox>
+      <VBox layoutX="-456.0" layoutY="634.0" prefHeight="200.0" prefWidth="800.0" />
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
             <Button mnemonicParsing="false" onAction="#switchToSceneDashboard" prefHeight="25.0" prefWidth="200.0" text="Dashboard" />
          </children>
       </VBox>
       <VBox layoutX="-592.0" layoutY="301.0" prefHeight="0.0" prefWidth="779.0" />
-      <VBox layoutX="122.0" layoutY="175.0" prefHeight="505.0" prefWidth="869.0">
+      <VBox layoutX="80.0" layoutY="80.0" prefHeight="500.0" prefWidth="400.0">
          <children>
-            <TableView fx:id="manufacturerTableView" prefHeight="368.0" prefWidth="869.0">
+            <TableView fx:id="manufacturerTableView" prefHeight="300.0" prefWidth="850.0">
                <columns>
                   <TableColumn fx:id="manufacturerNameCol" prefWidth="75.0" text="Manufacturer" />
                </columns>
@@ -43,6 +34,48 @@
                   <Button fx:id="addManufacturer" alignment="CENTER" mnemonicParsing="false" onAction="#addManufacturerButton" prefWidth="80.0" text="Add" />
                   <Button fx:id="removeManufacturer" alignment="CENTER" mnemonicParsing="false" onAction="#removeManufacturerButton" prefWidth="80.0" text="Remove" />
                   <Button fx:id="editManufacturer" alignment="CENTER" mnemonicParsing="false" onAction="#editManufacturer" prefWidth="80.0" text="Edit" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="630.0" layoutY="80.0" prefHeight="500.0" prefWidth="400.0">
+         <children>
+            <TableView fx:id="developerTableView" prefHeight="300.0" prefWidth="850.0">
+               <columns>
+                  <TableColumn fx:id="developerNameCol" prefWidth="75.0" text="Developer" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <TextField fx:id="searchDeveloper" prefHeight="25.0" prefWidth="567.0" promptText="Search Developer:" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="developerNameInput" alignment="TOP_LEFT" prefWidth="275.0" promptText="Name of Developer" />
+                  <Button fx:id="addDeveloper" alignment="CENTER" mnemonicParsing="false" onAction="#addDeveloper" prefWidth="80.0" text="Add" />
+                  <Button fx:id="removeDeveloper" alignment="CENTER" mnemonicParsing="false" onAction="#removeDeveloperButton" prefWidth="80.0" text="Remove" />
+                  <Button fx:id="editDeveloper" alignment="CENTER" mnemonicParsing="false" onAction="#editDeveloper" prefWidth="80.0" text="Edit" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="350.0" layoutY="490.0" prefHeight="500.0" prefWidth="400.0">
+         <children>
+            <TableView fx:id="publisherTableView" prefHeight="300.0" prefWidth="850.0">
+               <columns>
+                  <TableColumn fx:id="publisherNameCol" prefWidth="75.0" text="Publisher" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <TextField fx:id="searchPublisher" prefHeight="25.0" prefWidth="567.0" promptText="Search Publisher:" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="publisherNameInput" alignment="TOP_LEFT" prefWidth="275.0" promptText="Name of Publisher" />
+                  <Button fx:id="addPublisher" alignment="CENTER" mnemonicParsing="false" onAction="#addPublisher" prefWidth="80.0" text="Add" />
+                  <Button fx:id="removePublisher" alignment="CENTER" mnemonicParsing="false" onAction="#removePublisherButton" prefWidth="80.0" text="Remove" />
+                  <Button fx:id="editPublisher" alignment="CENTER" mnemonicParsing="false" onAction="#editPublisher" prefWidth="80.0" text="Edit" />
                </children>
             </HBox>
          </children>

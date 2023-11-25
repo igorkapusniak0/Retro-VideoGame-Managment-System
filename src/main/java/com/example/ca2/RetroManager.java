@@ -25,7 +25,7 @@ public class RetroManager extends Application {
         stage.setTitle("RetroVideoGameManagementSystem");
         stage.setWidth(1100);
         stage.setHeight(1000);
-        stage.setResizable(false);
+        stage.setResizable(true);
 
         stage.setScene(scene);
         stage.show();

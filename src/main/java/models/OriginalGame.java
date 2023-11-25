@@ -8,7 +8,7 @@ public class OriginalGame extends Game{
     private Machine originalMachine;
     private int releaseYear;
     private String cover;
-    public OriginalGame(String title, String publisher, String description, String developer, Machine originalMachine, int releaseYear, String cover) {
+    public OriginalGame(String title, PublisherUtil publisher, String description, DeveloperUtil developer, Machine originalMachine, int releaseYear, String cover) {
         super(title, description, developer);
         setPublisher(publisher);
         setOriginalMachine(originalMachine);
