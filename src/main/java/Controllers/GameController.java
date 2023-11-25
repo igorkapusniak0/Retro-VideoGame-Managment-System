@@ -76,9 +76,9 @@ public class GameController {
     @FXML
     private TextField portURLInput;
     @FXML
-    private ComboBox<String> portPublisherInput;
+    private ComboBox<PublisherUtil> portPublisherInput;
     @FXML
-    private ComboBox<String> portDeveloperInput;
+    private ComboBox<DeveloperUtil> portDeveloperInput;
     @FXML
     private ComboBox<String> portReleaseYearInput;
    @FXML
@@ -146,6 +146,8 @@ public class GameController {
         portOriginalCol.setCellValueFactory(new PropertyValueFactory<>("originalGame"));
 
         updateComboBox();
+        updateDeveloperComboBox();
+        updatePublisherComboBox();
 
         API.yearOptions(comboLaunchYear);
 
@@ -341,6 +343,37 @@ public class GameController {
                             comboMachine.getItems().add(current.data);
                             current = current.next;
                         }
+                    }
+                }
+            });
+        }
+    }
+    private void updatePublisherComboBox(){
+        if (ManufacturerController.publisherList != null){
+            Platform.runLater(()->{
+                portPublisherInput.getItems().clear();
+                LinkedList<PublisherUtil> list = ManufacturerController.publisherList;
+                if (list!=null){
+                    storing.Node<PublisherUtil> current = list.head;
+                    while (current!=null){
+                        portPublisherInput.getItems().add(current.data);
+                        current = current.next;
+                    }
+                }
+            });
+        }
+    }
+
+    private void updateDeveloperComboBox(){
+        if (ManufacturerController.developerList != null){
+            Platform.runLater(()->{
+                portDeveloperInput.getItems().clear();
+                LinkedList<DeveloperUtil> list = ManufacturerController.developerList;
+                if (list!=null){
+                    storing.Node<DeveloperUtil> current = list.head;
+                    while (current!=null){
+                        portDeveloperInput.getItems().add(current.data);
+                        current = current.next;
                     }
                 }
             });
