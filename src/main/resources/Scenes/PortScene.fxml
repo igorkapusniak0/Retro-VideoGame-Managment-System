@@ -57,7 +57,7 @@
         <ComboBox fx:id="portPublisherInput" layoutX="768.0" layoutY="651.0" prefWidth="150.0" promptText="Publisher" />
         <ComboBox fx:id="portDeveloperInput" layoutX="597.0" layoutY="651.0" prefWidth="150.0" promptText="Developer" />
         <ComboBox fx:id="portReleaseYearInput" layoutX="939.0" layoutY="651.0" prefWidth="150.0" promptText="Release Year" />
-        <Label layoutX="563.0" layoutY="697.0" prefHeight="25.0" prefWidth="177.0" text="Selected Port:" />
+        <Label layoutX="563.0" layoutY="697.0" prefHeight="25.0" prefWidth="177.0" text="Selected Port:" fx:id="selectedPort"/>
         <Button layoutX="597.0" layoutY="740.0" mnemonicParsing="false" text="Edit Port" onAction="#editPort"/>
         <Button layoutX="717.0" layoutY="740.0" mnemonicParsing="false" text="Remove Port" />
     </children>

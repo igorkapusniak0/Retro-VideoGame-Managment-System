@@ -157,15 +157,16 @@ public class GameController {
         }
 
         gameTableView.setOnMouseClicked(event -> {
-            if (event.getButton().equals(MouseButton.SECONDARY) && event.getClickCount()==2){
-                handleTableViewSecondaryDoubleClick();
-            }
-            else if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount()==2){
+            if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount()==2){
                 try {
                     handleTableViewPrimaryDoubleClick();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+
+            }
+            else if (event.getButton().equals(MouseButton.SECONDARY) && event.getClickCount()==2){
+                handleTableViewSecondaryDoubleClick();
             }
         });
 
