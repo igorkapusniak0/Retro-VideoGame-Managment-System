@@ -93,14 +93,23 @@ public class PortController {
     }
     @FXML
     private void addPort(){
+        System.out.println(originalGame);
         String title = originalGame.getTitle();
+        System.out.println(title);
         String description = originalGame.getDescription();
+        System.out.println(description);
         DeveloperUtil developer = originalGame.getDeveloper();
+        System.out.println(developer);
         PublisherUtil publisher = portPublisherInput.getValue();
+        System.out.println(publisher);
         Integer releaseYear = Integer.valueOf(portReleaseYearInput.getValue());
+        System.out.println(releaseYear);
         String cover = portURLInput.getText();
+        System.out.println(cover);
         OriginalGame originalGame1 = this.originalGame;
+        System.out.println(originalGame1);
         Machine machine = portMachineInput.getValue();
+        System.out.println(machine);
 
         PortedGame newPort = new PortedGame(title,publisher,description,developer,machine,releaseYear,cover,originalGame1);
         machine.addPortedGame(newPort);

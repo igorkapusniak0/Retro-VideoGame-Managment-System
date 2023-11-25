@@ -31,6 +31,7 @@ public class GameController {
     private OriginalGame chosenGame;
     private Machine machine;
     private GameMachineController gameMachineController;
+    private ManufacturerController manufacturerController;
     //////////////////////////////////////////////////////////////////////////
     @FXML
     private TableView<OriginalGame> gameTableView;
