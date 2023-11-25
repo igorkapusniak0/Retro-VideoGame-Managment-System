@@ -145,9 +145,15 @@ public class GameController {
         portYearCol.setCellValueFactory(new PropertyValueFactory<>("releaseYear"));
         portOriginalCol.setCellValueFactory(new PropertyValueFactory<>("originalGame"));
 
-        updateComboBox();
+       /* updateComboBox();
         updateDeveloperComboBox();
-        updatePublisherComboBox();
+        updatePublisherComboBox();*/
+
+        API.updateComboBox(ManufacturerController.manufacturerList,comboMachine);
+        API.updateComboBox(ManufacturerController.publisherList,comboPublisher);
+        API.updateComboBox(ManufacturerController.developerList,comboDeveloper);
+        API.updateComboBox(ManufacturerController.developerList,portDeveloperInput);
+        API.updateComboBox(ManufacturerController.publisherList,portPublisherInput);
 
         API.yearOptions(comboLaunchYear);
 
