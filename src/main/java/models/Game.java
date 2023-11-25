@@ -1,13 +1,14 @@
 package models;
 
+import utils.DeveloperUtil;
 import utils.Utilities;
 
 public abstract class Game {
     private String title;
     private String description;
-    private String developer;
+    private DeveloperUtil developer;
 
-    public Game(String title, String description, String developer){
+    public Game(String title, String description, DeveloperUtil developer){
         setTitle(title);
         setDescription(description);
         setDeveloper(developer);
@@ -34,14 +35,11 @@ public abstract class Game {
     public String getDescription(){
         return this.description;
     }
-    public void setDeveloper(String developer){
-        if (developer!=null||developer!=""){
-            this.developer= Utilities.truncateString(developer,40);
-        }else{
-            this.developer="Developer Error";
-        }
+    public void setDeveloper(DeveloperUtil developer){
+        this.developer= developer;
+
     }
-    public String getDeveloper(){
+    public DeveloperUtil getDeveloper(){
         return this.developer;
     }
 

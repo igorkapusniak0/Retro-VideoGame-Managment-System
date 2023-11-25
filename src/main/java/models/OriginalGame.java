@@ -1,10 +1,12 @@
 package models;
 
 import storing.Hashing;
+import utils.DeveloperUtil;
+import utils.PublisherUtil;
 import utils.Utilities;
 
 public class OriginalGame extends Game{
-    private String publisher;
+    private PublisherUtil publisher;
     private Machine originalMachine;
     private int releaseYear;
     private String cover;
@@ -18,14 +20,11 @@ public class OriginalGame extends Game{
 
 
 
-    public void setPublisher(String publisher) {
-        if (publisher != null || publisher != "") {
-            this.publisher = Utilities.truncateString(publisher, 40);
-        } else {
-            this.publisher = "Publisher Error";
-        }
+    public void setPublisher(PublisherUtil publisher) {
+        this.publisher = publisher;
+
     }
-    public String getPublisher(){
+    public PublisherUtil getPublisher(){
         return this.publisher;
     }
 

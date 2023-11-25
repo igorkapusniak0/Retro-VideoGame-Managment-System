@@ -14,7 +14,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import storing.LinkedList;
+import utils.DeveloperUtil;
 import utils.ManufacturerUtil;
+import utils.PublisherUtil;
 
 import java.io.IOException;
 import java.util.concurrent.Executors;
@@ -25,10 +27,16 @@ public class ManufacturerController {
 
     private Scene scene;
     private ManufacturerUtil chosenManufacturer;
+    private DeveloperUtil chosenDeveloper;
+    private PublisherUtil chosenPublisher;
 
     private ManufacturerUtil manufacturer;
+    private DeveloperUtil developer;
+    private PublisherUtil publisher;
     private RetroManager retroManager;
     public static LinkedList<ManufacturerUtil> manufacturerList = new LinkedList<>();
+    public static LinkedList<PublisherUtil> publisherList = new LinkedList<>();
+    public static LinkedList<DeveloperUtil> developerList = new LinkedList<>();
 
     //////////////////////////////////////////////////////////////////////////////////
     @FXML
@@ -38,23 +46,49 @@ public class ManufacturerController {
     @FXML
     private TextField manufacturerNameInput;
     @FXML TextField searchManufacturer;
-
-
-
+    ////////////////////////////////////////////////////////////
+    @FXML
+    public TableView<DeveloperUtil> developerTableView;
+    @FXML
+    private TableColumn<DeveloperUtil, String> developerNameCol;
+    @FXML
+    private TextField developerNameInput;
+    @FXML TextField searchDeveloper;
+    ///////////////////////////////////////////////////////////////
+    @FXML
+    public TableView<PublisherUtil> publisherTableView;
+    @FXML
+    private TableColumn<PublisherUtil, String> publisherNameCol;
+    @FXML
+    private TextField publisherNameInput;
+    @FXML TextField searchPublisher;
 
     //////////////////////////////////////////////////////////////////////////////////
 
-
-    public void editManufacturer(){
-        chosenManufacturer.setManufacturer(manufacturerNameInput.getText());
-        System.out.println(manufacturerList.display());
-
-    }
     @FXML
     public void initialize() {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(()->API.updateListView(searchManufacturer.getText(),manufacturerTableView,manufacturerList.head), 0, 1, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(()->API.updateListView(searchPublisher.getText(),publisherTableView,publisherList.head), 0, 1, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(()->API.updateListView(searchDeveloper.getText(),developerTableView,developerList.head), 0, 1, TimeUnit.SECONDS);
+
         manufacturerNameCol.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+        developerNameCol.setCellValueFactory(new PropertyValueFactory<>("developer"));
+        publisherNameCol.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+
+
+        publisherTableView.setOnMouseClicked(mouseEvent -> {
+            if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount()==2){
+                this.chosenPublisher=publisherTableView.getSelectionModel().getSelectedItem();
+            }
+        });
+
+        developerTableView.setOnMouseClicked(mouseEvent -> {
+            if (mouseEvent.getButton().equals(MouseButton.SECONDARY) && mouseEvent.getClickCount()==2){
+                this.chosenDeveloper=developerTableView.getSelectionModel().getSelectedItem();
+            }
+        });
+
         manufacturerTableView.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
                 try {
@@ -66,6 +100,14 @@ public class ManufacturerController {
                 handleTableViewSecondaryDoubleClick();
             }
         });
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    public void editManufacturer(){
+        if (chosenManufacturer!=null){
+            chosenManufacturer.setManufacturer(manufacturerNameInput.getText());
+            System.out.println(manufacturerList.display());
+        }
+
     }
 
     public void addManufacturerButton(ActionEvent event){
@@ -91,6 +133,64 @@ public class ManufacturerController {
             System.out.println("No manufacturer selected");
         }
     }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    public void editPublisher(){
+        if (chosenPublisher!=null){
+            chosenPublisher.setPublisher(publisherNameInput.getText());
+        }else{
+            chosenPublisher.setPublisher("failed");
+        }
+    }
+    public void addPublisher(){
+        String publisherName = publisherNameInput.getText();
+        publisher = new PublisherUtil(publisherName);
+
+        if (publisherName.isBlank()){
+            System.out.println("Please fill in all fields.");
+        }else{
+            publisherList.add(publisher);
+            publisherTableView.getItems().add(publisher);
+            System.out.println(publisherList.display());
+        }
+    }
+
+    public void removePublisherButton(ActionEvent event){
+        if (chosenPublisher!=null){
+            publisherList.remove(chosenPublisher);
+            System.out.println("1, "+publisherList.display());
+        }else{
+            System.out.println("No Publisher selected");
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    public void editDeveloper(){
+        if (chosenDeveloper!=null){
+            chosenDeveloper.setDeveloper(developerNameInput.getText());
+        }else{
+            chosenDeveloper.setDeveloper("failed");
+        }
+    }
+    public void addDeveloper(){
+        String developerName = developerNameInput.getText();
+        developer = new DeveloperUtil(developerName);
+        if (developerName.isBlank()){
+            System.out.println("Please fill in all fields.");
+        }else{
+            developerList.add(developer);
+            developerTableView.getItems().add(developer);
+        }
+    }
+
+    public void removeDeveloperButton(ActionEvent event){
+        if (chosenDeveloper!=null){
+            developerList.remove(chosenDeveloper);
+            System.out.println("1, "+developerList.display());
+        }else{
+            System.out.println("No developer selected");
+        }
+    }
+    ///////////////////////////////////////////////////////////////////////////////
+
 
     @FXML
     private void handleTableViewPrimaryDoubleClick() throws IOException {

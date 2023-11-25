@@ -9,6 +9,10 @@ import models.Machine;
 import models.OriginalGame;
 import models.PortedGame;
 import storing.LinkedList;
+import storing.Node;
+import utils.DeveloperUtil;
+import utils.ManufacturerUtil;
+import utils.PublisherUtil;
 
 public class PortController {
     private Scene scene;
@@ -38,9 +42,9 @@ public class PortController {
     @FXML
     private TextField portURLInput;
     @FXML
-    private ComboBox<String> portPublisherInput;
+    private ComboBox<PublisherUtil> portPublisherInput;
     @FXML
-    private ComboBox<String> portDeveloperInput;
+    private ComboBox<DeveloperUtil> portDeveloperInput;
     @FXML
     private ComboBox<String> portReleaseYearInput;
     @FXML
@@ -81,20 +85,24 @@ public class PortController {
 
 
         handleTableViewSecondaryDoubleClick();
+        updateComboBox();
+        updateDeveloperComboBox();
+        updatePublisherComboBox();
 
+        API.yearOptions(portReleaseYearInput);
     }
     @FXML
     private void addPort(){
         String title = originalGame.getTitle();
         String description = originalGame.getDescription();
-        String developer = originalGame.getDeveloper();
-        String publisher = portPublisherInput.getValue();
+        DeveloperUtil developer = originalGame.getDeveloper();
+        PublisherUtil publisher = portPublisherInput.getValue();
         Integer releaseYear = Integer.valueOf(portReleaseYearInput.getValue());
         String cover = portURLInput.getText();
         OriginalGame originalGame1 = this.originalGame;
         Machine machine = portMachineInput.getValue();
 
-        PortedGame newPort = new PortedGame(title,description,developer,publisher,machine,releaseYear,cover,originalGame1);
+        PortedGame newPort = new PortedGame(title,publisher,description,developer,machine,releaseYear,cover,originalGame1);
         machine.addPortedGame(newPort);
     }
     @FXML
@@ -106,7 +114,12 @@ public class PortController {
     }
     @FXML
     private void removePort(){
-
+        if (chosenPort!=null){
+            chosenPort.getMachine().removePortedGame(chosenPort);
+            chosenPort=null;
+        }else{
+            System.out.println("remove failed");
+        }
     }
 
     private void handleTableViewSecondaryDoubleClick(){
@@ -132,6 +145,38 @@ public class PortController {
                             portMachineInput.getItems().add(current.data);
                             current = current.next;
                         }
+                    }
+                }
+            });
+        }
+    }
+
+    private void updatePublisherComboBox(){
+        if (ManufacturerController.publisherList != null){
+            Platform.runLater(()->{
+                portPublisherInput.getItems().clear();
+                LinkedList<PublisherUtil> list = ManufacturerController.publisherList;
+                    if (list!=null){
+                        storing.Node<PublisherUtil> current = list.head;
+                        while (current!=null){
+                            portPublisherInput.getItems().add(current.data);
+                            current = current.next;
+                        }
+                    }
+            });
+        }
+    }
+
+    private void updateDeveloperComboBox(){
+        if (ManufacturerController.developerList != null){
+            Platform.runLater(()->{
+                portDeveloperInput.getItems().clear();
+                LinkedList<DeveloperUtil> list = ManufacturerController.developerList;
+                if (list!=null){
+                    storing.Node<DeveloperUtil> current = list.head;
+                    while (current!=null){
+                        portDeveloperInput.getItems().add(current.data);
+                        current = current.next;
                     }
                 }
             });

@@ -17,7 +17,9 @@ import models.OriginalGame;
 import models.PortedGame;
 import storing.Hashing;
 import storing.LinkedList;
+import utils.DeveloperUtil;
 import utils.ManufacturerUtil;
+import utils.PublisherUtil;
 
 import java.io.IOException;
 import java.util.concurrent.Executors;
@@ -83,9 +85,9 @@ public class GameController {
    private Label selectedPort;
     /////////////////////////////////////////////////////////////////////////
     @FXML
-    private ComboBox<String> comboDeveloper;
+    private ComboBox<DeveloperUtil> comboDeveloper;
     @FXML
-    private ComboBox<String> comboPublisher;
+    private ComboBox<PublisherUtil> comboPublisher;
     @FXML
     private ComboBox<String> comboLaunchYear;
     @FXML
@@ -145,16 +147,7 @@ public class GameController {
 
         updateComboBox();
 
-        comboPublisher.getItems().add("1");
-        comboDeveloper.getItems().add("q");
-
-        int[] years = new int[75];
-        for (int i=0;i<=74;i+=1){
-            years[i]=1950+i;
-        }
-        for (int year : years) {
-            comboLaunchYear.getItems().add(String.valueOf(year));
-        }
+        API.yearOptions(comboLaunchYear);
 
         gameTableView.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount()==2){
@@ -175,9 +168,9 @@ public class GameController {
     public boolean checkFieldStatus(){
         String gameTitle = gameNameInput.getText();
         String gameDescription = gameDescriptionInput.getText();
-        String gameDeveloper = comboDeveloper.getValue();
+        DeveloperUtil gameDeveloper = comboDeveloper.getValue();
         String gameCover = gameUrlInput.getText();
-        String gamePublisher = comboPublisher.getValue();
+        PublisherUtil gamePublisher = comboPublisher.getValue();
         Integer gameLaunchYear = -1;
 
         boolean isValid = true;
@@ -221,14 +214,14 @@ public class GameController {
             imageLabel.setText("");
         }
 
-        if (gamePublisher == null || gamePublisher.isBlank()) {
+        if (gamePublisher == null) {
             publisherLabel.setText("Invalid Publisher");
             isValid = false;
         } else {
             publisherLabel.setText("");
         }
 
-        if (gameDeveloper == null || gameDeveloper.isBlank()) {
+        if (gameDeveloper == null) {
             developerLabel.setText("Invalid Developer");
             isValid = false;
         } else {
@@ -240,9 +233,9 @@ public class GameController {
         boolean isValid = checkFieldStatus();
         String gameTitle = gameNameInput.getText();
         String gameDescription = gameDescriptionInput.getText();
-        String gameDeveloper = comboDeveloper.getValue();
+        DeveloperUtil gameDeveloper = comboDeveloper.getValue();
         String gameCover = gameUrlInput.getText();
-        String gamePublisher = comboPublisher.getValue();
+        PublisherUtil gamePublisher = comboPublisher.getValue();
         String gameLaunchYear = comboLaunchYear.getValue();
 
         if (isValid) {
@@ -277,9 +270,9 @@ public class GameController {
             if (isValid){
                 String gameTitle = gameNameInput.getText();
                 String gameDescription = gameDescriptionInput.getText();
-                String gameDeveloper = comboDeveloper.getValue();
+                DeveloperUtil gameDeveloper = comboDeveloper.getValue();
                 String gameCover = gameUrlInput.getText();
-                String gamePublisher = comboPublisher.getValue();
+                PublisherUtil gamePublisher = comboPublisher.getValue();
                 Integer gameLaunchYear = Integer.valueOf(comboLaunchYear.getValue());
 
                 chosenGame.setTitle(gameTitle);
