@@ -12,10 +12,10 @@ public class PortedGame extends Game{
     private String cover;
     public PortedGame(String title, PublisherUtil publisher, String description, DeveloperUtil developer, Machine machine, int releaseYear, String cover, OriginalGame originalGame) {
         super(title,description, developer);
+        setOriginalGame(originalGame);
         setPublisher(publisher);
         setReleaseYear(releaseYear);
         setCover(cover);
-        setOriginalGame(originalGame);
         setMachine(machine);
     }
     public void setMachine(Machine machine){

@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ManufacturerController">
+<AnchorPane prefHeight="1000.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ManufacturerController">
    <children>
       <VBox layoutX="-456.0" layoutY="634.0" prefHeight="200.0" prefWidth="800.0" />
       <VBox prefHeight="200.0" prefWidth="100.0">
@@ -17,9 +18,9 @@
          </children>
       </VBox>
       <VBox layoutX="-592.0" layoutY="301.0" prefHeight="0.0" prefWidth="779.0" />
-      <VBox layoutX="80.0" layoutY="80.0" prefHeight="500.0" prefWidth="400.0">
+      <VBox layoutX="25.0" layoutY="49.0" prefHeight="379.0" prefWidth="433.0">
          <children>
-            <TableView fx:id="manufacturerTableView" prefHeight="300.0" prefWidth="850.0">
+            <TableView fx:id="manufacturerTableView" prefHeight="277.0" prefWidth="428.0">
                <columns>
                   <TableColumn fx:id="manufacturerNameCol" prefWidth="75.0" text="Manufacturer" />
                </columns>
@@ -38,7 +39,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="630.0" layoutY="80.0" prefHeight="500.0" prefWidth="400.0">
+      <VBox layoutX="639.0" layoutY="49.0" prefHeight="379.0" prefWidth="439.0">
          <children>
             <TableView fx:id="developerTableView" prefHeight="300.0" prefWidth="850.0">
                <columns>
@@ -59,7 +60,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="350.0" layoutY="490.0" prefHeight="500.0" prefWidth="400.0">
+      <VBox layoutX="331.0" layoutY="428.0" prefHeight="390.0" prefWidth="439.0">
          <children>
             <TableView fx:id="publisherTableView" prefHeight="300.0" prefWidth="850.0">
                <columns>
@@ -80,5 +81,10 @@
             </HBox>
          </children>
       </VBox>
+      <Button layoutX="435.0" layoutY="884.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="232.0" text="Machine" onAction="#switchToSceneMachine">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

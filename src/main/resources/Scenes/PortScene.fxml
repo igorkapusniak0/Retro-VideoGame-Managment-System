@@ -23,7 +23,7 @@
         </VBox>
         <VBox prefHeight="24.0" prefWidth="1100.0">
             <children>
-                <Button mnemonicParsing="false" text="Machine Scene" />
+                <Button mnemonicParsing="false" text="Machine Scene"/>
             </children>
         </VBox>
         <Button layoutX="446.0" layoutY="740.0" mnemonicParsing="false"  prefHeight="3.0" prefWidth="117.0" text="Add Port" onAction="#addPort"/>
@@ -50,7 +50,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                     </columnResizePolicy>
                 </TableView>
-                <TextField promptText="Search Ports:" />
+                <TextField fx:id="searchPort" promptText="Search Ports:" />
             </children>
         </VBox>
         <TextField fx:id="portURLInput" layoutX="202.0" layoutY="651.0" promptText="Enter Cover:" />

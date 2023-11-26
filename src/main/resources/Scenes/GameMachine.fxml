@@ -48,13 +48,13 @@
         <TextField id="textDescription" fx:id="gameMachineDescriptionInput" alignment="CENTER" layoutX="335.0" layoutY="700.0" prefHeight="24.0" prefWidth="253.0" promptText="Enter Description:" />
         <TextField id="textPrice" fx:id="gameMachinePriceInput" alignment="CENTER" layoutX="50.0" layoutY="740.0" prefHeight="24.0" prefWidth="253.0" promptText="Enter Price:" />
         <TextField id="textImage" fx:id="gameMachineUrlInput" alignment="CENTER" layoutX="335.0" layoutY="740.0" prefHeight="24.0" prefWidth="253.0" promptText="Enter Image:" />
-        <ComboBox id="textType" fx:id="comboType" layoutX="622.0" layoutY="675.0" prefHeight="24.0" prefWidth="253.0" promptText="Select Type" />
-        <ComboBox id="textMedia" fx:id="comboMedia" layoutX="622.0" layoutY="720.0" prefHeight="24.0" prefWidth="253.0" promptText="Select Media" />
-        <ComboBox id="textLaunchYear" fx:id="comboLaunchYear" layoutX="622.0" layoutY="765.0" prefHeight="24.0" prefWidth="253.0" promptText="Select Launch Year" />
+        <ComboBox id="textType" fx:id="comboType" layoutX="622.0" layoutY="675.0" prefHeight="25.0" prefWidth="150.0" promptText="Select Type" />
+        <ComboBox id="textMedia" fx:id="comboMedia" layoutX="622.0" layoutY="720.0" prefHeight="25.0" prefWidth="150.0" promptText="Select Media" />
+        <ComboBox id="textLaunchYear" fx:id="comboLaunchYear" layoutX="792.0" layoutY="675.0" prefHeight="25.0" prefWidth="168.0" promptText="Select Launch Year" />
         <Button id="buttonAddMachine" fx:id="buttonAddMachine" layoutX="50.0" layoutY="788.0" mnemonicParsing="false" onAction="#addGameMachineButton" text="Add Game Machine" />
-        <Button layoutX="200.0" layoutY="788.0" mnemonicParsing="false" prefWidth="150.0" text="Remove Game Machine" onAction="#removeGameMachineButton"/>
-        <Button layoutX="375.0" layoutY="788.0" mnemonicParsing="false" prefWidth="150.0" text="Edit Game Machine" onAction="#editGameMachineButton"/>
-        <TextField alignment="CENTER" layoutX="50.0" layoutY="655.0" prefWidth="540.0" promptText="Search" fx:id="searchGameMachine"/>
+        <Button layoutX="200.0" layoutY="788.0" mnemonicParsing="false" onAction="#removeGameMachineButton" prefWidth="150.0" text="Remove Game Machine" />
+        <Button layoutX="375.0" layoutY="788.0" mnemonicParsing="false" onAction="#editGameMachineButton" prefWidth="150.0" text="Edit Game Machine" />
+        <TextField fx:id="searchGameMachine" alignment="CENTER" layoutX="50.0" layoutY="655.0" prefWidth="540.0" promptText="Search" />
         <Button mnemonicParsing="false" onAction="#switchToSceneManufacturer" text="AddManufacturer" />
         <Label fx:id="macNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="128.0" layoutY="724.0" prefHeight="17.0" prefWidth="86.0" />
         <Label fx:id="macDesLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="724.0" prefHeight="17.0" prefWidth="86.0" />
@@ -63,7 +63,8 @@
         <Label fx:id="macTypeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="706.0" layoutY="700.0" prefHeight="17.0" prefWidth="86.0" />
         <Label fx:id="macMediaLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="706.0" layoutY="744.0" prefHeight="17.0" prefWidth="86.0" />
         <Label fx:id="macYearLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="706.0" layoutY="792.0" prefHeight="17.0" prefWidth="86.0" />
-        <Label fx:id="chooseMachine" layoutX="892.0" layoutY="716.0" prefHeight="33.0" prefWidth="186.0" text="Selected Machine: " />
+        <Label fx:id="chooseMachine" layoutX="699.0" layoutY="776.0" prefHeight="33.0" prefWidth="186.0" text="Selected Machine: " />
+        <ComboBox id="textLaunchYear" fx:id="comboManufacturer" layoutX="792.0" layoutY="720.0" prefHeight="25.0" prefWidth="168.0" promptText="Select Manufacturer" />
 
 
     </children>
