@@ -110,6 +110,11 @@ public class API {
             System.out.println("Save Error");
         }
     }
+    /**
+     * Clears the contents of a file by writing a null object.
+     *
+     * @param fileName the name of the file to be cleared
+     */
     public static void clear(String fileName) {
         try (FileOutputStream fileOutputStream = new FileOutputStream(fileName);
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
@@ -119,6 +124,11 @@ public class API {
     }
 
 
+    /**
+     * Loads data from a file into the corresponding lists and hash table.
+     *
+     * @param fileName the name of the file to load data from
+     */
     public static void load(String fileName) {
         try (FileInputStream fileInputStream = new FileInputStream(fileName);
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {

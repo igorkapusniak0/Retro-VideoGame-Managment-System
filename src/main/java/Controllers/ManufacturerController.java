@@ -171,6 +171,7 @@ public class ManufacturerController {
         if (!developerName.isBlank()){
             developerList.add(developer);
             developerTableView.getItems().add(developer);
+            developerNameInput.clear();
         }
     }
 
