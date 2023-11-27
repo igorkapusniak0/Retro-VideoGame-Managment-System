@@ -5,7 +5,9 @@ import utils.DeveloperUtil;
 import utils.PublisherUtil;
 import utils.Utilities;
 
-public class OriginalGame extends Game{
+import java.io.Serializable;
+
+public class OriginalGame extends Game implements Serializable {
     private PublisherUtil publisher;
     private Machine originalMachine;
     private int releaseYear;

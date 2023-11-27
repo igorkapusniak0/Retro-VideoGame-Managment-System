@@ -1,6 +1,8 @@
 package utils;
 
-public class PublisherUtil {
+import java.io.Serializable;
+
+public class PublisherUtil implements Serializable {
     public String publisher;
 
     public PublisherUtil(String publisher){

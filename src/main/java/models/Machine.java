@@ -4,7 +4,9 @@ import storing.Hashing;
 import utils.ManufacturerUtil;
 import utils.Utilities;
 
-public class Machine {
+import java.io.Serializable;
+
+public class Machine implements Serializable {
     private String name;
     private ManufacturerUtil manufacturer;
     private String description;

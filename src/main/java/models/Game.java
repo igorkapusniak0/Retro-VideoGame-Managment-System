@@ -3,7 +3,9 @@ package models;
 import utils.DeveloperUtil;
 import utils.Utilities;
 
-public abstract class Game {
+import java.io.Serializable;
+
+public abstract class Game implements Serializable {
     private String title;
     private String description;
     private DeveloperUtil developer;

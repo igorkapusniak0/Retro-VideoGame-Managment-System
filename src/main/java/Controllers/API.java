@@ -98,7 +98,6 @@ public class API {
         }
     }
 
-
     public static void save(String fileName) {
         try (FileOutputStream fileOutputStream = new FileOutputStream(fileName);
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
@@ -106,8 +105,9 @@ public class API {
             objectOutputStream.writeObject(ManufacturerController.publisherList);
             objectOutputStream.writeObject(ManufacturerController.developerList);
             objectOutputStream.writeObject(GameMachineController.gameMachineHashing);
+            System.out.println("Save success");
         } catch (IOException ignored) {
-
+            System.out.println("Save Error");
         }
     }
     public static void clear(String fileName) {

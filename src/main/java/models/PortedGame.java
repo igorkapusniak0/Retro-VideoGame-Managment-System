@@ -4,7 +4,9 @@ import utils.DeveloperUtil;
 import utils.PublisherUtil;
 import utils.Utilities;
 
-public class PortedGame extends Game{
+import java.io.Serializable;
+
+public class PortedGame extends Game implements Serializable {
     private OriginalGame originalGame;
     private PublisherUtil publisher;
     private Machine machine;
