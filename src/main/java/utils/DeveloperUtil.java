@@ -1,6 +1,8 @@
 package utils;
 
-public class DeveloperUtil {
+import java.io.Serializable;
+
+public class DeveloperUtil implements Serializable {
     public String developer;
 
     public DeveloperUtil(String developer){

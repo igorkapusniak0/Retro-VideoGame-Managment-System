@@ -1,6 +1,8 @@
 package utils;
 
-public class ManufacturerUtil {
+import java.io.Serializable;
+
+public class ManufacturerUtil implements Serializable {
     public String manufacturer;
 
     public ManufacturerUtil(String manufacturer){
