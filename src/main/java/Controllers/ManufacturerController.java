@@ -146,6 +146,7 @@ public class ManufacturerController {
         if (!publisherName.isBlank()){
             publisherList.add(publisher);
             publisherTableView.getItems().add(publisher);
+            publisherNameInput.clear();
         }
     }
 

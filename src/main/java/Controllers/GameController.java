@@ -329,6 +329,7 @@ public class GameController {
 
         }
     }
+
     public void switchToSceneMachine(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/Scenes/GameMachine.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
