@@ -74,8 +74,8 @@ public class ManufacturerController {
         scheduler.scheduleAtFixedRate(()->API.updateListView(searchPublisher.getText(),publisherTableView,publisherList.head), 0, 1, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(()->API.updateListView(searchDeveloper.getText(),developerTableView,developerList.head), 0, 1, TimeUnit.SECONDS);
 
-        manufacturerNameCol.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
-        developerNameCol.setCellValueFactory(new PropertyValueFactory<>("developer"));
+        manufacturerNameCol.setCellValueFactory(new PropertyValueFactory<>("developer"));
+        developerNameCol.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
         publisherNameCol.setCellValueFactory(new PropertyValueFactory<>("publisher"));
 
 
@@ -153,7 +153,6 @@ public class ManufacturerController {
         }else{
             publisherList.add(publisher);
             publisherTableView.getItems().add(publisher);
-            publisherNameInput.clear();
         }
     }
 
