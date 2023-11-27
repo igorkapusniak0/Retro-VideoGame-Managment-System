@@ -1,7 +1,4 @@
 package storing;
-
-import models.Machine;
-
 import java.io.Serializable;
 import java.util.Scanner;
 
