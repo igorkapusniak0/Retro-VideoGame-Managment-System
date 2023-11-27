@@ -23,7 +23,7 @@
         </VBox>
         <VBox prefHeight="24.0" prefWidth="1100.0">
             <children>
-                <Button mnemonicParsing="false" text="Machine Scene"/>
+                <Button mnemonicParsing="false" text="Machine Scene" onAction="#switchToSceneGame"/>
             </children>
         </VBox>
         <Button layoutX="446.0" layoutY="740.0" mnemonicParsing="false"  prefHeight="3.0" prefWidth="117.0" text="Add Port" onAction="#addPort"/>

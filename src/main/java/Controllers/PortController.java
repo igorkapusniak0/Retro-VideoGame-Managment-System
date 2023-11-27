@@ -1,10 +1,14 @@
 package Controllers;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import models.Machine;
 import models.OriginalGame;
 import models.PortedGame;
@@ -14,6 +18,7 @@ import utils.DeveloperUtil;
 import utils.ManufacturerUtil;
 import utils.PublisherUtil;
 
+import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -204,6 +209,15 @@ public class PortController {
                 }
             });
         }
+    }
+
+    public void switchToSceneGame(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Scenes/GameScene.fxml"));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

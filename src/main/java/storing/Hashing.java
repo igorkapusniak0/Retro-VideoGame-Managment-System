@@ -14,11 +14,11 @@ public class Hashing<T> implements Serializable {
     public int hashFunction(int key){
         return key%hashTable.length;
     }
-    public int add(int key,T data){
+   /* public int add(int key,T data){
         int home=hashFunction(key);
         hashTable[home].add(data);
         return home;
-    }
+    }*/
     //TODO
     //Change to voids after testing
     public int add(T data){
