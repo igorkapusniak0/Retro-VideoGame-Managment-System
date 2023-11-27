@@ -17,20 +17,21 @@ import java.util.List;
 
 
 public class API {
-    public Hashing hashing;
 
     public static <T> void updateListView(String filter, TableView tableView, Node<T> head) {
         Platform.runLater(() -> {
-            tableView.getItems().clear();
-            tableView.getItems().removeIf(item -> !item.toString().contains(filter));
-            Node<T> current = head;
-            while (current != null){
-                if (current.data.toString().contains(filter)) {
-                    if (!tableView.getItems().contains(current.data)) {
-                        tableView.getItems().add(current.data);
+            if (tableView!=null){
+                tableView.getItems().clear();
+                tableView.getItems().removeIf(item -> !item.toString().contains(filter));
+                Node<T> current = head;
+                while (current != null){
+                    if (current.data.toString().contains(filter)) {
+                        if (!tableView.getItems().contains(current.data)) {
+                            tableView.getItems().add(current.data);
+                        }
                     }
+                    current = current.next;
                 }
-                current = current.next;
             }
         });
     }
