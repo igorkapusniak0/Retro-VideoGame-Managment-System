@@ -275,9 +275,7 @@ public class GameController {
 
 
     public void editGameButton(){
-        boolean isValid = checkFieldStatus();
         if (chosenGame!=null){
-            if (isValid){
                 String gameTitle = gameNameInput.getText();
                 String gameDescription = gameDescriptionInput.getText();
                 DeveloperUtil gameDeveloper = comboDeveloper.getValue();
@@ -285,12 +283,42 @@ public class GameController {
                 PublisherUtil gamePublisher = comboPublisher.getValue();
                 Integer gameLaunchYear = Integer.valueOf(comboLaunchYear.getValue());
 
-                chosenGame.setTitle(gameTitle);
-                chosenGame.setDescription(gameDescription);
-                chosenGame.setDeveloper(gameDeveloper);
-                chosenGame.setCover(gameCover);
-                chosenGame.setPublisher(gamePublisher);
-                chosenGame.setReleaseYear(gameLaunchYear);
+                if (!gameTitle.isBlank()){
+                    chosenGame.setTitle(gameTitle);
+                    nameLabel.setText("");
+                }else{
+                    nameLabel.setText("Invalid Title");
+                }
+                if (!gameDescription.isBlank()){
+                    chosenGame.setDescription(gameDescription);
+                    desLabel.setText("Invalid Description");
+                }else{
+                    desLabel.setText("Invalid Description");
+                }
+                if (gameDeveloper!=null){
+                    chosenGame.setDeveloper(gameDeveloper);
+                    developerLabel.setText("");
+                }else{
+                    developerLabel.setText("Invalid Developer");
+                }
+                if (!gameCover.isBlank()){
+                    chosenGame.setCover(gameCover);
+                    imageLabel.setText("");
+                }else{
+                    imageLabel.setText("Invalid URL");
+                }
+                if (gamePublisher!=null){
+                    chosenGame.setPublisher(gamePublisher);
+                    publisherLabel.setText("");
+                }else{
+                    publisherLabel.setText("Invalid Publisher");
+                }
+                if (gameLaunchYear>=1950){
+                    chosenGame.setReleaseYear(gameLaunchYear);
+                    yearLabel.setText("");
+                }else{
+                    yearLabel.setText("Invalid Year");
+                }
 
                 gameNameInput.clear();
                 gameDescriptionInput.clear();
@@ -298,7 +326,6 @@ public class GameController {
                 chosenGame=null;
                 chooseGame.setText("");
                 gameTableView.refresh();
-            }
 
         }
     }
@@ -338,55 +365,7 @@ public class GameController {
         }
     }
 
-    private void updateComboBox(){
-        if (GameMachineController.gameMachineHashing.hashTable != null){
-            Platform.runLater(()->{
-               comboMachine.getItems().clear();
-                for(int i =0;i<GameMachineController.gameMachineHashing.hashTable.length;i++){
-                    LinkedList<Machine> list = GameMachineController.gameMachineHashing.hashTable[i];
-                    if (list!=null){
-                        storing.Node<Machine> current = list.head;
 
-                        while (current!=null){
-                            comboMachine.getItems().add(current.data);
-                            current = current.next;
-                        }
-                    }
-                }
-            });
-        }
-    }
-    private void updatePublisherComboBox(){
-        if (ManufacturerController.publisherList != null){
-            Platform.runLater(()->{
-                portPublisherInput.getItems().clear();
-                LinkedList<PublisherUtil> list = ManufacturerController.publisherList;
-                if (list!=null){
-                    storing.Node<PublisherUtil> current = list.head;
-                    while (current!=null){
-                        portPublisherInput.getItems().add(current.data);
-                        current = current.next;
-                    }
-                }
-            });
-        }
-    }
-
-    private void updateDeveloperComboBox(){
-        if (ManufacturerController.developerList != null){
-            Platform.runLater(()->{
-                portDeveloperInput.getItems().clear();
-                LinkedList<DeveloperUtil> list = ManufacturerController.developerList;
-                if (list!=null){
-                    storing.Node<DeveloperUtil> current = list.head;
-                    while (current!=null){
-                        portDeveloperInput.getItems().add(current.data);
-                        current = current.next;
-                    }
-                }
-            });
-        }
-    }
 
     public void save(){
         API.save("data.ser");
