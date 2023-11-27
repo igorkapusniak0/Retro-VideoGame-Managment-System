@@ -153,6 +153,7 @@ public class ManufacturerController {
         }else{
             publisherList.add(publisher);
             publisherTableView.getItems().add(publisher);
+            publisherNameInput.clear();
         }
     }
 
