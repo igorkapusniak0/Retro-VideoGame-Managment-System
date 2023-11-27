@@ -33,6 +33,7 @@ public class ManufacturerController {
     private ManufacturerUtil manufacturer;
     private DeveloperUtil developer;
     private PublisherUtil publisher;
+
     private RetroManager retroManager;
     public static LinkedList<ManufacturerUtil> manufacturerList = new LinkedList<>();
     public static LinkedList<PublisherUtil> publisherList = new LinkedList<>();

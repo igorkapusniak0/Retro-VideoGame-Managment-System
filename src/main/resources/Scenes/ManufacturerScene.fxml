@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ManufacturerController">
+<AnchorPane prefHeight="1000.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ManufacturerController">
    <children>
       <VBox layoutX="-456.0" layoutY="634.0" prefHeight="200.0" prefWidth="800.0" />
       <VBox prefHeight="200.0" prefWidth="100.0">
@@ -81,11 +76,17 @@
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="435.0" layoutY="884.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="232.0" text="Machine" onAction="#switchToSceneMachine">
+      <Button layoutX="435.0" layoutY="884.0" mnemonicParsing="false" onAction="#switchToSceneMachine" prefHeight="77.0" prefWidth="232.0" text="Machine">
          <font>
             <Font size="37.0" />
          </font>
       </Button>
+      <HBox alignment="TOP_RIGHT" layoutX="1173.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="100.0">
+         <children>
+            <Button mnemonicParsing="false" text="Save" />
+            <Button mnemonicParsing="false" text="Load" />
+         </children>
+      </HBox>
    </children>
    <HBox alignment="TOP_RIGHT" layoutX="1022.0" layoutY="4.0" prefHeight="41.0" prefWidth="232.0">
       <children>

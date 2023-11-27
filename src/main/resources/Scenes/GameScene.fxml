@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -41,7 +42,7 @@
         </VBox>
         <VBox prefHeight="24.0" prefWidth="1100.0">
             <children>
-                <Button mnemonicParsing="false" text="Machine Scene" onAction="#switchToSceneMachine"/>
+                <Button mnemonicParsing="false" onAction="#switchToSceneMachine" text="Machine Scene" />
             </children>
         </VBox>
         <Button layoutX="222.0" layoutY="705.0" mnemonicParsing="false" onAction="#editGameButton" prefHeight="25.0" prefWidth="118.0" text="Edit Game" />
@@ -97,5 +98,11 @@
         <Label fx:id="selectedPort" layoutX="775.0" layoutY="705.0" prefHeight="25.0" prefWidth="177.0" text="Selected Ported Game:" />
         <Button layoutX="761.0" layoutY="740.0" mnemonicParsing="false" text="Edit Port" />
         <Button layoutX="859.0" layoutY="740.0" mnemonicParsing="false" text="Remove Port" />
+      <HBox alignment="TOP_RIGHT" layoutX="1163.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="100.0">
+         <children>
+            <Button mnemonicParsing="false" text="Save" />
+            <Button mnemonicParsing="false" text="Load" />
+         </children>
+      </HBox>
     </children>
 </AnchorPane>
