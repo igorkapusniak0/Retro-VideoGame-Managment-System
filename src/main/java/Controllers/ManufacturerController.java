@@ -233,6 +233,12 @@ public class ManufacturerController {
         stage.setScene(scene);
         stage.show();
     }
+    public void save(){
+        API.save("data.ser");
+    }
+    public void load(){
+        API.load("data.ser");
+    }
 
 
 }

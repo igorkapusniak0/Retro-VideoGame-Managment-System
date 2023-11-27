@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -21,12 +22,12 @@
                 </Label>
             </children>
         </VBox>
-        <VBox prefHeight="24.0" prefWidth="1100.0">
+        <VBox prefHeight="24.0" prefWidth="133.0">
             <children>
-                <Button mnemonicParsing="false" text="Machine Scene" onAction="#switchToSceneGame"/>
+                <Button mnemonicParsing="false" onAction="#switchToSceneGame" text="Machine Scene" />
             </children>
         </VBox>
-        <Button layoutX="446.0" layoutY="740.0" mnemonicParsing="false"  prefHeight="3.0" prefWidth="117.0" text="Add Port" onAction="#addPort"/>
+        <Button layoutX="446.0" layoutY="740.0" mnemonicParsing="false" onAction="#addPort" prefHeight="3.0" prefWidth="117.0" text="Add Port" />
         <ComboBox fx:id="portMachineInput" layoutX="401.0" layoutY="651.0" prefWidth="150.0" promptText="Select Machine" />
         <Label fx:id="nameLabel" alignment="CENTER" layoutX="138.0" layoutY="701.0" prefHeight="11.0" prefWidth="149.0" />
         <Label fx:id="imageLabel" alignment="CENTER" layoutX="814.0" layoutY="701.0" prefHeight="11.0" prefWidth="149.0" />
@@ -57,8 +58,14 @@
         <ComboBox fx:id="portPublisherInput" layoutX="768.0" layoutY="651.0" prefWidth="150.0" promptText="Publisher" />
         <ComboBox fx:id="portDeveloperInput" layoutX="597.0" layoutY="651.0" prefWidth="150.0" promptText="Developer" />
         <ComboBox fx:id="portReleaseYearInput" layoutX="939.0" layoutY="651.0" prefWidth="150.0" promptText="Release Year" />
-        <Label layoutX="563.0" layoutY="697.0" prefHeight="25.0" prefWidth="177.0" text="Selected Port:" fx:id="selectedPort"/>
-        <Button layoutX="597.0" layoutY="740.0" mnemonicParsing="false" text="Edit Port" onAction="#editPort"/>
-        <Button layoutX="717.0" layoutY="740.0" mnemonicParsing="false" text="Remove Port" onAction="#removePort"/>
+        <Label fx:id="selectedPort" layoutX="563.0" layoutY="697.0" prefHeight="25.0" prefWidth="177.0" text="Selected Port:" />
+        <Button layoutX="597.0" layoutY="740.0" mnemonicParsing="false" onAction="#editPort" text="Edit Port" />
+        <Button layoutX="717.0" layoutY="740.0" mnemonicParsing="false" onAction="#removePort" text="Remove Port" />
+        <HBox alignment="TOP_RIGHT" layoutX="1022.0" layoutY="4.0" prefHeight="41.0" prefWidth="232.0">
+            <children>
+                <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="69.0" text="Save" onAction=""/>
+                <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="73.0" text="Load" />
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

@@ -214,7 +214,6 @@ public class PortController {
     public void switchToSceneGame(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/Scenes/GameScene.fxml"));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
