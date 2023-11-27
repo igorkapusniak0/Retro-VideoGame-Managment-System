@@ -14,11 +14,19 @@ import utils.DeveloperUtil;
 import utils.ManufacturerUtil;
 import utils.PublisherUtil;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class PortController {
     private Scene scene;
     private PortedGame chosenPort;
     private OriginalGame originalGame;
+    private Machine machine;
 
+
+    @FXML
+    private TextField searchPort;
     @FXML
     private TableView<PortedGame> portTableView;
     @FXML
@@ -74,6 +82,11 @@ public class PortController {
 
     @FXML
     public void initialize(){
+
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.scheduleAtFixedRate(()->API.updateListViewHashing(searchPort.getText(),portTableView,originalGame.getOriginalMachine().portedGames), 0, 1, TimeUnit.SECONDS);
+
+
         portNameCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         portDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         portDeveloperCol.setCellValueFactory(new PropertyValueFactory<>("developer"));
@@ -113,6 +126,7 @@ public class PortController {
 
         PortedGame newPort = new PortedGame(title,publisher,description,developer,machine,releaseYear,cover,originalGame1);
         machine.addPortedGame(newPort);
+        portTableView.getItems().add(newPort);
     }
     @FXML
     private void editPort(){

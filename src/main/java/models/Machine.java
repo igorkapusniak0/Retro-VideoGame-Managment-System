@@ -14,7 +14,7 @@ public class Machine {
     private double price;
     private String image;
     public Hashing<OriginalGame> originalGames;
-    private Hashing<PortedGame> portedGames;
+    public Hashing<PortedGame> portedGames;
     public Machine(String name, ManufacturerUtil manufacturer,String description,String type,String media,int launchYear, double price,String image,Hashing originalGames, Hashing portedGames){
         setName(name);
         setDescription(description);

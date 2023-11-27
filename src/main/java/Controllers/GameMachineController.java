@@ -72,6 +72,8 @@ public class GameMachineController {
     private ComboBox<String> comboMedia;
     @FXML
     private ComboBox<String> comboLaunchYear;
+    @FXML
+    private ComboBox<ManufacturerUtil> comboManufacturer;
     //////////////////////////////////////////////////////////////////////////
     @FXML
     private Label macNameLabel;
@@ -112,6 +114,7 @@ public class GameMachineController {
 
         comboType.getItems().addAll("Game Console","Computer");
         comboMedia.getItems().addAll("Cartridge","Tape","CD","Floppy Disk");
+        API.updateComboBox(ManufacturerController.manufacturerList,comboManufacturer);
 
         int[] years = new int[75];
         for (int i=0;i<=74;i+=1){
@@ -227,6 +230,7 @@ public class GameMachineController {
         String machineType = comboType.getValue();
         String machineMedia = comboMedia.getValue();
         String machineLaunchYear = comboLaunchYear.getValue();
+        ManufacturerUtil manufacturer = comboManufacturer.getValue();
 
         if (isValid) {
             Double price = Double.parseDouble(machinePrice);
@@ -261,6 +265,7 @@ public class GameMachineController {
                 String machineType = comboType.getValue();
                 String machineMedia = comboMedia.getValue();
                 Integer machineLaunchYear = Integer.valueOf(comboLaunchYear.getValue());
+                ManufacturerUtil manufacturer = comboManufacturer.getValue();
 
                 chosenGameMachine.setName(machineName);
                 chosenGameMachine.setDescription(machineDescription);
@@ -269,6 +274,7 @@ public class GameMachineController {
                 chosenGameMachine.setType(machineType);
                 chosenGameMachine.setMedia(machineMedia);
                 chosenGameMachine.setLaunchYear(machineLaunchYear);
+                chosenGameMachine.setManufacturer(manufacturer);
 
                 gameMachineNameInput.clear();
                 gameMachineDescriptionInput.clear();
