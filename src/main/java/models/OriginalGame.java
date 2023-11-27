@@ -30,6 +30,7 @@ public class OriginalGame extends Game implements Serializable {
         return this.publisher;
     }
 
+
     public void setOriginalMachine(Machine machine){
         if (machine!=null){
             this.originalMachine=machine;

@@ -256,7 +256,6 @@ public class GameMachineController {
     }
     public void editGameMachineButton(){
 
-        if (chosenGameMachine!=null){
             String machineName = gameMachineNameInput.getText();
             String machineDescription = gameMachineDescriptionInput.getText();
             Double machinePrice = Double.valueOf(gameMachinePriceInput.getText());
@@ -266,8 +265,17 @@ public class GameMachineController {
             Integer machineLaunchYear = Integer.valueOf(comboLaunchYear.getValue());
             ManufacturerUtil manufacturer = comboManufacturer.getValue();
 
-            chosenGameMachine.setName(machineName);
-            chosenGameMachine.setDescription(machineDescription);
+            if (!machineName.isBlank()){
+                chosenGameMachine.setName(machineName);
+                macNameLabel.setText("");
+            }else{
+                macNameLabel.setText("Invalid Name");
+            }
+            if (machineDescription.isBlank()){
+                chosenGameMachine.setDescription(machineDescription);
+            }else{
+
+            }
             chosenGameMachine.setPrice(machinePrice);
             chosenGameMachine.setImage(machineURL);
             chosenGameMachine.setType(machineType);
@@ -284,7 +292,7 @@ public class GameMachineController {
             chooseMachine.setText("");
 
 
-        }
+
     }
 
     public void switchToSceneManufacturer(ActionEvent event) throws IOException {

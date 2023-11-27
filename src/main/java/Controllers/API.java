@@ -122,11 +122,11 @@ public class API {
     public static void load(String fileName) {
         try (FileInputStream fileInputStream = new FileInputStream(fileName);
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
-            ManufacturerController.developerList = (LinkedList<DeveloperUtil>) objectInputStream.readObject();
-            ManufacturerController.publisherList = (LinkedList<PublisherUtil>) objectInputStream.readObject();
             ManufacturerController.manufacturerList = (LinkedList<ManufacturerUtil>) objectInputStream.readObject();
-
+            ManufacturerController.publisherList = (LinkedList<PublisherUtil>) objectInputStream.readObject();
+            ManufacturerController.developerList = (LinkedList<DeveloperUtil>) objectInputStream.readObject();
             GameMachineController.gameMachineHashing = (Hashing<Machine>) objectInputStream.readObject();
+
         } catch (IOException | ClassNotFoundException ignored) {}
     }
 

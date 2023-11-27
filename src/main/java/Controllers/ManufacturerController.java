@@ -74,9 +74,9 @@ public class ManufacturerController {
         scheduler.scheduleAtFixedRate(()->API.updateListView(searchPublisher.getText(),publisherTableView,publisherList.head), 0, 1, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(()->API.updateListView(searchDeveloper.getText(),developerTableView,developerList.head), 0, 1, TimeUnit.SECONDS);
 
-        manufacturerNameCol.setCellValueFactory(new PropertyValueFactory<>("developer"));
-        developerNameCol.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+        manufacturerNameCol.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
         publisherNameCol.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+        developerNameCol.setCellValueFactory(new PropertyValueFactory<>("developer"));
 
 
 
@@ -117,15 +117,10 @@ public class ManufacturerController {
         String manufacturerName = manufacturerNameInput.getText();
         manufacturer = new ManufacturerUtil(manufacturerName);
 
-        if (manufacturerName.isEmpty()){
-            System.out.println("Please fill in all fields.");
-        }else{
+        if (!manufacturerName.isBlank()){
             manufacturerList.add(manufacturer);
             manufacturerTableView.getItems().add(manufacturer);
             manufacturerNameInput.clear();
-            System.out.println("Manufacturer List");
-            System.out.println(manufacturerList.display());
-
         }
     }
     public void removeManufacturerButton(ActionEvent event){
@@ -148,9 +143,7 @@ public class ManufacturerController {
         String publisherName = publisherNameInput.getText();
         publisher = new PublisherUtil(publisherName);
 
-        if (publisherName.isBlank()){
-            System.out.println("Please fill in all fields.");
-        }else{
+        if (!publisherName.isBlank()){
             publisherList.add(publisher);
             publisherTableView.getItems().add(publisher);
         }
@@ -175,9 +168,7 @@ public class ManufacturerController {
     public void addDeveloper(){
         String developerName = developerNameInput.getText();
         developer = new DeveloperUtil(developerName);
-        if (developerName.isBlank()){
-            System.out.println("Please fill in all fields.");
-        }else{
+        if (!developerName.isBlank()){
             developerList.add(developer);
             developerTableView.getItems().add(developer);
         }
