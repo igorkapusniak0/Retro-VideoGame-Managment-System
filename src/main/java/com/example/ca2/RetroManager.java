@@ -22,9 +22,7 @@ public class RetroManager extends Application {
         scene = dashboardScene;
 
         stage.getIcons().add(new Image(RetroManager.class.getResourceAsStream("/JoyConIcon.jpg")));
-        stage.setOnCloseRequest(e->{
-            API.save("data.ser");
-        });
+
 
         stage.setTitle("RetroVideoGameManagementSystem");
         stage.setWidth(1100);

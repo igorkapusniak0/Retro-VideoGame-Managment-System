@@ -62,7 +62,8 @@ public class ManufacturerController {
     private TableColumn<PublisherUtil, String> publisherNameCol;
     @FXML
     private TextField publisherNameInput;
-    @FXML TextField searchPublisher;
+    @FXML
+    private TextField searchPublisher;
 
     //////////////////////////////////////////////////////////////////////////////////
 
@@ -76,6 +77,7 @@ public class ManufacturerController {
         manufacturerNameCol.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
         developerNameCol.setCellValueFactory(new PropertyValueFactory<>("developer"));
         publisherNameCol.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+
 
 
         publisherTableView.setOnMouseClicked(mouseEvent -> {
@@ -151,7 +153,6 @@ public class ManufacturerController {
         }else{
             publisherList.add(publisher);
             publisherTableView.getItems().add(publisher);
-            System.out.println(publisherList.display());
         }
     }
 
