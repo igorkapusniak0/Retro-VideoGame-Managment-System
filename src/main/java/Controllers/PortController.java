@@ -59,7 +59,7 @@ public class PortController {
     @FXML
     private ComboBox<DeveloperUtil> portDeveloperInput;
     @FXML
-    private ComboBox<String> portReleaseYearInput;
+    private ComboBox<Integer> portReleaseYearInput;
     @FXML
     private ComboBox<Machine> portMachineInput;
     @FXML
@@ -111,23 +111,15 @@ public class PortController {
     }
     @FXML
     private void addPort(){
-        System.out.println(originalGame);
         String title = originalGame.getTitle();
-        System.out.println(title);
         String description = originalGame.getDescription();
-        System.out.println(description);
         DeveloperUtil developer = originalGame.getDeveloper();
-        System.out.println(developer);
         PublisherUtil publisher = portPublisherInput.getValue();
-        System.out.println(publisher);
         Integer releaseYear = Integer.valueOf(portReleaseYearInput.getValue());
-        System.out.println(releaseYear);
         String cover = portURLInput.getText();
-        System.out.println(cover);
         OriginalGame originalGame1 = this.originalGame;
-        System.out.println(originalGame1);
         Machine machine = portMachineInput.getValue();
-        System.out.println(machine);
+
 
         PortedGame newPort = new PortedGame(title,publisher,description,developer,machine,releaseYear,cover,originalGame1);
         machine.addPortedGame(newPort);
@@ -135,10 +127,27 @@ public class PortController {
     }
     @FXML
     private void editPort(){
-        chosenPort.setPublisher(portPublisherInput.getValue());
-        chosenPort.setReleaseYear(Integer.parseInt(portReleaseYearInput.getValue()));
-        chosenPort.setCover(portURLInput.getText());
-        chosenPort.setDeveloper(portDeveloperInput.getValue());
+        PublisherUtil publisher = portPublisherInput.getValue();
+        Integer releaseYear = Integer.valueOf(portReleaseYearInput.getValue());
+        String cover = portURLInput.getText();
+        Machine machine = portMachineInput.getValue();
+        DeveloperUtil developer = originalGame.getDeveloper();
+
+        if (publisher!=null){
+            chosenPort.setPublisher(publisher);
+        }
+        if (releaseYear>=1950){
+            chosenPort.setReleaseYear(releaseYear);
+        }
+        if (!cover.isBlank()){
+            chosenPort.setCover(cover);
+        }
+        if (developer!=null){
+            chosenPort.setDeveloper(developer);
+        }
+        if (machine!=null){
+            chosenPort.setMachine(machine);
+        }
     }
     @FXML
     private void removePort(){

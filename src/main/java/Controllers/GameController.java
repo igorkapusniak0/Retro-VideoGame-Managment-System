@@ -29,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 public class GameController {
     private Scene scene;
     private OriginalGame chosenGame;
+    private PortedGame chosenPort;
     private Machine machine;
     private GameMachineController gameMachineController;
     private ManufacturerController manufacturerController;
@@ -110,6 +111,8 @@ public class GameController {
     private Label machineName;
     @FXML
     private Label chooseGame;
+    @FXML
+    private Label choosePort;
     @FXML
     private MenuButton menuButton;
 
@@ -270,6 +273,48 @@ public class GameController {
             chooseGame.setText("");
             gameTableView.refresh();
             machine.originalGames.display();
+        }
+    }
+
+    public void removePortButton(){
+        if (chosenPort!=null){
+            this.machine.getPortedGames().remove(chosenPort);
+            chosenPort=null;
+            choosePort.setText("");
+        }
+    }
+    public void editPortButton(){
+        if (chosenPort!=null){
+            String portURL = portURLInput.getText();
+            DeveloperUtil portDeveloper = portDeveloperInput.getValue();
+            PublisherUtil portPublisher = portPublisherInput.getValue();
+            Integer portReleaseYear = Integer.valueOf(portReleaseYearInput.getValue());
+
+            if (!portURL.isBlank()){
+                chosenPort.setTitle(portURL);
+            }else {
+
+            }
+            if (portDeveloper!=null){
+                chosenPort.setDeveloper(portDeveloper);
+            }else{
+            }
+            if (portPublisher!=null){
+                chosenPort.setPublisher(portPublisher);
+            }else{
+            }
+            if (portReleaseYear>=1950){
+                chosenPort.setReleaseYear(portReleaseYear);
+
+            }else{
+
+            }
+
+
+            portURLInput.clear();
+            chosenPort=null;
+            choosePort.setText("");
+
         }
     }
 
