@@ -271,17 +271,46 @@ public class GameMachineController {
             }else{
                 macNameLabel.setText("Invalid Name");
             }
-            if (machineDescription.isBlank()){
+            if (!machineDescription.isBlank()){
                 chosenGameMachine.setDescription(machineDescription);
+                macDesLabel.setText("");
             }else{
-
+                macDesLabel.setText("Invalid Description");
             }
-            chosenGameMachine.setPrice(machinePrice);
-            chosenGameMachine.setImage(machineURL);
-            chosenGameMachine.setType(machineType);
-            chosenGameMachine.setMedia(machineMedia);
-            chosenGameMachine.setLaunchYear(machineLaunchYear);
-            chosenGameMachine.setManufacturer(manufacturer);
+            if (machinePrice>=0){
+                chosenGameMachine.setPrice(machinePrice);
+                macPriceLabel.setText("");
+            }else{
+                macPriceLabel.setText("Invalid Price");
+            }
+            if (!machineURL.isBlank()){
+                chosenGameMachine.setImage(machineURL);
+                macImageLabel.setText("");
+            }else {
+                macImageLabel.setText("Invalid URL");
+            }
+            if (!machineType.isBlank()){
+                chosenGameMachine.setType(machineType);
+                macTypeLabel.setText("");
+            }else{
+                macTypeLabel.setText("Invalid Type");
+            }
+            if (!machineMedia.isBlank()){
+                chosenGameMachine.setMedia(machineMedia);
+                macMediaLabel.setText("");
+            }else{
+                macMediaLabel.setText("Invalid Media");
+            }
+            if (machineLaunchYear>=1950){
+                chosenGameMachine.setLaunchYear(machineLaunchYear);
+                macYearLabel.setText("");
+            }else{
+                macYearLabel.setText("Invalid Launch Year");
+            }
+            if (manufacturer!=null){
+                chosenGameMachine.setManufacturer(manufacturer);
+            }
+
 
             gameMachineNameInput.clear();
             gameMachineDescriptionInput.clear();
