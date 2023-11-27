@@ -388,5 +388,12 @@ public class GameController {
         }
     }
 
+    public void save(){
+        API.save("data.ser");
+    }
+    public void load(){
+        API.load("data.ser");
+    }
+
 
 }
