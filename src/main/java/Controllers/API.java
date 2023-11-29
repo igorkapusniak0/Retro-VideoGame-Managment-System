@@ -37,23 +37,24 @@ public class API {
 
     public static <T> void updateListViewHashing(String filter, TableView tableView, Hashing hashing) {
         Platform.runLater(() -> {
-            tableView.getItems().clear();
-            tableView.getItems().removeIf(item -> !item.toString().contains(filter));
-            for(int i =0;i<hashing.hashTable.length;i++){
-                LinkedList<T> list = hashing.hashTable[i];
-                if (list!=null){
-                    Node<T> current = list.head;
-                    while (current!=null){
-                        if (current.data.toString().contains(filter)) {
-                            if (!tableView.getItems().contains(current.data)) {
-                                tableView.getItems().add(current.data);
+            if (tableView!=null && hashing.hashTable!=null) {
+                tableView.getItems().clear();
+                tableView.getItems().removeIf(item -> !item.toString().contains(filter));
+                for (int i = 0; i < hashing.hashTable.length; i++) {
+                    LinkedList<T> list = hashing.hashTable[i];
+                    if (list != null) {
+                        Node<T> current = list.head;
+                        while (current != null) {
+                            if (current.data.toString().contains(filter)) {
+                                if (!tableView.getItems().contains(current.data)) {
+                                    tableView.getItems().add(current.data);
+                                }
                             }
+                            current = current.next;
                         }
-                        current = current.next;
                     }
                 }
-            }
-        });
+            }});
     }
 
     public static <T> String search(String filter, Hashing hashing) {
@@ -119,6 +120,10 @@ public class API {
         try (FileOutputStream fileOutputStream = new FileOutputStream(fileName);
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             objectOutputStream.writeObject(null);
+            ManufacturerController.developerList.head=null;
+            ManufacturerController.manufacturerList.head=null;
+            ManufacturerController.publisherList.head=null;
+            GameMachineController.gameMachineHashing.clearHashTable();
         } catch (IOException ignored) {
         }
     }

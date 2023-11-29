@@ -31,6 +31,11 @@ public class Hashing<T> implements Serializable {
         hashTable[home].remove(data);
         return home;
     }
+    public void clearHashTable() {
+        for (int i = 0; i < hashTable.length; i++) {
+            hashTable[i].head=null;
+        }
+    }
     public void display() {
         for (int i = 0; i < hashTable.length; i++) {
             LinkedList<T> list = hashTable[i];

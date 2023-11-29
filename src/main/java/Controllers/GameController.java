@@ -419,6 +419,12 @@ public class GameController {
     public void load(){
         API.load("data.ser");
     }
+    public void clear(){
+        API.clear("data.ser");
+        gameTableView.getItems().clear();
+        portTableView.getItems().clear();
+    }
+
 
 
 }

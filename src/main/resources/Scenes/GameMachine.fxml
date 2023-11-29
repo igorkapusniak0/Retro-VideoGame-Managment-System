@@ -70,7 +70,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="73.0" text="Save" />
             <Button mnemonicParsing="false" onAction="#load" prefHeight="25.0" prefWidth="65.0" text="Load" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="57.0" text="Clear" />
+            <Button mnemonicParsing="false" onAction="#clear" prefHeight="25.0" prefWidth="57.0" text="Clear" />
          </children>
       </HBox>
 

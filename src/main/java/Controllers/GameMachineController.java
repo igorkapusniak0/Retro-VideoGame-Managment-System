@@ -30,10 +30,6 @@ public class GameMachineController {
     private Machine chosenGameMachine;
     private ManufacturerUtil manufacturer;
 
-
-
-
-
     public static Hashing<Machine> gameMachineHashing = new Hashing<>(5);
     //////////////////////////////////////////////////////////////////////////
     @FXML
@@ -366,6 +362,10 @@ public class GameMachineController {
     }
     public void load(){
         API.load("data.ser");
+    }
+    public void clear(){
+        API.clear("data.ser");
+        machineTableView.getItems().clear();
     }
 
 

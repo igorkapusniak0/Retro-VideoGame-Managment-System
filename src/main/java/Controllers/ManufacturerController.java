@@ -118,9 +118,16 @@ public class ManufacturerController {
         manufacturer = new ManufacturerUtil(manufacturerName);
 
         if (!manufacturerName.isBlank()){
-            manufacturerList.add(manufacturer);
-            manufacturerTableView.getItems().add(manufacturer);
-            manufacturerNameInput.clear();
+            if (manufacturerList!=null){
+                manufacturerList.add(manufacturer);
+                manufacturerTableView.getItems().add(manufacturer);
+                manufacturerNameInput.clear();
+            }else{
+                manufacturerList = new LinkedList<ManufacturerUtil>();
+                manufacturerList.add(manufacturer);
+                manufacturerTableView.getItems().add(manufacturer);
+                manufacturerNameInput.clear();
+            }
         }
     }
     public void removeManufacturerButton(ActionEvent event){
@@ -144,9 +151,16 @@ public class ManufacturerController {
         publisher = new PublisherUtil(publisherName);
 
         if (!publisherName.isBlank()){
-            publisherList.add(publisher);
-            publisherTableView.getItems().add(publisher);
-            publisherNameInput.clear();
+            if (publisherList!=null){
+                publisherList.add(publisher);
+                publisherTableView.getItems().add(publisher);
+                publisherNameInput.clear();
+            }else {
+                publisherList = new LinkedList<PublisherUtil>();
+                publisherList.add(publisher);
+                publisherTableView.getItems().add(publisher);
+                publisherNameInput.clear();
+            }
         }
     }
 
@@ -170,9 +184,16 @@ public class ManufacturerController {
         String developerName = developerNameInput.getText();
         developer = new DeveloperUtil(developerName);
         if (!developerName.isBlank()){
-            developerList.add(developer);
-            developerTableView.getItems().add(developer);
-            developerNameInput.clear();
+            if (developerList!=null){
+                developerList.add(developer);
+                developerTableView.getItems().add(developer);
+                developerNameInput.clear();
+            }else{
+                developerList = new LinkedList<DeveloperUtil>();
+                developerList.add(developer);
+                developerTableView.getItems().add(developer);
+                developerNameInput.clear();
+            }
         }
     }
 
@@ -233,6 +254,12 @@ public class ManufacturerController {
     }
     public void load(){
         API.load("data.ser");
+    }
+    public void clear(){
+        API.clear("data.ser");
+        manufacturerTableView.getItems().clear();
+        developerTableView.getItems().clear();
+        publisherTableView.getItems().clear();
     }
 
 

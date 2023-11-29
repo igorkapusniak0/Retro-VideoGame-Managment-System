@@ -233,5 +233,9 @@ public class PortController {
     public void load(){
         API.load("data.ser");
     }
+    public void clear(){
+        API.clear("data.ser");
+        portTableView.getItems().clear();
+    }
 
 }
