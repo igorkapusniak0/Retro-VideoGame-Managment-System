@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PortController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PortController">
     <children>
         <VBox layoutY="24.0" prefHeight="105.0" prefWidth="1263.0">
             <children>
@@ -59,12 +59,13 @@
         <ComboBox fx:id="portDeveloperInput" layoutX="597.0" layoutY="651.0" prefWidth="150.0" promptText="Developer" />
         <ComboBox fx:id="portReleaseYearInput" layoutX="939.0" layoutY="651.0" prefWidth="150.0" promptText="Release Year" />
         <Label fx:id="selectedPort" layoutX="563.0" layoutY="697.0" prefHeight="25.0" prefWidth="177.0" text="Selected Port:" />
-        <Button layoutX="597.0" layoutY="740.0" mnemonicParsing="false" onAction="#editPort" text="Edit Port" />
-        <Button layoutX="717.0" layoutY="740.0" mnemonicParsing="false" onAction="#removePort" text="Remove Port" />
+        <Button layoutX="597.0" layoutY="740.0" mnemonicParsing="false" onAction="#editPort" prefHeight="25.0" prefWidth="89.0" text="Edit Port" />
+        <Button layoutX="717.0" layoutY="740.0" mnemonicParsing="false" onAction="#removePort" prefHeight="25.0" prefWidth="117.0" text="Remove Port" />
         <HBox alignment="TOP_RIGHT" layoutX="1022.0" layoutY="4.0" prefHeight="41.0" prefWidth="232.0">
             <children>
-                <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="69.0" text="Save" onAction="#save"/>
-                <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="73.0" text="Load" onAction="#load"/>
+                <Button mnemonicParsing="false" onAction="#save" prefHeight="24.0" prefWidth="69.0" text="Save" />
+                <Button mnemonicParsing="false" onAction="#load" prefHeight="24.0" prefWidth="73.0" text="Load" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Clear" />
             </children>
         </HBox>
     </children>
