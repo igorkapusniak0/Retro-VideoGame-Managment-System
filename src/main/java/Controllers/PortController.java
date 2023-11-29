@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import models.Machine;
 import models.OriginalGame;
@@ -59,7 +60,7 @@ public class PortController {
     @FXML
     private ComboBox<DeveloperUtil> portDeveloperInput;
     @FXML
-    private ComboBox<Integer> portReleaseYearInput;
+    private ComboBox<String> portReleaseYearInput;
     @FXML
     private ComboBox<Machine> portMachineInput;
     @FXML
@@ -101,29 +102,80 @@ public class PortController {
         portOriginalCol.setCellValueFactory(new PropertyValueFactory<>("originalGame"));
         portMachineCol.setCellValueFactory(new PropertyValueFactory<>("machine"));
 
-
-        handleTableViewSecondaryDoubleClick();
+        portTableView.setOnMouseClicked(e->{
+            if (e.getButton().equals(MouseButton.SECONDARY)&&(e.getClickCount()==2)){
+                handleTableViewSecondaryDoubleClick();
+            }
+        });
         updateComboBox();
         updateDeveloperComboBox();
         updatePublisherComboBox();
 
         API.yearOptions(portReleaseYearInput);
     }
+    private boolean checkFieldStatus(){
+
+        PublisherUtil publisher = portPublisherInput.getValue();
+        Integer releaseYear = -1;
+        String cover = portURLInput.getText();
+        Machine machine = portMachineInput.getValue();
+
+        boolean isValid = true;
+        if (portReleaseYearInput.getValue()!=null && !portReleaseYearInput.getValue().isBlank()){
+            try {
+                releaseYear = Integer.parseInt(portReleaseYearInput.getValue());
+                if (releaseYear < 1950 || releaseYear > 2024){
+                    yearLabel.setText("Invalid Launch Year");
+                    isValid= false;
+                }else{
+                    yearLabel.setText("");
+                }
+            }catch (NumberFormatException e){
+                yearLabel.setText("Enter Integer");
+                isValid=false;
+            }
+        }else{
+            yearLabel.setText("Enter Integer");
+            isValid=false;
+        }
+
+        if (publisher==null){
+            publisherLabel.setText("Invalid Publisher");
+            isValid=false;
+        }else{
+            publisherLabel.setText("");
+        }
+        if (cover.isBlank()){
+            imageLabel.setText("Invalid URL");
+            isValid=false;
+        }else{
+            imageLabel.setText("");
+        }
+        if (machine==null){
+            machineName.setText("Invalid Machine");
+            isValid = false;
+        }
+        return isValid;
+    }
     @FXML
     private void addPort(){
+        boolean isValid = checkFieldStatus();
         String title = originalGame.getTitle();
         String description = originalGame.getDescription();
         DeveloperUtil developer = originalGame.getDeveloper();
         PublisherUtil publisher = portPublisherInput.getValue();
-        Integer releaseYear = Integer.valueOf(portReleaseYearInput.getValue());
+        String releaseYear = portReleaseYearInput.getValue();
         String cover = portURLInput.getText();
         OriginalGame originalGame1 = this.originalGame;
         Machine machine = portMachineInput.getValue();
 
-
-        PortedGame newPort = new PortedGame(title,publisher,description,developer,machine,releaseYear,cover,originalGame1);
-        machine.addPortedGame(newPort);
-        portTableView.getItems().add(newPort);
+        if (isValid){
+            Integer year = Integer.parseInt(releaseYear);
+            PortedGame newPort = new PortedGame(title,publisher,description,developer,machine,year,cover,originalGame1);
+            machine.addPortedGame(newPort);
+            portTableView.getItems().add(newPort);
+            portURLInput.clear();
+        }
     }
     @FXML
     private void editPort(){
@@ -141,6 +193,7 @@ public class PortController {
         }
         if (!cover.isBlank()){
             chosenPort.setCover(cover);
+            portURLInput.clear();
         }
         if (developer!=null){
             chosenPort.setDeveloper(developer);
@@ -163,6 +216,7 @@ public class PortController {
         chosenPort = portTableView.getSelectionModel().getSelectedItem();
         if (chosenPort!=null){
             selectedPort.setText("Selected Port: " + chosenPort.getTitle());
+            System.out.println("try");
         }
         else{
             selectedPort.setText("Selected Port: null");
