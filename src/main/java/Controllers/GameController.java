@@ -31,6 +31,7 @@ public class GameController {
     private OriginalGame chosenGame;
     private PortedGame chosenPort;
     private Machine machine;
+    private OriginalGame originalGame;
     private GameMachineController gameMachineController;
     private ManufacturerController manufacturerController;
     //////////////////////////////////////////////////////////////////////////
@@ -410,6 +411,7 @@ public class GameController {
             currentStage.close();
         }
     }
+
 
 
 

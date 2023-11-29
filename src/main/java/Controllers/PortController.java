@@ -221,11 +221,18 @@ public class PortController {
     }
 
     public void switchToSceneGame(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/Scenes/GameScene.fxml"));
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Scenes/GameScene.fxml"));
+        Parent root1 = loader.load();
+
+        GameController gameController = loader.getController();
+        gameController.setMachine(this.originalGame.getOriginalMachine());
+
+        Stage stage1 = new Stage();
+        Scene scene = new Scene(root1);
+        stage1.setScene(scene);
+        stage1.show();
+        Stage currentStage = (Stage) portTableView.getScene().getWindow();
+        currentStage.close();
     }
     public void save(){
         API.save("data.ser");
