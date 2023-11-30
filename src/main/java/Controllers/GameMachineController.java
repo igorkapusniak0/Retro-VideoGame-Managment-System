@@ -368,6 +368,15 @@ public class GameMachineController {
         machineTableView.getItems().clear();
     }
 
+    public void sort(){
+        for (int i = 0; i < 5; i++) {
+            if (gameMachineHashing.hashTable[i].head != null) {
+                gameMachineHashing.hashTable[i].head = LinkedList.quickSortRec(gameMachineHashing.hashTable[i].head);
+                machineTableView.getItems().clear();
+            }
+        }
+    }
+
 
 }
 

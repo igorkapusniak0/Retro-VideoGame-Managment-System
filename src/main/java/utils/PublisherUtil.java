@@ -1,8 +1,10 @@
 package utils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
 
-public class PublisherUtil implements Serializable {
+public class PublisherUtil implements Serializable, Comparable<PublisherUtil> {
     public String publisher;
 
     public PublisherUtil(String publisher){
@@ -19,5 +21,10 @@ public class PublisherUtil implements Serializable {
     @Override
     public String toString(){
         return publisher;
+    }
+
+    @Override
+    public int compareTo(@NotNull PublisherUtil o) {
+        return 0;
     }
 }

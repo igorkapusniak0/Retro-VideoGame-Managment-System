@@ -1,8 +1,10 @@
 package storing;
+import Controllers.API;
+
 import java.io.Serializable;
 import java.util.Scanner;
 
-public class Hashing<T> implements Serializable {
+public class Hashing<T extends Comparable<T>> implements Serializable {
     public LinkedList<T>[] hashTable;
 
     public Hashing(int size){
@@ -48,22 +50,32 @@ public class Hashing<T> implements Serializable {
         }
     }
 
-
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Hashing<String> h = new Hashing<>(5);
         Scanner k = new Scanner(System.in);
 
         String name;
 
-        do{
+        do {
             System.out.print("Enter name: ");
-            name=k.nextLine();
+            name = k.nextLine();
 
-            if(name.length()!=0) {
-                int loc=h.add(name);
-                System.out.println(name+" stored at location "+loc);
+            if (name.length() != 0) {
+                int loc = h.add(name);
+                System.out.println(name + " stored at location " + loc);
             }
-        }while(name.length()!=0);
-        h.display();
+        } while (name.length() != 0);
+
+        h.display(); // Display before sorting
+
+        for (int i = 0; i < 5; i++) {
+            if (h.hashTable[i].head != null) {
+                h.hashTable[i].head = LinkedList.quickSortRec(h.hashTable[i].head);
+            }
+        }
+
+        System.out.println("\nAfter sorting:");
+        h.display(); // Display after sorting
     }
+
 }

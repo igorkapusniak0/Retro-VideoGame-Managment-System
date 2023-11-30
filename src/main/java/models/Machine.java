@@ -1,12 +1,13 @@
 package models;
 
+import org.jetbrains.annotations.NotNull;
 import storing.Hashing;
 import utils.ManufacturerUtil;
 import utils.Utilities;
 
 import java.io.Serializable;
 
-public class Machine implements Serializable {
+public class Machine implements Serializable, Comparable<Machine> {
     private String name;
     private ManufacturerUtil manufacturer;
     private String description;
@@ -147,4 +148,8 @@ public class Machine implements Serializable {
     }
 
 
+    @Override
+    public int compareTo(@NotNull Machine o) {
+        return 0;
+    }
 }

@@ -1,5 +1,6 @@
 package models;
 
+import org.jetbrains.annotations.NotNull;
 import storing.Hashing;
 import utils.DeveloperUtil;
 import utils.PublisherUtil;
@@ -7,7 +8,7 @@ import utils.Utilities;
 
 import java.io.Serializable;
 
-public class OriginalGame extends Game implements Serializable {
+public class OriginalGame extends Game implements Serializable, Comparable<OriginalGame> {
     private PublisherUtil publisher;
     private Machine originalMachine;
     private int releaseYear;
@@ -76,4 +77,8 @@ public class OriginalGame extends Game implements Serializable {
     }
 
 
+    @Override
+    public int compareTo(@NotNull OriginalGame o) {
+        return 0;
+    }
 }

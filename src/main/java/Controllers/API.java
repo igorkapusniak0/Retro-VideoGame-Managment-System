@@ -35,7 +35,7 @@ public class API {
         });
     }
 
-    public static <T> void updateListViewHashing(String filter, TableView tableView, Hashing hashing) {
+    public static <T extends Comparable<T>> void updateListViewHashing(String filter, TableView tableView, Hashing hashing) {
         Platform.runLater(() -> {
             if (tableView!=null && hashing.hashTable!=null) {
                 tableView.getItems().clear();
@@ -57,22 +57,7 @@ public class API {
             }});
     }
 
-    public static <T> String search(String filter, Hashing hashing) {
-        String items = "";
-        for(int i =0;i<hashing.hashTable.length;i++){
-            LinkedList<T> list = hashing.hashTable[i];
-            if (list!=null){
-                Node<T> current = list.head;
-                while (current!=null){
-                    if (current.data.toString().contains(filter)) {
-                        items += current.data + "\n";
-                    }
-                    current = current.next;
-                }
-            }
-        }
-        return items;
-    }
+
 
     public static void yearOptions(ComboBox comboBox){
         int[] years = new int[75];
@@ -146,4 +131,33 @@ public class API {
     }
 
 
+    /*public static void quickSort(int[] a,int lowerIndex, int higherIndex) {
+        int leftIndex = lowerIndex;
+        int rightIndex = higherIndex;
+
+        int pivot = a[lowerIndex + (higherIndex - leftIndex) / 2];
+
+        while (leftIndex <= rightIndex) {
+            while (a[lowerIndex] < pivot) {
+                leftIndex++;
+            }
+            while (a[rightIndex] > pivot) {
+                rightIndex--;
+            }
+
+            if (leftIndex <= rightIndex) {
+                int swap = a[leftIndex];
+                a[leftIndex] = a[rightIndex];
+                a[rightIndex] = swap;
+                leftIndex++;
+                rightIndex--;
+            }
+        }
+        if (lowerIndex < rightIndex) {
+            quickSort(a, lowerIndex, rightIndex);
+        }
+        if (leftIndex < higherIndex) {
+            quickSort(a, lowerIndex, higherIndex);
+        }
+    }*/
 }

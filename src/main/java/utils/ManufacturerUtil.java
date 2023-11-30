@@ -1,8 +1,10 @@
 package utils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
 
-public class ManufacturerUtil implements Serializable {
+public class ManufacturerUtil implements Serializable, Comparable<ManufacturerUtil> {
     public String manufacturer;
 
     public ManufacturerUtil(String manufacturer){
@@ -19,5 +21,10 @@ public class ManufacturerUtil implements Serializable {
     @Override
     public String toString(){
         return  manufacturer;
+    }
+
+    @Override
+    public int compareTo(@NotNull ManufacturerUtil o) {
+        return 0;
     }
 }

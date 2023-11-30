@@ -1,12 +1,13 @@
 package models;
 
+import org.jetbrains.annotations.NotNull;
 import utils.DeveloperUtil;
 import utils.PublisherUtil;
 import utils.Utilities;
 
 import java.io.Serializable;
 
-public class PortedGame extends Game implements Serializable {
+public class PortedGame extends Game implements Serializable, Comparable<PortedGame> {
     private OriginalGame originalGame;
     private PublisherUtil publisher;
     private Machine machine;
@@ -80,5 +81,8 @@ public class PortedGame extends Game implements Serializable {
     }
 
 
-
+    @Override
+    public int compareTo(@NotNull PortedGame o) {
+        return 0;
+    }
 }

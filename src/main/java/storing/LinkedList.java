@@ -2,7 +2,7 @@ package storing;
 
 import java.io.Serializable;
 
-public class LinkedList<T> implements Serializable {
+public class LinkedList<T extends Comparable<T>> implements Serializable {
     public Node<T> head;
     public LinkedList(){
         this.head = null;
@@ -82,6 +82,67 @@ public class LinkedList<T> implements Serializable {
         }
         return s;
     }
+
+
+
+    public static <T extends Comparable<T>> Node<T> quickSortRec(Node<T> head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        // Finding the middle node of the list
+        Node<T> mid = findMiddle(head);
+        Node<T> nextOfMid = mid.next;
+        mid.next = null;
+
+        // Recursively sort the two halves
+        Node<T> left = quickSortRec(head);
+        Node<T> right = quickSortRec(nextOfMid);
+
+        // Merge the sorted halves
+        return merge(left, right);
+    }
+
+    // Helper method to find the middle node of the list
+    public static <T extends Comparable<T>> Node<T> findMiddle(Node<T> node) {
+        if (node == null) {
+            return null;
+        }
+        Node<T> slow = node;
+        Node<T> fast = node.next;
+
+        while (fast != null) {
+            fast = fast.next;
+            if (fast != null) {
+                slow = slow.next;
+                fast = fast.next;
+            }
+        }
+        return slow;
+    }
+
+    // Helper method to merge two sorted linked lists
+    public static <T extends Comparable<T>> Node<T> merge(Node<T> left, Node<T> right) {
+        Node<T> result = null;
+
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+
+        if (left.data.compareTo(right.data) <= 0) {
+            result = left;
+            result.next = merge(left.next, right);
+        } else {
+            result = right;
+            result.next = merge(left, right.next);
+        }
+
+        return result;
+    }
+
 
 }
 
