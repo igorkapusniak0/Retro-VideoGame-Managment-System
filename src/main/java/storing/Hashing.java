@@ -14,23 +14,24 @@ public class Hashing<T extends Comparable<T>> implements Serializable {
         }
     }
     public int hashFunction(int key){
-        return key%hashTable.length;
+        return ((((int)(key/10.0)*10)-1950)/10);
     }
-   /* public int add(int key,T data){
-        int home=hashFunction(key);
-        hashTable[home].add(data);
-        return home;
-    }*/
+
     //TODO
     //Change to voids after testing
-    public int add(T data){
-        int home = hashFunction(Math.abs(data.hashCode()));
+    public int add(T data, int key){
+        int home = hashFunction(key);
+        System.out.println(home);
         hashTable[home].add(data);
+        System.out.println(home);
         return home;
     }
     public int remove(T data){
         int home = hashFunction(Math.abs(data.hashCode()));
-        hashTable[home].remove(data);
+        for (int i = 0; i < hashTable.length; i++){
+            hashTable[i].remove(data);
+        }
+        System.out.println(home);
         return home;
     }
     public void clearHashTable() {
@@ -50,32 +51,5 @@ public class Hashing<T extends Comparable<T>> implements Serializable {
         }
     }
 
-    public static void main(String[] args) {
-        Hashing<String> h = new Hashing<>(5);
-        Scanner k = new Scanner(System.in);
-
-        String name;
-
-        do {
-            System.out.print("Enter name: ");
-            name = k.nextLine();
-
-            if (name.length() != 0) {
-                int loc = h.add(name);
-                System.out.println(name + " stored at location " + loc);
-            }
-        } while (name.length() != 0);
-
-        h.display(); // Display before sorting
-
-        for (int i = 0; i < 5; i++) {
-            if (h.hashTable[i].head != null) {
-                h.hashTable[i].head = LinkedList.quickSortRec(h.hashTable[i].head);
-            }
-        }
-
-        System.out.println("\nAfter sorting:");
-        h.display(); // Display after sorting
-    }
 
 }

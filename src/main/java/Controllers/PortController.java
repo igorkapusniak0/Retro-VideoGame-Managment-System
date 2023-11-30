@@ -29,6 +29,7 @@ public class PortController {
     private PortedGame chosenPort;
     private OriginalGame originalGame;
     private Machine machine;
+    private GameMachineController gameMachineController;
 
 
     @FXML
@@ -224,11 +225,11 @@ public class PortController {
     }
 
     private void updateComboBox(){
-        if (GameMachineController.gameMachineHashing.hashTable != null){
+        if (gameMachineController.gameMachineHashing.hashTable != null){
             Platform.runLater(()->{
                 portMachineInput.getItems().clear();
-                for(int i =0;i<GameMachineController.gameMachineHashing.hashTable.length;i++){
-                    LinkedList<Machine> list = GameMachineController.gameMachineHashing.hashTable[i];
+                for(int i =0;i<gameMachineController.gameMachineHashing.hashTable.length;i++){
+                    LinkedList<Machine> list = gameMachineController.gameMachineHashing.hashTable[i];
                     if (list!=null){
                         storing.Node<Machine> current = list.head;
 

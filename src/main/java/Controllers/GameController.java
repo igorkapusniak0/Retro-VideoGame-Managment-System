@@ -255,7 +255,7 @@ public class GameController {
         if (isValid) {
             Integer launchYear = Integer.parseInt(gameLaunchYear);
             OriginalGame originalGame = new OriginalGame(gameTitle,gamePublisher ,gameDescription, gameDeveloper,this.machine, launchYear, gameCover);
-            this.machine.getGames().add(originalGame);
+            this.machine.getGames().add(originalGame,originalGame.getReleaseYear());
             gameTableView.getItems().add(originalGame);
             System.out.println(originalGame + " is added");
             machine.getGames().display();

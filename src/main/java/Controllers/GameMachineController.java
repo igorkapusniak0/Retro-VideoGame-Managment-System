@@ -19,6 +19,7 @@ import utils.ManufacturerUtil;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -29,8 +30,9 @@ public class GameMachineController {
 
     private Machine chosenGameMachine;
     private ManufacturerUtil manufacturer;
+    private int hashTableSize = 8;
 
-    public static Hashing<Machine> gameMachineHashing = new Hashing<>(5);
+    public static Hashing<Machine> gameMachineHashing = new Hashing<>(8);
     //////////////////////////////////////////////////////////////////////////
     @FXML
     private TableView<Machine> machineTableView;
@@ -231,8 +233,8 @@ public class GameMachineController {
         if (isValid) {
             Double price = Double.parseDouble(machinePrice);
             Integer launchYear = Integer.parseInt(machineLaunchYear);
-            Machine machine = new Machine(machineName, manufacturer, machineDescription, machineType, machineMedia, launchYear, price, machineURL,new Hashing(5),new Hashing(5));
-            gameMachineHashing.add(machine);
+            Machine machine = new Machine(machineName, manufacturer, machineDescription, machineType, machineMedia, launchYear, price, machineURL,new Hashing(hashTableSize),new Hashing(hashTableSize));
+            gameMachineHashing.add(machine,machine.getLaunchYear());
             machineTableView.getItems().add(machine);
             System.out.println(machine + " is added");
             gameMachineHashing.display();
@@ -248,6 +250,8 @@ public class GameMachineController {
             gameMachineHashing.remove(chosenGameMachine);
             chosenGameMachine = null;
             chooseMachine.setText("");
+        }else{
+            System.out.println("Nothing selected");
         }
     }
     public void editGameMachineButton(){
@@ -369,10 +373,12 @@ public class GameMachineController {
     }
 
     public void sort(){
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 8; i++) {
             if (gameMachineHashing.hashTable[i].head != null) {
-                gameMachineHashing.hashTable[i].head = LinkedList.quickSortRec(gameMachineHashing.hashTable[i].head);
+                Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getName());
+                LinkedList.quickSortRec(gameMachineHashing.hashTable[i].head,integerComparator);
                 machineTableView.getItems().clear();
+                gameMachineHashing.display();
             }
         }
     }

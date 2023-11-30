@@ -1,6 +1,7 @@
 package storing;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 public class LinkedList<T extends Comparable<T>> implements Serializable {
     public Node<T> head;
@@ -85,22 +86,19 @@ public class LinkedList<T extends Comparable<T>> implements Serializable {
 
 
 
-    public static <T extends Comparable<T>> Node<T> quickSortRec(Node<T> head) {
+    public static <T> Node<T> quickSortRec(Node head, Comparator<T> comparator) {
         if (head == null || head.next == null) {
             return head;
         }
 
-        // Finding the middle node of the list
         Node<T> mid = findMiddle(head);
         Node<T> nextOfMid = mid.next;
         mid.next = null;
 
-        // Recursively sort the two halves
-        Node<T> left = quickSortRec(head);
-        Node<T> right = quickSortRec(nextOfMid);
+        Node<T> left = quickSortRec(head, comparator);
+        Node<T> right = quickSortRec(nextOfMid, comparator);
 
-        // Merge the sorted halves
-        return merge(left, right);
+        return merge(left, right, comparator);
     }
 
     // Helper method to find the middle node of the list
@@ -122,7 +120,7 @@ public class LinkedList<T extends Comparable<T>> implements Serializable {
     }
 
     // Helper method to merge two sorted linked lists
-    public static <T extends Comparable<T>> Node<T> merge(Node<T> left, Node<T> right) {
+    public static <T> Node<T> merge(Node<T> left, Node<T> right, Comparator<T> comparator) {
         Node<T> result = null;
 
         if (left == null) {
@@ -132,12 +130,12 @@ public class LinkedList<T extends Comparable<T>> implements Serializable {
             return left;
         }
 
-        if (left.data.compareTo(right.data) <= 0) {
+        if (comparator.compare(left.data, right.data) <= 0) {
             result = left;
-            result.next = merge(left.next, right);
+            result.next = merge(left.next, right, comparator);
         } else {
             result = right;
-            result.next = merge(left, right.next);
+            result.next = merge(left, right.next, comparator);
         }
 
         return result;

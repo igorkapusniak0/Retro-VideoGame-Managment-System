@@ -107,13 +107,13 @@ public class Machine implements Serializable, Comparable<Machine> {
         return this.image;
     }
     public void addGame(OriginalGame game){
-        originalGames.add(game);
+        originalGames.add(game,game.getReleaseYear());
     }
     public void removeGame(OriginalGame originalGame){
         originalGames.remove(originalGame);
     }
     public void addPortedGame(PortedGame portedGame){
-        portedGames.add(portedGame);
+        portedGames.add(portedGame,portedGame.getReleaseYear());
     }
     public void removePortedGame(PortedGame portedGame){
         portedGames.remove(portedGame);
