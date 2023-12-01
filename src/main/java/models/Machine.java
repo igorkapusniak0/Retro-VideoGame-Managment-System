@@ -17,8 +17,8 @@ public class Machine implements Serializable, Comparable<Machine> {
     private double price;
     private String image;
     public Hashing<OriginalGame> originalGames;
-    public Hashing<PortedGame> portedGames;
-    public Machine(String name, ManufacturerUtil manufacturer,String description,String type,String media,int launchYear, double price,String image,Hashing originalGames, Hashing portedGames){
+
+    public Machine(String name, ManufacturerUtil manufacturer,String description,String type,String media,int launchYear, double price,String image,Hashing originalGames){
         setName(name);
         setDescription(description);
         setManufacturer(manufacturer);
@@ -27,7 +27,7 @@ public class Machine implements Serializable, Comparable<Machine> {
         setLaunchYear(launchYear);
         setPrice(price);
         setImage(image);
-        setPortedGames(portedGames);
+
         setOriginalGames(originalGames);
     }
     public void setName(String name){
@@ -112,12 +112,7 @@ public class Machine implements Serializable, Comparable<Machine> {
     public void removeGame(OriginalGame originalGame){
         originalGames.remove(originalGame);
     }
-    public void addPortedGame(PortedGame portedGame){
-        portedGames.add(portedGame,portedGame.getReleaseYear());
-    }
-    public void removePortedGame(PortedGame portedGame){
-        portedGames.remove(portedGame);
-    }
+
 
     public void setOriginalGames(Hashing originalGames){
         this.originalGames = originalGames;
@@ -125,12 +120,8 @@ public class Machine implements Serializable, Comparable<Machine> {
     public Hashing<OriginalGame> getGames(){
         return this.originalGames;
     }
-    public void setPortedGames(Hashing portedGames){
-        this.portedGames= portedGames;
-    }
-    public Hashing<PortedGame> getPortedGames(){
-        return this.portedGames;
-    }
+
+
 
     public String toString() {
         return "Machine{" +
@@ -143,7 +134,6 @@ public class Machine implements Serializable, Comparable<Machine> {
                 ", price=" + price +
                 ", image='" + image + '\'' +
                 ", games=" + originalGames +
-                ", portedGames=" + portedGames +
                 '}';
     }
 

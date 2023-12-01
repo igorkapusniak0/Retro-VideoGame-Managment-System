@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
+import models.Game;
 import models.Machine;
 import models.OriginalGame;
 import models.PortedGame;
@@ -88,11 +89,13 @@ public class PortController {
         initialize();
     }
 
+
+
     @FXML
     public void initialize(){
 
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(()->API.updateListViewHashing(searchPort.getText(),portTableView,originalGame.getOriginalMachine().portedGames), 0, 1, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(()->API.updateListViewHashing(searchPort.getText(),portTableView,originalGame.portedGames), 0, 1, TimeUnit.SECONDS);
 
 
         portNameCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -174,14 +177,14 @@ public class PortController {
         if (isValid){
             Integer year = Integer.parseInt(releaseYear);
             PortedGame newPort = new PortedGame(title,publisher,description,developer,machine,year,cover,originalGame1);
-            machine.addPortedGame(newPort);
+            originalGame1.addPortedGame(newPort);
             portTableView.getItems().add(newPort);
             portURLInput.clear();
             System.out.println(this.originalGame);
             System.out.println(this.originalGame.getOriginalMachine());
-            System.out.println(this.originalGame.getOriginalMachine().portedGames);
-            this.originalGame.getOriginalMachine().portedGames.display();
-            System.out.println(this.originalGame.getOriginalMachine().portedGames.hashTable);
+            System.out.println(this.originalGame.portedGames);
+            this.originalGame.getPortedGames().display();
+            System.out.println(this.originalGame.portedGames.hashTable);
 
         }
     }
@@ -213,7 +216,7 @@ public class PortController {
     @FXML
     private void removePort(){
         if (chosenPort!=null){
-            chosenPort.getMachine().removePortedGame(chosenPort);
+            chosenPort.getOriginalGame().getPortedGames().remove(chosenPort);
             chosenPort=null;
         }else{
             System.out.println("remove failed");
@@ -312,17 +315,17 @@ public class PortController {
                 Comparator<PortedGame> integerComparator = Comparator.comparing(Game::getTitle);
                 LinkedList.quickSortRec(this.originalGame.portedGames.hashTable[i].head,integerComparator);
                 portTableView.getItems().clear();
-                this.originalGame.getOriginalMachine().portedGames.display();
+                this.originalGame.portedGames.display();
             }
         }
     }
     public void sortByReleaseYear(){
         for (int i = 0; i < 8; i++) {
-            if (this.originalGame.getOriginalMachine().portedGames.hashTable[i].head != null) {
-                Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getLaunchYear());
-                LinkedList.quickSortRec(this.originalGame.getOriginalMachine().portedGames.hashTable[i].head,integerComparator);
+            if (this.originalGame.portedGames.hashTable[i].head != null) {
+                Comparator<PortedGame> integerComparator = Comparator.comparing(PortedGame::getReleaseYear);
+                LinkedList.quickSortRec(this.originalGame.portedGames.hashTable[i].head,integerComparator);
                 portTableView.getItems().clear();
-                this.originalGame.getOriginalMachine().portedGames.display();
+                this.originalGame.portedGames.display();
             }
         }
     }

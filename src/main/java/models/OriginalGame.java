@@ -13,18 +13,20 @@ public class OriginalGame extends Game implements Serializable, Comparable<Origi
     private Machine originalMachine;
     private int releaseYear;
     private String cover;
-    public OriginalGame(String title, PublisherUtil publisher, String description, DeveloperUtil developer, Machine originalMachine, int releaseYear, String cover) {
+    public Hashing<PortedGame> portedGames;
+    public OriginalGame(String title, PublisherUtil publisher, String description, DeveloperUtil developer, Machine originalMachine, int releaseYear, String cover,Hashing portedGames) {
         super(title, description, developer);
         setPublisher(publisher);
         setOriginalMachine(originalMachine);
         setReleaseYear(releaseYear);
         setCover(cover);
+        setPortedGames(portedGames);
     }
 
 
 
     public void setPublisher(PublisherUtil publisher) {
-        this.publisher = publisher;
+
 
     }
     public PublisherUtil getPublisher(){
@@ -36,7 +38,7 @@ public class OriginalGame extends Game implements Serializable, Comparable<Origi
         if (machine!=null){
             this.originalMachine=machine;
         }else{
-            this.originalMachine = new Machine("",null,"","","", 0, 0,"",null,null);
+            this.originalMachine = new Machine("",null,"","","", 0, 0,"",null);
         }
     }
     public Machine getOriginalMachine(){
@@ -61,6 +63,18 @@ public class OriginalGame extends Game implements Serializable, Comparable<Origi
     }
     public String getCover(){
         return this.cover;
+    }
+    public void addPortedGame(PortedGame portedGame){
+        portedGames.add(portedGame,portedGame.getReleaseYear());
+    }
+    public void removePortedGame(PortedGame portedGame){
+        portedGames.remove(portedGame);
+    }
+    public Hashing<PortedGame> getPortedGames(){
+        return this.portedGames;
+    }
+    public void setPortedGames(Hashing portedGames){
+        this.portedGames= portedGames;
     }
 
     @Override

@@ -14,12 +14,14 @@ public class PortedGame extends Game implements Serializable, Comparable<PortedG
     private Machine machine;
     private int releaseYear;
     private String cover;
+
     public PortedGame(String title, PublisherUtil publisher, String description, DeveloperUtil developer, Machine machine, int releaseYear, String cover, OriginalGame originalGame) {
         super(title,description, developer);
         setOriginalGame(originalGame);
         setPublisher(publisher);
         setReleaseYear(releaseYear);
         setCover(cover);
+
         setMachine(machine);
     }
     public void setMachine(Machine machine){
@@ -63,9 +65,10 @@ public class PortedGame extends Game implements Serializable, Comparable<PortedG
             this.originalGame=originalGame;
         }
     }
-    public Game getOriginalGame(){
+    public OriginalGame getOriginalGame(){
         return this.originalGame;
     }
+
 
     @Override
     public String toString() {

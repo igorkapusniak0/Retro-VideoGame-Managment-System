@@ -128,7 +128,7 @@ public class GameController {
     public void initialize() {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(()->API.updateListViewHashing(searchGame.getText(),gameTableView,machine.originalGames), 0, 1, TimeUnit.SECONDS);
-        scheduler.scheduleAtFixedRate(()->API.updateListViewHashing("",portTableView,machine.portedGames), 0, 1, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(()->API.updateListViewHashing("",portTableView,originalGame.portedGames), 0, 1, TimeUnit.SECONDS);
 
         if (this.machine!=null){
             machineName.setText(this.machine.getName());
@@ -255,7 +255,7 @@ public class GameController {
 
         if (isValid) {
             Integer launchYear = Integer.parseInt(gameLaunchYear);
-            OriginalGame originalGame = new OriginalGame(gameTitle,gamePublisher ,gameDescription, gameDeveloper,this.machine, launchYear, gameCover);
+            OriginalGame originalGame = new OriginalGame(gameTitle,gamePublisher ,gameDescription, gameDeveloper,this.machine, launchYear, gameCover,new Hashing<>(8));
             this.machine.getGames().add(originalGame,originalGame.getReleaseYear());
             gameTableView.getItems().add(originalGame);
             System.out.println(originalGame + " is added");
@@ -280,7 +280,7 @@ public class GameController {
 
     public void removePortButton(){
         if (chosenPort!=null){
-            this.machine.getPortedGames().remove(chosenPort);
+            this.originalGame.getPortedGames().remove(chosenPort);
             chosenPort=null;
             choosePort.setText("");
         }
@@ -441,7 +441,7 @@ public class GameController {
     public void sortByReleaseYear(){
         for (int i = 0; i < 8; i++) {
             if (this.machine.originalGames.hashTable[i].head != null) {
-                Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getLaunchYear());
+                Comparator<OriginalGame> integerComparator = Comparator.comparing(OriginalGame::getReleaseYear);
                 LinkedList.quickSortRec(this.machine.originalGames.hashTable[i].head,integerComparator);
                 gameTableView.getItems().clear();
                 this.machine.originalGames.display();

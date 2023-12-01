@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import models.Machine;
+import models.OriginalGame;
 import storing.Hashing;
 import storing.LinkedList;
 import storing.Node;
@@ -18,6 +19,7 @@ import java.util.List;
 
 public class API {
     public Hashing hashing;
+    private Machine machine;
 
     public static <T> void updateListView(String filter, TableView tableView, Node<T> head) {
         Platform.runLater(() -> {
