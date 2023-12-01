@@ -372,10 +372,30 @@ public class GameMachineController {
         machineTableView.getItems().clear();
     }
 
-    public void sort(){
+    public void sortByName(){
         for (int i = 0; i < 8; i++) {
             if (gameMachineHashing.hashTable[i].head != null) {
                 Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getName());
+                LinkedList.quickSortRec(gameMachineHashing.hashTable[i].head,integerComparator);
+                machineTableView.getItems().clear();
+                gameMachineHashing.display();
+            }
+        }
+    }
+    public void sortByPrice(){
+        for (int i = 0; i < 8; i++) {
+            if (gameMachineHashing.hashTable[i].head != null) {
+                Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getPrice());
+                LinkedList.quickSortRec(gameMachineHashing.hashTable[i].head,integerComparator);
+                machineTableView.getItems().clear();
+                gameMachineHashing.display();
+            }
+        }
+    }
+    public void sortByDescriptionLength(){
+        for (int i = 0; i < 8; i++) {
+            if (gameMachineHashing.hashTable[i].head != null) {
+                Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getDescription().length());
                 LinkedList.quickSortRec(gameMachineHashing.hashTable[i].head,integerComparator);
                 machineTableView.getItems().clear();
                 gameMachineHashing.display();

@@ -100,8 +100,6 @@ public class LinkedList<T extends Comparable<T>> implements Serializable {
 
         return merge(left, right, comparator);
     }
-
-    // Helper method to find the middle node of the list
     public static <T extends Comparable<T>> Node<T> findMiddle(Node<T> node) {
         if (node == null) {
             return null;
@@ -118,8 +116,6 @@ public class LinkedList<T extends Comparable<T>> implements Serializable {
         }
         return slow;
     }
-
-    // Helper method to merge two sorted linked lists
     public static <T> Node<T> merge(Node<T> left, Node<T> right, Comparator<T> comparator) {
         Node<T> result = null;
 

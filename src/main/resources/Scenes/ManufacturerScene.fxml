@@ -88,9 +88,9 @@
       </Button>
       <HBox alignment="TOP_RIGHT" layoutX="1054.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="219.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="61.0" text="Save" />
-            <Button mnemonicParsing="false" onAction="#load" prefHeight="25.0" prefWidth="63.0" text="Load" />
-            <Button mnemonicParsing="false" onAction="#clear" prefHeight="25.0" prefWidth="63.0" text="Clear" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="61.0" text="Save" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#load" prefHeight="25.0" prefWidth="63.0" text="Load" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#clear" prefHeight="25.0" prefWidth="63.0" text="Clear" />
          </children>
       </HBox>
    </children>

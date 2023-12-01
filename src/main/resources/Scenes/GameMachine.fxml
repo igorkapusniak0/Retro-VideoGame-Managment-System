@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="846.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GameMachineController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="846.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GameMachineController">
     <children>
         <VBox layoutY="-1.0" prefHeight="85.0" prefWidth="1100.0">
             <children>
@@ -64,7 +64,7 @@
         <Label fx:id="macTypeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="706.0" layoutY="700.0" prefHeight="17.0" prefWidth="86.0" />
         <Label fx:id="macMediaLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="706.0" layoutY="744.0" prefHeight="17.0" prefWidth="86.0" />
         <Label fx:id="macYearLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="706.0" layoutY="792.0" prefHeight="17.0" prefWidth="86.0" />
-        <Label fx:id="chooseMachine" layoutX="699.0" layoutY="776.0" prefHeight="33.0" prefWidth="186.0" text="Selected Machine: " />
+        <Label fx:id="chooseMachine" layoutX="723.0" layoutY="793.0" prefHeight="33.0" prefWidth="186.0" text="Selected Machine: " />
         <ComboBox id="textLaunchYear" fx:id="comboManufacturer" layoutX="792.0" layoutY="720.0" prefHeight="25.0" prefWidth="168.0" promptText="Select Manufacturer" />
       <HBox alignment="TOP_RIGHT" layoutX="874.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="226.0">
          <children>
@@ -73,7 +73,9 @@
             <Button mnemonicParsing="false" onAction="#clear" prefHeight="25.0" prefWidth="57.0" text="Clear" />
          </children>
       </HBox>
-      <Button layoutX="741.0" layoutY="753.0" mnemonicParsing="false" text="Sort Machine" onAction="#sort"/>
+      <Button layoutX="644.0" layoutY="761.0" mnemonicParsing="false" onAction="#sortByName" text="Sort By Name" />
+      <Button layoutX="748.0" layoutY="761.0" mnemonicParsing="false" onAction="#sortByPrice" text="Sort By Price" />
+      <Button layoutX="855.0" layoutY="761.0" mnemonicParsing="false" onAction="#sortByDescriptionLength" text="Sort By Description Length" />
 
 
     </children>
