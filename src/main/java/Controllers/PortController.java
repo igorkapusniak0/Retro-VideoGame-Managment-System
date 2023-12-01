@@ -20,6 +20,7 @@ import utils.ManufacturerUtil;
 import utils.PublisherUtil;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -298,6 +299,26 @@ public class PortController {
     public void clear(){
         API.clear("data.ser");
         portTableView.getItems().clear();
+    }
+    public void sortByName(){
+        for (int i = 0; i < 8; i++) {
+            if (this.machine.portedGames.hashTable[i].head != null) {
+                Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getName());
+                LinkedList.quickSortRec(this.machine.portedGames.hashTable[i].head,integerComparator);
+                portTableView.getItems().clear();
+                this.machine.portedGames.display();
+            }
+        }
+    }
+    public void sortByReleaseYear(){
+        for (int i = 0; i < 8; i++) {
+            if (this.machine.portedGames.hashTable[i].head != null) {
+                Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getLaunchYear());
+                LinkedList.quickSortRec(this.machine.portedGames.hashTable[i].head,integerComparator);
+                portTableView.getItems().clear();
+                this.machine.portedGames.display();
+            }
+        }
     }
 
 }

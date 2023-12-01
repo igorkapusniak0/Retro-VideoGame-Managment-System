@@ -68,5 +68,7 @@
             <Button mnemonicParsing="false" onAction="#clear" prefHeight="25.0" prefWidth="63.0" text="Clear" />
             </children>
         </HBox>
+      <Button layoutX="519.0" layoutY="794.0" mnemonicParsing="false" onAction="#sortByName" text="Sort By Name" />
+      <Button layoutX="632.0" layoutY="794.0" mnemonicParsing="false" onAction="#sortByReleaseYear" text="Sort By Release Year" />
     </children>
 </AnchorPane>

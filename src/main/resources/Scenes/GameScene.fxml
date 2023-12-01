@@ -61,7 +61,7 @@
         <Label fx:id="publisherLabel" alignment="CENTER" layoutX="138.0" layoutY="768.0" prefHeight="11.0" prefWidth="149.0" />
         <Label fx:id="yearLabel" alignment="CENTER" layoutX="476.0" layoutY="768.0" prefHeight="11.0" prefWidth="149.0" />
         <Label fx:id="developerLabel" alignment="CENTER" layoutX="814.0" layoutY="768.0" prefHeight="11.0" prefWidth="149.0" />
-        <Label fx:id="chooseGame" layoutX="181.0" layoutY="752.0" prefHeight="33.0" prefWidth="186.0" text="Selected Game: " />
+        <Label fx:id="chooseGame" layoutX="178.0" layoutY="785.0" prefHeight="33.0" prefWidth="186.0" text="Selected Game: " />
         <VBox layoutX="563.0" layoutY="178.0" prefHeight="437.0" prefWidth="694.0">
             <children>
                 <TableView fx:id="portTableView" prefHeight="385.0" prefWidth="642.0">
@@ -105,5 +105,7 @@
             <Button mnemonicParsing="false" onAction="#clear" prefHeight="25.0" prefWidth="66.0" text="Clear" />
          </children>
       </HBox>
+      <Button layoutX="168.0" layoutY="753.0" mnemonicParsing="false" onAction="#sortByName" text="Sort By Name" />
+      <Button layoutX="302.0" layoutY="753.0" mnemonicParsing="false" onAction="#sortByReleaseYear" text="Sort By Release Year" />
     </children>
 </AnchorPane>
