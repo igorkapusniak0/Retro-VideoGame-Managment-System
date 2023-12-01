@@ -308,9 +308,9 @@ public class PortController {
     }
     public void sortByName(){
         for (int i = 0; i < 8; i++) {
-            if (this.originalGame.getOriginalMachine().portedGames.hashTable[i].head != null) {
-                Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getName());
-                LinkedList.quickSortRec(this.originalGame.getOriginalMachine().portedGames.hashTable[i].head,integerComparator);
+            if (this.originalGame.portedGames.hashTable[i].head != null) {
+                Comparator<PortedGame> integerComparator = Comparator.comparing(Game::getTitle);
+                LinkedList.quickSortRec(this.originalGame.portedGames.hashTable[i].head,integerComparator);
                 portTableView.getItems().clear();
                 this.originalGame.getOriginalMachine().portedGames.display();
             }
