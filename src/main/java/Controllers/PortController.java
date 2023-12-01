@@ -177,6 +177,12 @@ public class PortController {
             machine.addPortedGame(newPort);
             portTableView.getItems().add(newPort);
             portURLInput.clear();
+            System.out.println(this.originalGame);
+            System.out.println(this.originalGame.getOriginalMachine());
+            System.out.println(this.originalGame.getOriginalMachine().portedGames);
+            this.originalGame.getOriginalMachine().portedGames.display();
+            System.out.println(this.originalGame.getOriginalMachine().portedGames.hashTable);
+
         }
     }
     @FXML
@@ -302,21 +308,21 @@ public class PortController {
     }
     public void sortByName(){
         for (int i = 0; i < 8; i++) {
-            if (this.machine.portedGames.hashTable[i].head != null) {
+            if (this.originalGame.getOriginalMachine().portedGames.hashTable[i].head != null) {
                 Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getName());
-                LinkedList.quickSortRec(this.machine.portedGames.hashTable[i].head,integerComparator);
+                LinkedList.quickSortRec(this.originalGame.getOriginalMachine().portedGames.hashTable[i].head,integerComparator);
                 portTableView.getItems().clear();
-                this.machine.portedGames.display();
+                this.originalGame.getOriginalMachine().portedGames.display();
             }
         }
     }
     public void sortByReleaseYear(){
         for (int i = 0; i < 8; i++) {
-            if (this.machine.portedGames.hashTable[i].head != null) {
+            if (this.originalGame.getOriginalMachine().portedGames.hashTable[i].head != null) {
                 Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getLaunchYear());
-                LinkedList.quickSortRec(this.machine.portedGames.hashTable[i].head,integerComparator);
+                LinkedList.quickSortRec(this.originalGame.getOriginalMachine().portedGames.hashTable[i].head,integerComparator);
                 portTableView.getItems().clear();
-                this.machine.portedGames.display();
+                this.originalGame.getOriginalMachine().portedGames.display();
             }
         }
     }
