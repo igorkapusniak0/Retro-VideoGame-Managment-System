@@ -233,7 +233,7 @@ public class GameMachineController {
         if (isValid) {
             Double price = Double.parseDouble(machinePrice);
             Integer launchYear = Integer.parseInt(machineLaunchYear);
-            Machine machine = new Machine(machineName, manufacturer, machineDescription, machineType, machineMedia, launchYear, price, machineURL,new Hashing(hashTableSize));
+            Machine machine = new Machine(machineName, manufacturer, machineDescription, machineType, machineMedia, launchYear, price, machineURL,new Hashing(hashTableSize),new Hashing(hashTableSize));
             gameMachineHashing.add(machine,machine.getLaunchYear());
             machineTableView.getItems().add(machine);
             System.out.println(machine + " is added");

@@ -178,6 +178,7 @@ public class PortController {
             Integer year = Integer.parseInt(releaseYear);
             PortedGame newPort = new PortedGame(title,publisher,description,developer,machine,year,cover,originalGame1);
             originalGame1.addPortedGame(newPort);
+            machine.portedGames.add(newPort,newPort.getReleaseYear());
             portTableView.getItems().add(newPort);
             portURLInput.clear();
             System.out.println(this.originalGame);

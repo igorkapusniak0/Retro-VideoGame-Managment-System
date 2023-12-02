@@ -40,7 +40,7 @@ public class OriginalGame extends Game implements Serializable, Comparable<Origi
         if (machine!=null){
             this.originalMachine=machine;
         }else{
-            this.originalMachine = new Machine("",null,"","","", 0, 0,"",null);
+            this.originalMachine = new Machine("",null,"","","", 0, 0,"",null,null);
         }
     }
     public Machine getOriginalMachine(){

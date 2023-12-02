@@ -2,6 +2,8 @@ package models;
 
 import org.jetbrains.annotations.NotNull;
 import storing.Hashing;
+import storing.LinkedList;
+import storing.Node;
 import utils.ManufacturerUtil;
 import utils.Utilities;
 
@@ -17,8 +19,9 @@ public class Machine implements Serializable, Comparable<Machine> {
     private double price;
     private String image;
     public Hashing<OriginalGame> originalGames;
+    public Hashing<PortedGame> portedGames;
 
-    public Machine(String name, ManufacturerUtil manufacturer,String description,String type,String media,int launchYear, double price,String image,Hashing originalGames){
+    public Machine(String name, ManufacturerUtil manufacturer,String description,String type,String media,int launchYear, double price,String image,Hashing originalGames,Hashing portedGames){
         setName(name);
         setDescription(description);
         setManufacturer(manufacturer);
@@ -27,9 +30,12 @@ public class Machine implements Serializable, Comparable<Machine> {
         setLaunchYear(launchYear);
         setPrice(price);
         setImage(image);
-
+        setPortedGames(portedGames);
         setOriginalGames(originalGames);
     }
+
+
+
     public void setName(String name){
         if (name!=null){
             this.name= Utilities.truncateString(name,20);
@@ -117,10 +123,15 @@ public class Machine implements Serializable, Comparable<Machine> {
     public void setOriginalGames(Hashing originalGames){
         this.originalGames = originalGames;
     }
+    public void setPortedGames(Hashing portedGames){
+        this.portedGames = portedGames;
+    }
     public Hashing<OriginalGame> getGames(){
         return this.originalGames;
     }
-
+    public Hashing<PortedGame> getPortedGames(){
+        return this.portedGames;
+    }
 
 
     public String toString() {
