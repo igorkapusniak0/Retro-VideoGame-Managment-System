@@ -39,13 +39,12 @@ public class Hashing<T extends Comparable<T>> implements Serializable {
         return null;
     }
 
-    public int remove(T data){
-        int home = hashFunction(Math.abs(data.hashCode()));
-        for (int i = 0; i < hashTable.length; i++){
-            hashTable[i].remove(data);
-        }
-        System.out.println(home);
-        return home;
+    public int remove(T data,int key){
+        int index = hashFunction(key);
+        hashTable[index].remove(data);
+
+        System.out.println(index);
+        return index;
     }
     public void clearHashTable() {
         for (int i = 0; i < hashTable.length; i++) {

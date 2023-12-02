@@ -12,13 +12,8 @@ import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import models.Machine;
 import storing.Hashing;
-import storing.LinkedList;
 import utils.ManufacturerUtil;
-
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -247,7 +242,7 @@ public class GameMachineController {
 
     public void removeGameMachineButton(){
         if (chosenGameMachine!=null){
-            gameMachineHashing.remove(chosenGameMachine);
+            gameMachineHashing.remove(chosenGameMachine,chosenGameMachine.getLaunchYear());
             chosenGameMachine = null;
             chooseMachine.setText("");
         }else{
@@ -341,7 +336,6 @@ public class GameMachineController {
             chooseMachine.setText("Selected Machine: null");
         }
     }
-    private GameController gameController;
     @FXML
     private void handleTableViewPrimaryDoubleClick() throws IOException {
         Machine selectedMachine = machineTableView.getSelectionModel().getSelectedItem();

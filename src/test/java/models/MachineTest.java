@@ -10,11 +10,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MachineTest {
 
-    Machine machine = new Machine("Test Machine", new ManufacturerUtil("Manufacturer"), "Test Description", "Type", "Media", 2023, 999.99, "image.jpg", new Hashing<>(8));
+    Machine machine = new Machine("Test Machine", new ManufacturerUtil("Manufacturer"), "Test Description", "Type", "Media", 2023, 999.99, "image.jpg", new Hashing<>(8),new Hashing<>(8));
 
     @AfterEach
     void setup(){
-        Machine machine = new Machine("Test Machine", new ManufacturerUtil("Manufacturer"), "Test Description", "Type", "Media", 2023, 999.99, "image.jpg", new Hashing<>(8));
+        Machine machine = new Machine("Test Machine", new ManufacturerUtil("Manufacturer"), "Test Description", "Type", "Media", 2023, 999.99, "image.jpg", new Hashing<>(8),new Hashing<>(8));
     }
 
 

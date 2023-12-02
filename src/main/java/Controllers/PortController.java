@@ -218,7 +218,7 @@ public class PortController {
     @FXML
     private void removePort(){
         if (chosenPort!=null){
-            chosenPort.getOriginalGame().getPortedGames().remove(chosenPort);
+            chosenPort.getOriginalGame().getPortedGames().remove(chosenPort,chosenPort.getReleaseYear());
             chosenPort=null;
         }else{
             System.out.println("remove failed");
@@ -237,16 +237,18 @@ public class PortController {
     }
 
     private void updateComboBox(){
-        if (gameMachineController.gameMachineHashing.hashTable != null){
+        if (GameMachineController.gameMachineHashing.hashTable != null){
             Platform.runLater(()->{
                 portMachineInput.getItems().clear();
-                for(int i =0;i<gameMachineController.gameMachineHashing.hashTable.length;i++){
-                    LinkedList<Machine> list = gameMachineController.gameMachineHashing.hashTable[i];
+                for(int i = 0; i< GameMachineController.gameMachineHashing.hashTable.length; i++){
+                    LinkedList<Machine> list = GameMachineController.gameMachineHashing.hashTable[i];
                     if (list!=null){
                         storing.Node<Machine> current = list.head;
 
                         while (current!=null){
-                            portMachineInput.getItems().add(current.data);
+                            if (current.data!=originalGame.getOriginalMachine()){
+                                portMachineInput.getItems().add(current.data);
+                            }
                             current = current.next;
                         }
                     }

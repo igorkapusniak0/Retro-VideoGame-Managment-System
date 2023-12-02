@@ -19,7 +19,7 @@ public class GameTest {
         DeveloperUtil developer = new DeveloperUtil("Developer");
         PublisherUtil publisher = new PublisherUtil("Publisher");
         ManufacturerUtil manufacturer = new ManufacturerUtil("Machine");
-        Machine machine = new Machine("name",manufacturer,"description","Computer","Tape",1950,120,"image",new Hashing<>(8));
+        Machine machine = new Machine("name",manufacturer,"description","Computer","Tape",1950,120,"image",new Hashing<>(8),new Hashing<>(8));
         game = new OriginalGame("Title",publisher,"Description",developer,machine,2000,"asd",new Hashing<>(8));
     }
 

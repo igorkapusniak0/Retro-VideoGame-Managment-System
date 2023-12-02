@@ -19,7 +19,7 @@ public class OriginalGameTest {
                 new PublisherUtil("Publisher"),
                 "Description",
                 new DeveloperUtil("Developer"),
-                new Machine("Machine", null, "", "", "", 0, 0, "", null),
+                new Machine("Machine", null, "", "", "", 0, 0, "", null,null),
                 2023,
                 "Cover",
                 new Hashing<>(8)
@@ -28,14 +28,16 @@ public class OriginalGameTest {
 
     @Test
     void testGetPublisher() {
-        assertEquals("Publisher", originalGame.getPublisher());
+        PublisherUtil newPublisher = new PublisherUtil("New Publisher");
+        originalGame.setPublisher(newPublisher);
+        assertEquals(newPublisher, originalGame.getPublisher());
     }
 
     @Test
     void testSetPublisher() {
         PublisherUtil newPublisher = new PublisherUtil("New Publisher");
         originalGame.setPublisher(newPublisher);
-        assertEquals("New Publisher", originalGame.getPublisher());
+        assertEquals(newPublisher, originalGame.getPublisher());
     }
 
     @Test

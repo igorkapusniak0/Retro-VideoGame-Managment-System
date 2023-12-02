@@ -268,7 +268,7 @@ public class GameController {
     public void removeGameButton(){
         System.out.println(this.machine);
         if (chosenGame!=null){
-            this.machine.getGames().remove(chosenGame);
+            this.machine.getGames().remove(chosenGame,chosenGame.getReleaseYear());
             chosenGame=null;
             chooseGame.setText("");
             gameTableView.refresh();
@@ -278,7 +278,7 @@ public class GameController {
 
     public void removePortButton(){
         if (chosenPort!=null){
-            this.originalGame.getPortedGames().remove(chosenPort);
+            this.originalGame.getPortedGames().remove(chosenPort,chosenGame.getReleaseYear());
             chosenPort=null;
             choosePort.setText("");
         }

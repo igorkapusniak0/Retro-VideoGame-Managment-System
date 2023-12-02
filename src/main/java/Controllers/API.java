@@ -19,7 +19,6 @@ import java.util.List;
 
 public class API {
     public Hashing hashing;
-    private Machine machine;
 
     public static <T> void updateListView(String filter, TableView tableView, Node<T> head) {
         Platform.runLater(() -> {

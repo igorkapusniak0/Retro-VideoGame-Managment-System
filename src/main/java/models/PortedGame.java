@@ -21,7 +21,6 @@ public class PortedGame extends Game implements Serializable, Comparable<PortedG
         setPublisher(publisher);
         setReleaseYear(releaseYear);
         setCover(cover);
-
         setMachine(machine);
     }
     public void setMachine(Machine machine){
@@ -51,10 +50,10 @@ public class PortedGame extends Game implements Serializable, Comparable<PortedG
         return this.releaseYear;
     }
     public void setCover(String cover){
-        if (cover!=null||cover!=""){
-            this.cover= Utilities.truncateString(cover,50);
-        }else{
-            this.cover="Cover Error";
+        if (cover != null && !cover.isEmpty()){
+            this.cover = Utilities.truncateString(cover, 50);
+        } else {
+            this.cover = "Cover Error";
         }
     }
     public String getCover(){

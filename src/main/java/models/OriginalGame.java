@@ -70,7 +70,7 @@ public class OriginalGame extends Game implements Serializable, Comparable<Origi
         portedGames.add(portedGame,portedGame.getReleaseYear());
     }
     public void removePortedGame(PortedGame portedGame){
-        portedGames.remove(portedGame);
+        portedGames.remove(portedGame, portedGame.getReleaseYear());
     }
     public Hashing<PortedGame> getPortedGames(){
         return this.portedGames;

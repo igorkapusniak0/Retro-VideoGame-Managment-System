@@ -116,7 +116,7 @@ public class Machine implements Serializable, Comparable<Machine> {
         originalGames.add(game,game.getReleaseYear());
     }
     public void removeGame(OriginalGame originalGame){
-        originalGames.remove(originalGame);
+        originalGames.remove(originalGame,originalGame.getReleaseYear());
     }
 
 
