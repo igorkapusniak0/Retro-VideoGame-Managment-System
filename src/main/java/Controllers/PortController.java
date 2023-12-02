@@ -190,30 +190,31 @@ public class PortController {
         }
     }
     @FXML
-    private void editPort(){
+    private void editPort() {
         PublisherUtil publisher = portPublisherInput.getValue();
-        Integer releaseYear = Integer.valueOf(portReleaseYearInput.getValue());
+        String releaseYear = portReleaseYearInput.getValue();
         String cover = portURLInput.getText();
         Machine machine = portMachineInput.getValue();
         DeveloperUtil developer = originalGame.getDeveloper();
 
-        if (publisher!=null){
+        if (publisher != null) {
             chosenPort.setPublisher(publisher);
         }
-        if (releaseYear>=1950){
-            chosenPort.setReleaseYear(releaseYear);
+        if (releaseYear != null && !releaseYear.isBlank()) {
+            chosenPort.setReleaseYear(Integer.parseInt(releaseYear));
         }
-        if (!cover.isBlank()){
+        if (!cover.isBlank()) {
             chosenPort.setCover(cover);
             portURLInput.clear();
         }
-        if (developer!=null){
+        if (developer != null) {
             chosenPort.setDeveloper(developer);
         }
-        if (machine!=null){
+        if (machine != null) {
             chosenPort.setMachine(machine);
         }
     }
+
     @FXML
     private void removePort(){
         if (chosenPort!=null){
@@ -314,7 +315,7 @@ public class PortController {
         for (int i = 0; i < 8; i++) {
             if (this.originalGame.portedGames.hashTable[i].head != null) {
                 Comparator<PortedGame> integerComparator = Comparator.comparing(Game::getTitle);
-                LinkedList.quickSortRec(this.originalGame.portedGames.hashTable[i].head,integerComparator);
+                this.originalGame.portedGames.hashTable[i].sort(integerComparator);
                 portTableView.getItems().clear();
                 this.originalGame.portedGames.display();
             }
@@ -324,7 +325,7 @@ public class PortController {
         for (int i = 0; i < 8; i++) {
             if (this.originalGame.portedGames.hashTable[i].head != null) {
                 Comparator<PortedGame> integerComparator = Comparator.comparing(PortedGame::getReleaseYear);
-                LinkedList.quickSortRec(this.originalGame.portedGames.hashTable[i].head,integerComparator);
+                this.originalGame.portedGames.hashTable[i].sort(integerComparator);
                 portTableView.getItems().clear();
                 this.originalGame.portedGames.display();
             }

@@ -78,7 +78,7 @@ public class LinkedListTest {
         linkedList.add("Data1");
         linkedList.add("Data2");
 
-        linkedList.head = LinkedList.quickSortRec(linkedList.head, String::compareTo);
+        linkedList.sort(String::compareTo);
 
         assertEquals("Data1", linkedList.get(0));
         assertEquals("Data2", linkedList.get(1));

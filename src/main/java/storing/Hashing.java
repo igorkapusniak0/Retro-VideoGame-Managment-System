@@ -26,6 +26,19 @@ public class Hashing<T extends Comparable<T>> implements Serializable {
         System.out.println(home);
         return home;
     }
+    public <T extends Comparable<T>> T getItem(T data, int key) {
+        int hashIndex = hashFunction(key);
+        LinkedList<T> list = (LinkedList<T>) hashTable[hashIndex];
+        Node<T> current = list.head;
+        while (current != null) {
+            if (current.data.equals(data)) {
+                return current.data;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+
     public int remove(T data){
         int home = hashFunction(Math.abs(data.hashCode()));
         for (int i = 0; i < hashTable.length; i++){

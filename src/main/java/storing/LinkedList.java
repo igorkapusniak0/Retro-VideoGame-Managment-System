@@ -84,57 +84,51 @@ public class LinkedList<T extends Comparable<T>> implements Serializable {
         return s;
     }
 
+    Node<T> partitionLast(Node<T> start, Node<T> end, Comparator<T> comparator) {
+        if (start == end || start == null || end == null)
+            return start;
 
+        Node<T> pivotPrev = start;
+        Node<T> curr = start;
+        T pivot = end.data;
 
-    public static <T> Node<T> quickSortRec(Node head, Comparator<T> comparator) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-
-        Node<T> mid = findMiddle(head);
-        Node<T> nextOfMid = mid.next;
-        mid.next = null;
-
-        Node<T> left = quickSortRec(head, comparator);
-        Node<T> right = quickSortRec(nextOfMid, comparator);
-
-        return merge(left, right, comparator);
-    }
-    public static <T extends Comparable<T>> Node<T> findMiddle(Node<T> node) {
-        if (node == null) {
-            return null;
-        }
-        Node<T> slow = node;
-        Node<T> fast = node.next;
-
-        while (fast != null) {
-            fast = fast.next;
-            if (fast != null) {
-                slow = slow.next;
-                fast = fast.next;
+        while (start != end) {
+            if (comparator.compare(start.data, pivot) < 0) {
+                pivotPrev = curr;
+                T temp = curr.data;
+                curr.data = start.data;
+                start.data = temp;
+                curr = curr.next;
             }
+            start = start.next;
         }
-        return slow;
+
+        T temp = curr.data;
+        curr.data = pivot;
+        end.data = temp;
+
+        return pivotPrev;
     }
-    public static <T> Node<T> merge(Node<T> left, Node<T> right, Comparator<T> comparator) {
-        Node<T> result = null;
 
-        if (left == null) {
-            return right;
-        }
-        if (right == null) {
-            return left;
-        }
+    void sort(Node<T> start, Node<T> end, Comparator<T> comparator) {
+        if (start == null || start == end || start == end.next)
+            return;
 
-        if (comparator.compare(left.data, right.data) <= 0) {
-            result = left;
-            result.next = merge(left.next, right, comparator);
-        } else {
-            result = right;
-            result.next = merge(left, right.next, comparator);
-        }
+        Node<T> pivotPrev = partitionLast(start, end, comparator);
+        sort(start, pivotPrev, comparator);
 
-        return result;
+        if (pivotPrev != null && pivotPrev == start)
+            sort(pivotPrev.next, end, comparator);
+        else if (pivotPrev != null && pivotPrev.next != null)
+            sort(pivotPrev.next.next, end, comparator);
+    }
+
+    public void sort(Comparator<T> comparator) {
+        Node<T> lastNode = head;
+        while (lastNode.next != null) {
+            lastNode = lastNode.next;
+        }
+        sort(head, lastNode, comparator);
     }
 
 

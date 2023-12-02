@@ -430,7 +430,7 @@ public class GameController {
         for (int i = 0; i < 8; i++) {
             if (this.machine.originalGames.hashTable[i].head != null) {
                 Comparator<OriginalGame> integerComparator = Comparator.comparing(originalGame -> originalGame.getTitle());
-                LinkedList.quickSortRec(this.machine.originalGames.hashTable[i].head,integerComparator);
+                this.machine.originalGames.hashTable[i].sort(integerComparator);
                 gameTableView.getItems().clear();
                 this.machine.originalGames.display();
             }
@@ -440,7 +440,7 @@ public class GameController {
         for (int i = 0; i < 8; i++) {
             if (this.machine.originalGames.hashTable[i].head != null) {
                 Comparator<OriginalGame> integerComparator = Comparator.comparing(OriginalGame::getReleaseYear);
-                LinkedList.quickSortRec(this.machine.originalGames.hashTable[i].head,integerComparator);
+                this.machine.originalGames.hashTable[i].sort(integerComparator);
                 gameTableView.getItems().clear();
                 this.machine.originalGames.display();
             }
