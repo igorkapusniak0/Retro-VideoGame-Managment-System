@@ -431,7 +431,7 @@ public class GameController {
     public void sortByName(){
         for (int i = 0; i < 8; i++) {
             if (this.machine.originalGames.hashTable[i].head != null) {
-                Comparator<OriginalGame> integerComparator = Comparator.comparing(Game::getTitle);
+                Comparator<OriginalGame> integerComparator = Comparator.comparing(originalGame -> originalGame.getTitle());
                 LinkedList.quickSortRec(this.machine.originalGames.hashTable[i].head,integerComparator);
                 gameTableView.getItems().clear();
                 this.machine.originalGames.display();

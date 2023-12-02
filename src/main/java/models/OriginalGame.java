@@ -26,7 +26,9 @@ public class OriginalGame extends Game implements Serializable, Comparable<Origi
 
 
     public void setPublisher(PublisherUtil publisher) {
-
+        if (publisher!=null){
+            this.publisher=publisher;
+        }
 
     }
     public PublisherUtil getPublisher(){
