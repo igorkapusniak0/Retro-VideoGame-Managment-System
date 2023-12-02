@@ -55,7 +55,7 @@ public class OriginalGame extends Game implements Serializable, Comparable<Origi
         return this.releaseYear;
     }
     public void setCover(String cover){
-        if (cover!=null||cover!=""){
+        if (cover!=null){
             this.cover= Utilities.truncateString(cover,50);
         }else{
             this.cover="Cover Error";

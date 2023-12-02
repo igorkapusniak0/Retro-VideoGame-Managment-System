@@ -31,7 +31,7 @@ public class Machine implements Serializable, Comparable<Machine> {
         setOriginalGames(originalGames);
     }
     public void setName(String name){
-        if (name!=null||name!=""){
+        if (name!=null){
             this.name= Utilities.truncateString(name,20);
         }else{
             this.name="Name Error";
@@ -41,7 +41,7 @@ public class Machine implements Serializable, Comparable<Machine> {
         return this.name;
     }
     public void setDescription(String description){
-        if (description!=""||description!=null){
+        if (description!=null){
             this.description=Utilities.truncateString(description,200);
         }else{
             this.description="Description Error";
@@ -57,7 +57,7 @@ public class Machine implements Serializable, Comparable<Machine> {
         return this.manufacturer;
     }
     public void setType(String type){
-        if (type!=null||type!=""){
+        if (type!=null){
             this.type=Utilities.truncateString(type,20);
         }else {
             this.type="Type Error";
@@ -67,7 +67,7 @@ public class Machine implements Serializable, Comparable<Machine> {
         return this.type;
     }
     public void setMedia(String media){
-        if (media!=null||media!=""){
+        if (media!=null){
             this.media=Utilities.truncateString(media,20);
         }else {
             this.type="Media Error";
@@ -97,7 +97,7 @@ public class Machine implements Serializable, Comparable<Machine> {
         return this.price;
     }
     public void setImage(String image){
-        if (image!=null||image!=""){
+        if (image!=null){
             this.image=Utilities.truncateString(image,50);
         }else {
             this.image="Media Error";

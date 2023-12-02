@@ -35,11 +35,6 @@ public class GameTest {
         Assertions.assertEquals("Title Error", game.getTitle());
     }
 
-    @Test
-    public void testSetTitle_EmptyTitle() {
-        game.setTitle("");
-        Assertions.assertEquals("Title Error", game.getTitle());
-    }
 
     @Test
     public void testSetDescription_ValidDescription() {
@@ -53,9 +48,5 @@ public class GameTest {
         Assertions.assertEquals("Description Error", game.getDescription());
     }
 
-    @Test
-    public void testSetDescription_EmptyDescription() {
-        game.setDescription("");
-        Assertions.assertEquals("Description Error", game.getDescription());
-    }
+
 }

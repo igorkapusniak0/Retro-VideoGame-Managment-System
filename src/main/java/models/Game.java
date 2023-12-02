@@ -17,7 +17,7 @@ public abstract class Game implements Serializable {
     }
 
     public void setTitle(String title){
-        if (title!=null||title!=""){
+        if (title!=null){
             this.title= Utilities.truncateString(title,20);
         }else{
             this.title="Title Error";
@@ -28,7 +28,7 @@ public abstract class Game implements Serializable {
     }
 
     public void setDescription(String description){
-        if (description!=null||description!=""){
+        if (description!=null){
             this.description= Utilities.truncateString(description,200);
         }else{
             this.description="Description Error";
