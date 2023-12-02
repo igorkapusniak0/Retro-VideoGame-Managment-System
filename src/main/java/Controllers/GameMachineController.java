@@ -375,7 +375,7 @@ public class GameMachineController {
     public void sortByName(){
         for (int i = 0; i < 8; i++) {
             if (gameMachineHashing.hashTable[i].head != null) {
-                Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getName());
+                Comparator<Machine> integerComparator = Comparator.comparing(Machine::getName);
                 LinkedList.quickSortRec(gameMachineHashing.hashTable[i].head,integerComparator);
                 machineTableView.getItems().clear();
                 gameMachineHashing.display();
@@ -385,7 +385,7 @@ public class GameMachineController {
     public void sortByPrice(){
         for (int i = 0; i < 8; i++) {
             if (gameMachineHashing.hashTable[i].head != null) {
-                Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getPrice());
+                Comparator<Machine> integerComparator = Comparator.comparing(Machine::getPrice);
                 LinkedList.quickSortRec(gameMachineHashing.hashTable[i].head,integerComparator);
                 machineTableView.getItems().clear();
                 gameMachineHashing.display();
