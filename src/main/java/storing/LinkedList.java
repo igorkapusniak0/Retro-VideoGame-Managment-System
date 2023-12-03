@@ -91,22 +91,22 @@ public class LinkedList<T extends Comparable<T>> implements Serializable {
             return start;
 
         Node<T> pivotPrev = start;
-        Node<T> curr = start;
+        Node<T> current = start;
         T pivot = end.data;
 
         while (start != end) {
             if (comparator.compare(start.data, pivot) < 0) {
-                pivotPrev = curr;
-                T temp = curr.data;
-                curr.data = start.data;
+                pivotPrev = current;
+                T temp = current.data;
+                current.data = start.data;
                 start.data = temp;
-                curr = curr.next;
+                current = current.next;
             }
             start = start.next;
         }
 
-        T temp = curr.data;
-        curr.data = pivot;
+        T temp = current.data;
+        current.data = pivot;
         end.data = temp;
 
         return pivotPrev;

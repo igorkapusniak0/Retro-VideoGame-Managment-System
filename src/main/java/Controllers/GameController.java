@@ -76,6 +76,8 @@ public class GameController {
     private TextField gameUrlInput;
     @FXML
     private TextField searchGame;
+    @FXML
+    private TextField searchPort;
 /////////////////////////////////////////////////////////////////////
     @FXML
     private TextField portURLInput;
@@ -128,7 +130,7 @@ public class GameController {
     public void initialize() {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(()->API.updateListViewHashing(searchGame.getText(),gameTableView,machine.originalGames), 0, 1, TimeUnit.SECONDS);
-        scheduler.scheduleAtFixedRate(()->API.updateListViewHashing("",portTableView,machine.portedGames), 0, 1, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(()->API.updateListViewHashing(searchPort.getText(),portTableView,machine.portedGames), 0, 1, TimeUnit.SECONDS);
 
         if (this.machine!=null){
             machineName.setText(this.machine.getName());

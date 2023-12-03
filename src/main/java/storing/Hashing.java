@@ -39,12 +39,12 @@ public class Hashing<T extends Comparable<T>> implements Serializable {
      * @param key the key used to retrieve the item
      * @return the item that matches the given data and key, or null if not found
      */
-    public <T extends Comparable<T>> T getItem(T data, int key) {
+    public <T extends Comparable<T>> T getItem(String data, int key) {
         int hashIndex = hashFunction(key);
         LinkedList<T> list = (LinkedList<T>) hashTable[hashIndex];
         Node<T> current = list.head;
         while (current != null) {
-            if (current.data.equals(data)) {
+            if (current.data.toString().contains(data)) {
                 return current.data;
             }
             current = current.next;

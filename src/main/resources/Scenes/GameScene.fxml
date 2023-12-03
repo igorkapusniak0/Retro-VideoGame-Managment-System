@@ -78,7 +78,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                     </columnResizePolicy>
                 </TableView>
-                <TextField promptText="Search Ports:" />
+                <TextField fx:id="searchPort" promptText="Search Ports:" />
             </children>
         </VBox>
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="131.0" prefHeight="47.0" prefWidth="534.0" text="Original Game" textAlignment="CENTER">
