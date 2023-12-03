@@ -249,64 +249,88 @@ public class GameMachineController {
             System.out.println("Nothing selected");
         }
     }
-    public void editGameMachineButton(){
+    public void editGameMachineButton() {
+        String machineName = gameMachineNameInput.getText().trim();
+        String machineDescription = gameMachineDescriptionInput.getText().trim();
+        String machinePriceText = gameMachinePriceInput.getText().trim();
+        String machineURL = gameMachineUrlInput.getText().trim();
+        String machineType = comboType.getValue();
+        String machineMedia = comboMedia.getValue();
+        String machineLaunchYearText = comboLaunchYear.getValue();
+        ManufacturerUtil manufacturer = comboManufacturer.getValue();
 
-            String machineName = gameMachineNameInput.getText();
-            String machineDescription = gameMachineDescriptionInput.getText();
-            Double machinePrice = Double.valueOf(gameMachinePriceInput.getText());
-            String machineURL = gameMachineUrlInput.getText();
-            String machineType = comboType.getValue();
-            String machineMedia = comboMedia.getValue();
-            Integer machineLaunchYear = Integer.valueOf(comboLaunchYear.getValue());
-            ManufacturerUtil manufacturer = comboManufacturer.getValue();
+        boolean isValid = true;
 
-            if (!machineName.isBlank()){
-                chosenGameMachine.setName(machineName);
-                macNameLabel.setText("");
-            }else{
-                macNameLabel.setText("Invalid Name");
-            }
-            if (!machineDescription.isBlank()){
-                chosenGameMachine.setDescription(machineDescription);
-                macDesLabel.setText("");
-            }else{
-                macDesLabel.setText("Invalid Description");
-            }
-            if (machinePrice>=0){
+        if (!machineName.isBlank()) {
+            chosenGameMachine.setName(machineName);
+            macNameLabel.setText("");
+        } else {
+            macNameLabel.setText("Invalid Name");
+            isValid = false;
+        }
+
+        if (!machineDescription.isBlank()) {
+            chosenGameMachine.setDescription(machineDescription);
+            macDesLabel.setText("");
+        } else {
+            macDesLabel.setText("Invalid Description");
+            isValid = false;
+        }
+
+        try {
+            Double machinePrice = Double.parseDouble(machinePriceText);
+            if (machinePrice >= 0) {
                 chosenGameMachine.setPrice(machinePrice);
                 macPriceLabel.setText("");
-            }else{
+            } else {
                 macPriceLabel.setText("Invalid Price");
+                isValid = false;
             }
-            if (!machineURL.isBlank()){
-                chosenGameMachine.setImage(machineURL);
-                macImageLabel.setText("");
-            }else {
-                macImageLabel.setText("Invalid URL");
-            }
-            if (!machineType.isBlank()){
-                chosenGameMachine.setType(machineType);
-                macTypeLabel.setText("");
-            }else{
-                macTypeLabel.setText("Invalid Type");
-            }
-            if (!machineMedia.isBlank()){
-                chosenGameMachine.setMedia(machineMedia);
-                macMediaLabel.setText("");
-            }else{
-                macMediaLabel.setText("Invalid Media");
-            }
-            if (machineLaunchYear>=1950){
-                chosenGameMachine.setLaunchYear(machineLaunchYear);
-                macYearLabel.setText("");
-            }else{
-                macYearLabel.setText("Invalid Launch Year");
-            }
-            if (manufacturer!=null){
-                chosenGameMachine.setManufacturer(manufacturer);
-            }
+        } catch (NumberFormatException e) {
+            macPriceLabel.setText("Invalid Price");
+            isValid = false;
+        }
+
+        if (!machineURL.isBlank()) {
+            chosenGameMachine.setImage(machineURL);
+            macImageLabel.setText("");
+        } else {
+            macImageLabel.setText("Invalid URL");
+            isValid = false;
+        }
+
+        if (!machineType.isBlank()){
+            chosenGameMachine.setType(machineType);
+            macTypeLabel.setText("");
+        }else{
+            macTypeLabel.setText("Invalid Type");
+            isValid = false;
+        }
+
+        if (!machineMedia.isBlank()){
+            chosenGameMachine.setMedia(machineMedia);
+            macMediaLabel.setText("");
+        }else{
+            macMediaLabel.setText("Invalid Media");
+            isValid = false;
+        }
+
+        if (!machineLaunchYearText.isBlank()){
+            chosenGameMachine.setLaunchYear(Integer.parseInt(machineLaunchYearText));
+            macYearLabel.setText("");
+        }
+        else{
+            macYearLabel.setText("Invalid Year");
+            isValid = false;
+        }
+        if (manufacturer!=null){
+            chosenGameMachine.setManufacturer(manufacturer);
+        }else {
+            isValid = false;
+        }
 
 
+        if (isValid) {
             gameMachineNameInput.clear();
             gameMachineDescriptionInput.clear();
             gameMachinePriceInput.clear();
@@ -314,10 +338,9 @@ public class GameMachineController {
 
             chosenGameMachine = null;
             chooseMachine.setText("");
-
-
-
+        }
     }
+
 
     public void switchToSceneManufacturer(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/Scenes/ManufacturerScene.fxml"));
@@ -388,7 +411,7 @@ public class GameMachineController {
     public void sortByDescriptionLength(){
         for (int i = 0; i < 8; i++) {
             if (gameMachineHashing.hashTable[i].head != null) {
-                Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getDescription().length());
+                Comparator<Machine> integerComparator = Comparator.comparing(machine -> machine.getLaunchYear());
                 gameMachineHashing.hashTable[i].sort(integerComparator);
                 machineTableView.getItems().clear();
                 gameMachineHashing.display();

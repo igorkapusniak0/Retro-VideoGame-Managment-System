@@ -75,7 +75,7 @@
       </HBox>
       <Button layoutX="622.0" layoutY="761.0" mnemonicParsing="false" onAction="#sortByName" text="Sort By Name" />
       <Button layoutX="715.0" layoutY="761.0" mnemonicParsing="false" onAction="#sortByPrice" text="Sort By Price" />
-      <Button layoutX="802.0" layoutY="761.0" mnemonicParsing="false" onAction="#sortByDescriptionLength" text="Sort By Description Length" />
+      <Button layoutX="802.0" layoutY="761.0" mnemonicParsing="false" onAction="#sortByDescriptionLength" text="Sort By Year" />
 
 
     </children>
