@@ -131,38 +131,4 @@ public class API {
         } catch (IOException | ClassNotFoundException ignored) {}
     }
 
-
-    /*public static void quickSort(int[] a,int lowerIndex, int higherIndex) {
-        int leftIndex = lowerIndex;
-        int rightIndex = higherIndex;
-
-        int pivot = a[lowerIndex + (higherIndex - leftIndex) / 2];
-
-        while (leftIndex <= rightIndex) {
-            while (a[lowerIndex] < pivot) {
-                leftIndex++;
-            }
-            while (a[rightIndex] > pivot) {
-                rightIndex--;
-            }
-
-            if (leftIndex <= rightIndex) {
-                int swap = a[leftIndex];
-                a[leftIndex] = a[rightIndex];
-                a[rightIndex] = swap;
-                leftIndex++;
-                rightIndex--;
-            }
-        }
-        if (lowerIndex < rightIndex) {
-            quickSort(a, lowerIndex, rightIndex);
-        }
-        if (leftIndex < higherIndex) {
-            quickSort(a, lowerIndex, higherIndex);
-        }
-    }*/
-
-
-
-
 }

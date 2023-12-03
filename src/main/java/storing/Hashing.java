@@ -13,6 +13,12 @@ public class Hashing<T extends Comparable<T>> implements Serializable {
             hashTable[i]=new LinkedList<>();
         }
     }
+    /**
+     * Calculates the hash value for a given integer key.
+     *
+     * @param key the integer key to calculate the hash value for
+     * @return the calculated hash value
+     */
     public int hashFunction(int key){
         return ((((int)(key/10.0)*10)-1950)/10);
     }
@@ -26,6 +32,13 @@ public class Hashing<T extends Comparable<T>> implements Serializable {
         System.out.println(home);
         return home;
     }
+    /**
+     * Retrieves an item from the hashtable based on a given key.
+     *
+     * @param data the item data to retrieve
+     * @param key the key used to retrieve the item
+     * @return the item that matches the given data and key, or null if not found
+     */
     public <T extends Comparable<T>> T getItem(T data, int key) {
         int hashIndex = hashFunction(key);
         LinkedList<T> list = (LinkedList<T>) hashTable[hashIndex];
